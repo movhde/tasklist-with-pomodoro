@@ -50,7 +50,7 @@ export default function HomePage() {
 
           <div className="flex flex-col items-center gap-6 lg:gap-9 w-full">
             <div className="flex gap-6 lg:gap-16 w-full justify-center max-w-96">
-              <Button href="" variant="primary">
+              <Button href={"/login"} variant="primary">
                 Log In
               </Button>
               <Button href="" variant="secondary">

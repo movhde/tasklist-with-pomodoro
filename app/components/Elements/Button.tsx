@@ -13,11 +13,13 @@ const variants = {
 export default function Button({
   children,
   className,
+  textColor,
   href,
   variant,
 }: {
   children: React.ReactNode;
   className?: string;
+  textColor?: string;
   href: string;
   variant: "primary" | "secondary" | "lightPrimary" | "tertiary" | "gradient";
 }) {
@@ -25,7 +27,7 @@ export default function Button({
     <Link
       href={href}
       className={clsx(
-        "flex-1 outline-none text-center px-4 py-3 lg:px-8 lg:py-4 text-white text-base md:text-xl font-bold rounded-full transition-all duration-300 shadow-md hover:shadow-lg",
+        `flex-1 outline-none text-center px-4 py-3 lg:px-8 lg:py-4 text-${textColor ?? "white"} text-base md:text-xl font-bold rounded-full transition-all duration-300 shadow-md hover:shadow-lg`,
         variants[variant],
         className,
       )}
