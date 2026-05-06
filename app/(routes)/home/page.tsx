@@ -11,7 +11,7 @@ export default function HomePage() {
           "linear-gradient(160.91deg, #FFF1E6 18.83%, #F3E6FA 36.34%, #C9B1F6 124.86%",
       }}
     >
-      <div className="flex lg:hidden gap-1.5 items-center py-6 px-6">
+      <div className="flex lg:hidden gap-1.5 items-center py-6 px-5 md:px-6">
         <Image
           src={"/images/logo.svg"}
           alt={"logo icon"}
@@ -53,7 +53,7 @@ export default function HomePage() {
               <Button href={"/login"} variant="primary">
                 Log In
               </Button>
-              <Button href="" variant="secondary">
+              <Button href={"/signup"} variant="secondary">
                 Sign Up
               </Button>
             </div>

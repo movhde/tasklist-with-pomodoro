@@ -12,7 +12,7 @@ export default function LoginPage() {
       }}
     >
       <div className="flex min-h-screen flex-col gap-24">
-        <section className="flex gap-1.5 items-center py-6 px-12">
+        <section className="flex gap-1.5 items-center py-6 px-5 md:py-6 md:px-12">
           <Image
             src={"/images/logo.svg"}
             alt={"logo icon"}
