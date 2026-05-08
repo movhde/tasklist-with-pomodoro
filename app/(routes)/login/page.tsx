@@ -1,6 +1,5 @@
-import Button from "@/app/components/Elements/Button";
 import Image from "next/image";
-import Link from "next/link";
+import LoginForm from "./LoginForm";
 
 export default function LoginPage() {
   return (
@@ -33,48 +32,7 @@ export default function LoginPage() {
           </p>
         </section>
 
-        <section className="w-full flex-1 flex flex-col gap-9 items-center justify-center p-6  bg-white drop-shadow-2xl rounded-t-4xl md:rounded-t-[90px]">
-          <div className="w-full md:w-1/2 lg:w-1/3 flex flex-col gap-5 md:gap-10">
-            <input
-              type="text"
-              placeholder="Email"
-              aria-label="Email"
-              className="w-full py-4 px-6 placeholder:text-[#2A2A34] text-[#2A2A34] bg-[#F6F6F8] rounded-4xl text-base md:text-xl outline-none focus:outline-none"
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              aria-label="Password"
-              className="w-full py-4 px-6 placeholder:text-[#2A2A34] text-[#2A2A34] bg-[#F6F6F8] rounded-4xl text-base md:text-xl outline-none focus:outline-none"
-            />
-          </div>
-
-          <div className="w-full flex flex-col gap-6 items-center">
-            <Link
-              href={""}
-              className="text-[#787878] font-bold text-base md:text-xl outline-none hover:text-[#565656]"
-            >
-              Forget password?
-            </Link>
-            <Button
-              href=""
-              variant="lightPrimary"
-              textColor="black"
-              className="w-full md:max-w-xs drop-shadow-[-2px_6px_6px_#F77FCB40]"
-            >
-              Log In
-            </Button>
-          </div>
-
-          <div>
-            <Link
-              className="text-[#6F6F6F] text-sm md:text-base font-bold outline-none hover:text-[#565656]"
-              href={""}
-            >
-              Continue as guest
-            </Link>
-          </div>
-        </section>
+        <LoginForm />
       </div>
     </main>
   );
