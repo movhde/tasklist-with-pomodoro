@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/app/components/Elements/Button";
+import { Button } from "@/app/components/Elements/Button";
 import { Input } from "@/app/components/Elements/Input";
 import { LoginFormData, loginSchema } from "@/app/lib/validations/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -50,10 +50,9 @@ export default function LoginForm() {
           Forget password?
         </Link>
         <Button
-          href=""
+          type="submit"
           variant="lightPrimary"
-          textColor="black"
-          className="w-full md:max-w-xs drop-shadow-[-2px_6px_6px_#F77FCB40]"
+          className="sm:max-w-xs text-black drop-shadow-[-2px_6px_6px_#F77FCB40]"
         >
           Log In
         </Button>

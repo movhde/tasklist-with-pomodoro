@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/app/components/Elements/Button";
+import { Button } from "@/app/components/Elements/Button";
 import { Input } from "@/app/components/Elements/Input";
 import { SignupFormData, signupSchema } from "@/app/lib/validations/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,7 +24,7 @@ export default function SignupForm() {
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col items-center gap-11 justify-center max-w-6xl w-full bg-[#FEFEFE] rounded-4xl md:rounded-[90px] p-6 md:p-7 mx-auto drop-shadow-2xl"
     >
-      <div className="max-w-md w-full flex flex-col gap-4 md:gap-7">
+      <div className="sm:max-w-md w-full flex flex-col gap-4 md:gap-7">
         <Input
           type="text"
           placeholder="Email"
@@ -52,9 +52,9 @@ export default function SignupForm() {
       </div>
       <div className="w-full flex flex-col items-center gap-6">
         <Button
-          href=""
+          type="submit"
           variant="secondary"
-          className="w-full max-w-64 drop-shadow-[-2px_6px_6px_#45CAB440]"
+          className="sm:max-w-64 drop-shadow-[-2px_6px_6px_#45CAB440]"
         >
           Sign Up
         </Button>

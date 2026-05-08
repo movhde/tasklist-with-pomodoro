@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import Link from "next/link";
+import { ButtonHTMLAttributes, forwardRef } from "react";
 
 const variants = {
   primary: "bg-[#FF8BA6] hover:bg-[#ff6b8f]",
@@ -10,29 +10,34 @@ const variants = {
     "bg-linear-to-r from-[#FF9FB0] to-[#FC77B0] hover:from-[#fc8ca2] hover:to-[#fb5ea0]",
 };
 
-export default function Button({
-  children,
-  className,
-  textColor,
-  href,
-  variant,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  textColor?: string;
-  href: string;
-  variant: "primary" | "secondary" | "lightPrimary" | "tertiary" | "gradient";
-}) {
-  return (
-    <Link
-      href={href}
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variant: keyof typeof variants;
+}
+
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      variant = "primary",
+      className = "",
+      children,
+      type = "button",
+      ...props
+    },
+    ref,
+  ) => (
+    <button
+      ref={ref}
+      type={type}
       className={clsx(
-        `flex-1 outline-none text-center px-4 py-3 lg:px-8 lg:py-4 text-${textColor ?? "white"} text-base md:text-xl font-bold rounded-full transition-all duration-300 shadow-md hover:shadow-lg`,
+        `w-full outline-none text-center px-4 py-3 lg:px-8 lg:py-4 text-base md:text-xl font-bold rounded-full cursor-pointer transition-all duration-300 shadow-md hover:shadow-lg`,
         variants[variant],
         className,
       )}
+      {...props}
     >
       {children}
-    </Link>
-  );
-}
+    </button>
+  ),
+);
+
+Button.displayName = "Button";

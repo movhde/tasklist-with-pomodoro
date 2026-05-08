@@ -1,4 +1,4 @@
-import Button from "@/app/components/Elements/Button";
+import { Button } from "@/app/components/Elements/Button";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -52,7 +52,7 @@ export default function SignupSuccess() {
           </div>
 
           <div className="flex flex-col items-center gap-6 w-full">
-            <Button href="" variant="gradient" className="w-full max-w-xs">
+            <Button variant="gradient" className="max-w-xs">
               Go to dashboard
             </Button>
             <Link
