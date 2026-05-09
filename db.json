@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "id": "1778284736799",
+      "email": "f.z.kordlo@gmail.com",
+      "password": "$2b$10$kVLjpZVP5HdUfPwemrG2meYcwvHmc4w2.KlBkgWmFIZYdN3DCqGLS",
+      "createdAt": "2026-05-08T23:58:56.799Z"
+    },
+    {
+      "id": "1778284847271",
+      "email": "ali@gmail.com",
+      "password": "$2b$10$V4I0i3ta2MeOc/lPYAk/geJlHzz6aZaLTDqlh3aiKnwEVyu5aXO7W",
+      "createdAt": "2026-05-09T00:00:47.271Z"
+    }
+  ]
+}
