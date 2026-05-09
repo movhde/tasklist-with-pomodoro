@@ -1,16 +1,10 @@
-import Button from "@/app/components/Elements/Button";
+import { Button } from "@/app/components/Elements/Button";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function HomePage() {
   return (
-    <main
-      className="w-full flex lg:flex-row flex-col min-h-screen"
-      style={{
-        background:
-          "linear-gradient(160.91deg, #FFF1E6 18.83%, #F3E6FA 36.34%, #C9B1F6 124.86%",
-      }}
-    >
+    <main className="w-full flex lg:flex-row flex-col min-h-screen bg-linear-[161deg] from-20% from-[#FFF1E6] via-35% via-[#F3E6FA] to-125% to-[#C9B1F6] dark:bg-linear-180 dark:from-0% dark:from-[#0F102A] dark:via-none dark:to-100% dark:to-[#999999] ">
       <div className="flex lg:hidden gap-1.5 items-center py-6 px-5 md:px-6">
         <Image
           src={"/images/logo.svg"}
@@ -27,7 +21,7 @@ export default function HomePage() {
         <Image src={"/images/Timer.svg"} alt="timer image" fill />
       </section>
 
-      <section className="-mt-40 lg:mt-0 grow bg-white py-6 px-14 rounded-t-[90px] lg:rounded-t-none lg:rounded-l-[90px] flex lg:block justify-center lg:flex-4 flex-col shadow-2xl">
+      <section className="-mt-40 lg:mt-0 grow bg-white py-6 px-14 rounded-t-[90px] lg:rounded-t-none lg:rounded-l-[90px] flex lg:block justify-center lg:flex-4 flex-col shadow-2xl dark:bg-[#32334B]">
         <div className="hidden lg:flex gap-1.5 items-center">
           <Image
             src={"/images/logo.svg"}
@@ -35,30 +29,32 @@ export default function HomePage() {
             width={50}
             height={50}
           />
-          <span className="text-black font-bold text-base">DailyWeb</span>
+          <span className="text-black font-bold text-base dark:text-white">
+            DailyWeb
+          </span>
         </div>
 
         <div className="flex flex-col justify-center h-full items-center w-full gap-14 lg:gap-16">
           <div className="flex flex-col items-center gap-5">
-            <h1 className="text-2xl font-bold md:text-4xl text-[#303153]">
+            <h1 className="text-2xl font-bold md:text-4xl xl:text-6xl text-[#303153] dark:text-white">
               Ready to focus?
             </h1>
-            <p className="text-[#6F6F6F] font-bold text-sm md:text-base">
+            <p className="text-[#6F6F6F] font-bold text-sm md:text-base xl:text-xl dark:text-white">
               start with pomodoro routines
             </p>
           </div>
 
           <div className="flex flex-col items-center gap-6 lg:gap-9 w-full">
             <div className="flex gap-6 lg:gap-16 w-full justify-center max-w-96">
-              <Button href={"/login"} variant="primary">
-                Log In
-              </Button>
-              <Button href={"/signup"} variant="secondary">
-                Sign Up
-              </Button>
+              <Link href={"/login"} className="flex-1">
+                <Button variant="primary">Log In</Button>
+              </Link>
+              <Link href={"/signup"} className="flex-1">
+                <Button variant="secondary">Sign Up</Button>
+              </Link>
             </div>
             <Link
-              className="outline-none text-[#6F6F6F] text-sm md:text-base font-bold hover:text-[#565656]"
+              className="outline-none text-[#6F6F6F] text-sm md:text-base font-bold hover:text-[#565656] dark:text-white"
               href={""}
             >
               continue as guest

@@ -22,7 +22,7 @@ export default function SignupForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col items-center gap-11 justify-center max-w-6xl w-full bg-[#FEFEFE] rounded-4xl md:rounded-[90px] p-6 md:p-7 mx-auto drop-shadow-2xl"
+      className="flex flex-col items-center gap-11 justify-center max-w-6xl w-full bg-[#FEFEFE] rounded-4xl md:rounded-[90px] p-6 md:p-7 mx-auto drop-shadow-2xl dark:bg-[#32334B]"
     >
       <div className="sm:max-w-md w-full flex flex-col gap-4 md:gap-7">
         <Input
@@ -59,8 +59,11 @@ export default function SignupForm() {
           Sign Up
         </Button>
         <label className="flex items-center justify-center gap-2">
-          <input type="checkbox" className="w-4 h-4 md:w-5 md:h-5 rounded-md" />
-          <span className="text-[#6F6F6F] text-sm md:text-base font-bold">
+          <input
+            type="checkbox"
+            className="w-4 h-4 md:w-5 md:h-5 rounded-md outline-none"
+          />
+          <span className="text-[#6F6F6F] text-sm md:text-base font-bold dark:text-white">
             I agree to the terms
           </span>
         </label>
