@@ -1,21 +1,19 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-
 import { readDB } from "@/lib/db";
 import { generateToken } from "@/lib/jwt";
+import type { LoginRequest, AuthResponse, ErrorResponse } from "@/types/auth";
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-
+    const body: LoginRequest = await req.json();
     const { email, password } = body;
 
     const db = readDB();
-
-    const user = db.users.find((user: any) => user.email === email);
+    const user = db.users.find((user) => user.email === email);
 
     if (!user) {
-      return NextResponse.json(
+      return NextResponse.json<ErrorResponse>(
         { message: "invalid credentials" },
         { status: 401 },
       );
@@ -24,7 +22,7 @@ export async function POST(req: Request) {
     const isValid = await bcrypt.compare(password, user.password);
 
     if (!isValid) {
-      return NextResponse.json(
+      return NextResponse.json<ErrorResponse>(
         { message: "invalid credentials" },
         { status: 401 },
       );
@@ -35,7 +33,7 @@ export async function POST(req: Request) {
       email: user.email,
     });
 
-    return NextResponse.json({
+    return NextResponse.json<AuthResponse>({
       user: {
         id: user.id,
         email: user.email,
@@ -43,6 +41,10 @@ export async function POST(req: Request) {
       token,
     });
   } catch (error) {
-    return NextResponse.json({ message: "server error" }, { status: 500 });
+    console.error("Login error:", error);
+    return NextResponse.json<ErrorResponse>(
+      { message: "server error" },
+      { status: 500 },
+    );
   }
 }
