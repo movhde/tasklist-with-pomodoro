@@ -12,13 +12,13 @@ export default function SignupPage() {
             width={42}
             height={42}
           />
-          <span className="text-black font-bold text-sm md:text-base dark:text-white">
+          <span className="text-black font-sniglet tracking-widest font-bold text-sm md:text-base dark:text-white">
             DailyWeb
           </span>
         </section>
 
         <div className="flex flex-col flex-1 justify-center p-8 gap-5 md:gap-20">
-          <section className="flex flex-col gap-4 md:gap-8 items-center">
+          <section className="flex flex-col gap-4 md:gap-8 items-center font-sniglet tracking-wider">
             <h1 className="text-[#303153] text-3xl md:text-4xl lg:text-6xl font-bold text-center dark:text-white">
               Create your account
             </h1>

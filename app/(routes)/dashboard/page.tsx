@@ -21,7 +21,10 @@ export default function Dashboard() {
           </span>
         </div>
         <div className="w-full p-6 flex flex-1 items-center justify-center">
-          <div className="w-full flex items-center justify-center max-w-3xl min-h-32 rounded-4xl drop-shadow-2xl bg-white dark:bg-[#32334B] p-4">
+          <div className="w-full flex flex-col gap-8 items-center justify-center max-w-3xl min-h-32 font-sniglet rounded-4xl drop-shadow-2xl bg-white dark:bg-[#32334B] px-4 py-12">
+            <h1 className="font-extrabold text-4xl text-[#303153] dark:text-white md:text-6xl">
+              Welcome
+            </h1>
             <p className="font-bold text-center text-xl md:text-2xl text-[#303153] dark:text-white">
               Loading...
             </p>
@@ -44,8 +47,11 @@ export default function Dashboard() {
         </span>
       </div>
       <div className="w-full p-6 flex flex-1 items-center justify-center">
-        <div className="w-full flex items-center justify-center max-w-3xl min-h-32 rounded-4xl drop-shadow-2xl bg-white dark:bg-[#32334B] p-4">
-          <p className="font-bold text-center text-xl md:text-2xl text-[#303153 dark:text-white">
+        <div className="w-full flex flex-col gap-8 items-center justify-center max-w-3xl min-h-32 font-sniglet rounded-4xl drop-shadow-2xl bg-white dark:bg-[#32334B] px-4 py-12">
+          <h1 className="font-extrabold text-4xl text-[#303153] dark:text-white md:text-6xl">
+            Welcome
+          </h1>
+          <p className="font-bold text-center text-xl md:text-2xl text-[#303153] dark:text-white">
             {user
               ? `You logged in as ${user.email}`
               : `You're not logged in yet!`}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "./providers/ThemeProvider";
 import ReactQueryProvider from "./providers/ReactQueryProvider";
+import { SnigletFont } from "@/utils/customFont";
 
 export const metadata: Metadata = {
   title: "Pomodoro Task App",
@@ -14,7 +15,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`h-full antialiased`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`h-full antialiased ${SnigletFont.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <script
           dangerouslySetInnerHTML={{

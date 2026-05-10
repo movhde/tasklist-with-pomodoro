@@ -12,7 +12,7 @@ export default function HomePage() {
           width={42}
           height={42}
         />
-        <span className="text-black font-bold text-sm md:text-base dark:text-white">
+        <span className="font-sniglet tracking-widest text-black font-bold text-sm md:text-base dark:text-white">
           DailyWeb
         </span>
       </div>
@@ -29,33 +29,33 @@ export default function HomePage() {
             width={50}
             height={50}
           />
-          <span className="text-black font-bold text-base dark:text-white">
+          <span className="font-sniglet tracking-widest text-black font-bold text-base dark:text-white">
             DailyWeb
           </span>
         </div>
 
         <div className="flex flex-col justify-center h-full items-center w-full gap-14 lg:gap-16">
           <div className="flex flex-col items-center gap-5">
-            <h1 className="text-2xl font-bold md:text-4xl xl:text-6xl text-[#303153] dark:text-white">
+            <h1 className="font-sniglet tracking-wider text-2xl font-bold md:text-4xl xl:text-6xl text-[#303153] dark:text-white">
               Ready to focus?
             </h1>
-            <p className="text-[#6F6F6F] font-bold text-sm md:text-base xl:text-xl dark:text-white">
+            <p className="font-sniglet tracking-widest text-[#6F6F6F] font-bold text-sm md:text-base xl:text-xl dark:text-white">
               start with pomodoro routines
             </p>
           </div>
 
           <div className="flex flex-col items-center gap-6 lg:gap-9 w-full">
             <div className="flex gap-6 lg:gap-16 w-full justify-center max-w-96">
-              <Link href={"/login"} className="flex-1">
+              <Link href={"/login"} className="flex-1 focus:outline-none">
                 <Button variant="primary">Log In</Button>
               </Link>
-              <Link href={"/signup"} className="flex-1">
+              <Link href={"/signup"} className="flex-1 focus:outline-none">
                 <Button variant="secondary">Sign Up</Button>
               </Link>
             </div>
             <Link
-              className="outline-none text-[#6F6F6F] text-sm md:text-base font-bold hover:text-[#565656] dark:text-white"
-              href={""}
+              className="font-sniglet tracking-widest outline-none text-[#6F6F6F] text-sm md:text-base font-bold hover:text-[#565656] dark:text-white"
+              href={"/dashboard"}
             >
               continue as guest
             </Link>

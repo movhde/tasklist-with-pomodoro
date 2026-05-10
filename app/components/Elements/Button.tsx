@@ -29,7 +29,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       ref={ref}
       type={type}
       className={clsx(
-        `w-full outline-none text-center px-4 py-3 lg:px-8 lg:py-4 text-base md:text-xl font-bold rounded-full cursor-pointer transition-all duration-300 shadow-md hover:shadow-lg`,
+        `w-full outline-none text-center px-4 py-3 lg:px-8 lg:py-4 text-base md:text-xl font-sniglet font-bold rounded-full cursor-pointer transition-all duration-300 shadow-md hover:shadow-lg`,
         variants[variant],
         className,
       )}

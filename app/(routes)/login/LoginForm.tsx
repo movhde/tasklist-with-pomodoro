@@ -40,13 +40,17 @@ export default function LoginForm() {
           error={errors.password?.message}
           {...register("password")}
         />
-        {error && <p className="ml-2 -mt-8 text-red-500 text-sm">{error}</p>}
+        {error && (
+          <p className="font-sniglet tracking-wider ml-2 -mt-4 md:-mt-8 text-red-500 text-sm">
+            {error}
+          </p>
+        )}
       </div>
 
       <div className="w-full flex flex-col gap-6 items-center">
         <Link
           href={""}
-          className="text-[#787878] font-bold text-base md:text-xl outline-none hover:text-[#565656] dark:text-white"
+          className="text-[#787878] font-sniglet tracking-wider font-bold text-base md:text-xl outline-none hover:text-[#565656] dark:text-white"
         >
           Forget password?
         </Link>
@@ -61,8 +65,8 @@ export default function LoginForm() {
 
       <div>
         <Link
-          className="text-[#6F6F6F] text-sm md:text-base font-bold outline-none hover:text-[#565656] dark:text-white"
-          href={""}
+          className="text-[#6F6F6F] text-sm md:text-base font-sniglet tracking-wider font-bold outline-none hover:text-[#565656] dark:text-white"
+          href={"/dashboard"}
         >
           Continue as guest
         </Link>

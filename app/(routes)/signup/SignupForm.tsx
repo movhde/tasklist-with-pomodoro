@@ -29,7 +29,7 @@ export default function SignupForm() {
           type="text"
           placeholder="Email"
           aria-label="Email"
-          className="border border-[#EFEFEF] bg-white"
+          className="border-2 border-[#EFEFEF] bg-white"
           error={errors.email?.message}
           {...register("email")}
         />
@@ -37,7 +37,7 @@ export default function SignupForm() {
           type="password"
           placeholder="Password"
           aria-label="Password"
-          className="border border-[#EFEFEF] bg-white"
+          className="border-2 border-[#EFEFEF] bg-white"
           error={errors.password?.message}
           {...register("password")}
         />
@@ -45,11 +45,15 @@ export default function SignupForm() {
           type="password"
           placeholder="Confirm password"
           aria-label="Confirm password"
-          className="border border-[#EFEFEF] bg-white"
+          className="border-2 border-[#EFEFEF] bg-white"
           error={errors.confirmPassword?.message}
           {...register("confirmPassword")}
         />
-        {error && <p className="ml-2 -mt-6 text-red-500 text-sm">{error}</p>}
+        {error && (
+          <p className="font-sniglet tracking-wider ml-2 -mt-2 md:-mt-6 text-red-500 text-sm">
+            {error}
+          </p>
+        )}
       </div>
       <div className="w-full flex flex-col items-center gap-6">
         <Button
@@ -62,9 +66,14 @@ export default function SignupForm() {
         <label className="flex items-center justify-center gap-2">
           <input
             type="checkbox"
-            className="w-4 h-4 md:w-5 md:h-5 rounded-md outline-none"
+            className="w-4 h-4 md:w-5 md:h-5 
+              appearance-none 
+              border-2 border-gray-400 rounded-md 
+              checked:bg-[#5fecdc] checked:border-[#5fecdc]
+              focus:ring-1 md:focus:ring-2 focus:ring-gray-400 
+              cursor-pointer"
           />
-          <span className="text-[#6F6F6F] text-sm md:text-base font-bold dark:text-white">
+          <span className="font-sniglet tracking-wider text-[#6F6F6F] text-sm md:text-base font-bold dark:text-white">
             I agree to the terms
           </span>
         </label>
