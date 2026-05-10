@@ -1,4 +1,5 @@
 import { Button } from "@/app/components/Elements/Button";
+import Header from "@/app/components/Layout/Header";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -6,17 +7,7 @@ export default function SignupSuccess() {
   return (
     <main className="w-full bg-linear-[160deg] from-10% from-[#FFF1E6] via-65% via-[#E5CBEB] to-125% to-[#FCC7E3] dark:bg-linear-180 dark:from-0% dark:from-[#34354D] dark:via-none dark:to-100% dark:to-[#9395C1]">
       <div className="relative w-full min-h-screen flex flex-col gap-12 md:gap-0">
-        <section className="flex gap-1.5 items-center py-6 px-5 md:py-6 md:px-12">
-          <Image
-            src={"/images/logo.svg"}
-            alt={"logo icon"}
-            width={42}
-            height={42}
-          />
-          <span className="text-black font-bold text-sm md:text-base dark:text-white">
-            DailyWeb
-          </span>
-        </section>
+        <Header />
 
         <section className="flex flex-col gap-4 md:gap-18 items-center w-full -mb-52 md:-mb-40">
           <h1 className="text-[#303153] text-4xl sm:text-5xl md:text-6xl font-bold dark:text-white">
