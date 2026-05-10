@@ -8,7 +8,7 @@ export default function Dashboard() {
 
   if (isLoading)
     return (
-      <main className="w-full flex md:flex-col flex-row min-h-screen bg-linear-[161deg] from-20% from-[#FFF1E6] via-35% via-[#F3E6FA] to-125% to-[#C9B1F6] dark:bg-linear-180 dark:from-0% dark:from-[#0F102A] dark:via-none dark:to-100% dark:to-[#999999] ">
+      <main className="w-full flex flex-col min-h-screen bg-linear-[161deg] from-20% from-[#FFF1E6] via-35% via-[#F3E6FA] to-125% to-[#C9B1F6] dark:bg-linear-180 dark:from-0% dark:from-[#0F102A] dark:via-none dark:to-100% dark:to-[#999999] ">
         <div className="flex gap-1.5 items-center py-6 px-5 md:px-6">
           <Image
             src={"/images/logo.svg"}
@@ -20,9 +20,9 @@ export default function Dashboard() {
             DailyWeb
           </span>
         </div>
-        <div className="w-full flex flex-1 items-center justify-center">
+        <div className="w-full p-6 flex flex-1 items-center justify-center">
           <div className="w-full flex items-center justify-center max-w-3xl min-h-32 rounded-4xl drop-shadow-2xl bg-white dark:bg-[#32334B] p-4">
-            <p className="font-bold text-2xl text-[#303153] dark:text-white">
+            <p className="font-bold text-center text-xl md:text-2xl text-[#303153] dark:text-white">
               Loading...
             </p>
           </div>
@@ -31,7 +31,7 @@ export default function Dashboard() {
     );
 
   return (
-    <main className="w-full flex md:flex-col flex-row min-h-screen bg-linear-[161deg] from-20% from-[#FFF1E6] via-35% via-[#F3E6FA] to-125% to-[#C9B1F6] dark:bg-linear-180 dark:from-0% dark:from-[#0F102A] dark:via-none dark:to-100% dark:to-[#999999] ">
+    <main className="w-full flex flex-col min-h-screen bg-linear-[161deg] from-20% from-[#FFF1E6] via-35% via-[#F3E6FA] to-125% to-[#C9B1F6] dark:bg-linear-180 dark:from-0% dark:from-[#0F102A] dark:via-none dark:to-100% dark:to-[#999999] ">
       <div className="flex gap-1.5 items-center py-6 px-5 md:px-6">
         <Image
           src={"/images/logo.svg"}
@@ -43,9 +43,9 @@ export default function Dashboard() {
           DailyWeb
         </span>
       </div>
-      <div className="w-full flex flex-1 items-center justify-center">
+      <div className="w-full p-6 flex flex-1 items-center justify-center">
         <div className="w-full flex items-center justify-center max-w-3xl min-h-32 rounded-4xl drop-shadow-2xl bg-white dark:bg-[#32334B] p-4">
-          <p className="font-bold text-2xl text-[#303153 dark:text-white">
+          <p className="font-bold text-center text-xl md:text-2xl text-[#303153 dark:text-white">
             {user
               ? `You logged in as ${user.email}`
               : `You're not logged in yet!`}

@@ -14,7 +14,7 @@ export async function POST(req: Request) {
 
     if (!user) {
       return NextResponse.json<ErrorResponse>(
-        { message: "invalid credentials" },
+        { message: "Invalid credentials" },
         { status: 401 },
       );
     }
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
 
     if (!isValid) {
       return NextResponse.json<ErrorResponse>(
-        { message: "invalid credentials" },
+        { message: "Invalid credentials" },
         { status: 401 },
       );
     }
@@ -43,7 +43,7 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error("Login error:", error);
     return NextResponse.json<ErrorResponse>(
-      { message: "server error" },
+      { message: "Server error" },
       { status: 500 },
     );
   }

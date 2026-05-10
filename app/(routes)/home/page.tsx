@@ -12,7 +12,7 @@ export default function HomePage() {
           width={42}
           height={42}
         />
-        <span className="text-black font-bold text-sm md:text-base">
+        <span className="text-black font-bold text-sm md:text-base dark:text-white">
           DailyWeb
         </span>
       </div>

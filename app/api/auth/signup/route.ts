@@ -16,19 +16,19 @@ export async function POST(req: Request) {
 
     if (!email || !password || !confirmPassword) {
       return NextResponse.json<ErrorResponse>(
-        { message: "email, password and confirmPassword are required" },
+        { message: "Email, password and confirmPassword are required" },
         { status: 400 },
       );
     }
     if (password !== confirmPassword) {
       return NextResponse.json<ErrorResponse>(
-        { message: "passwords do not match" },
+        { message: "Passwords do not match" },
         { status: 400 },
       );
     }
-    if (password.length < 6) {
+    if (password.length < 5) {
       return NextResponse.json<ErrorResponse>(
-        { message: "password must be at least 6 characters" },
+        { message: "Password must be at least 5 characters" },
         { status: 400 },
       );
     }
@@ -38,7 +38,7 @@ export async function POST(req: Request) {
 
     if (existingUser) {
       return NextResponse.json<ErrorResponse>(
-        { message: "user already exists" },
+        { message: "User already exists" },
         { status: 400 },
       );
     }
@@ -70,7 +70,7 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error("Signup error:", error);
     return NextResponse.json<ErrorResponse>(
-      { message: "server error" },
+      { message: "Server error" },
       { status: 500 },
     );
   }
