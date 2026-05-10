@@ -50,9 +50,16 @@ export function useAuth() {
     },
   });
 
+  const logout = () => {
+    localStorage.removeItem("token");
+    queryClient.clear();
+    router.push("/");
+  };
+
   return {
     login: login.mutateAsync,
     signup: signup.mutateAsync,
+    logout,
     isLoading: login.isPending || signup.isPending,
     error: authError,
   };
