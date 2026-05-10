@@ -12,17 +12,29 @@ import type {
 export async function POST(req: Request) {
   try {
     const body: SignupRequest = await req.json();
-    const { email, password } = body;
+    const { email, password, confirmPassword } = body;
 
-    if (!email || !password) {
+    if (!email || !password || !confirmPassword) {
       return NextResponse.json<ErrorResponse>(
-        { message: "email and password required" },
+        { message: "email, password and confirmPassword are required" },
+        { status: 400 },
+      );
+    }
+    if (password !== confirmPassword) {
+      return NextResponse.json<ErrorResponse>(
+        { message: "passwords do not match" },
+        { status: 400 },
+      );
+    }
+    if (password.length < 6) {
+      return NextResponse.json<ErrorResponse>(
+        { message: "password must be at least 6 characters" },
         { status: 400 },
       );
     }
 
     const db = readDB();
-    const existingUser = db.users.find((user) => user.email === email);
+    const existingUser = db.users.find((user: User) => user.email === email);
 
     if (existingUser) {
       return NextResponse.json<ErrorResponse>(
