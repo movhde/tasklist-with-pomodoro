@@ -46,9 +46,11 @@ export default function SignupSuccess() {
           </div>
 
           <div className="flex flex-col items-center gap-6 w-full">
-            <Button variant="gradient" className="max-w-xs">
-              Go to dashboard
-            </Button>
+            <Link href={"/dashboard"} className="w-full flex justify-center">
+              <Button variant="gradient" className="max-w-xs">
+                Go to dashboard
+              </Button>
+            </Link>
             <Link
               href={"/login"}
               className="text-[#6F6F6F] text-base md:text-xl font-bold dark:text-white"

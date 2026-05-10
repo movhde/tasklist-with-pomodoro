@@ -2,7 +2,8 @@
 
 import { Button } from "@/app/components/Elements/Button";
 import { Input } from "@/app/components/Elements/Input";
-import { LoginFormData, loginSchema } from "@/app/lib/validations/auth";
+import { useAuth } from "@/hooks/useAuth";
+import { LoginFormData, loginSchema } from "@/lib/validations/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -15,10 +16,9 @@ export default function LoginForm() {
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
   });
+  const { login, error } = useAuth();
 
-  const onSubmit = (data: LoginFormData) => {
-    console.log(data);
-  };
+  const onSubmit = (data: LoginFormData) => login(data);
 
   return (
     <form
@@ -40,6 +40,7 @@ export default function LoginForm() {
           error={errors.password?.message}
           {...register("password")}
         />
+        {error && <p className="ml-2 -mt-8 text-red-500 text-sm">{error}</p>}
       </div>
 
       <div className="w-full flex flex-col gap-6 items-center">

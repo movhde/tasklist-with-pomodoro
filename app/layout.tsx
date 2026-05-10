@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "./providers/ThemeProvider";
+import ReactQueryProvider from "./providers/ReactQueryProvider";
 
 export const metadata: Metadata = {
   title: "Pomodoro Task App",
@@ -29,7 +30,9 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col">
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <ReactQueryProvider>{children}</ReactQueryProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

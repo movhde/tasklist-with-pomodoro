@@ -2,7 +2,8 @@
 
 import { Button } from "@/app/components/Elements/Button";
 import { Input } from "@/app/components/Elements/Input";
-import { SignupFormData, signupSchema } from "@/app/lib/validations/auth";
+import { useAuth } from "@/hooks/useAuth";
+import { SignupFormData, signupSchema } from "@/lib/validations/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
@@ -14,10 +15,9 @@ export default function SignupForm() {
   } = useForm<SignupFormData>({
     resolver: zodResolver(signupSchema),
   });
+  const { signup, error } = useAuth();
 
-  const onSubmit = (data: SignupFormData) => {
-    console.log(data);
-  };
+  const onSubmit = (data: SignupFormData) => signup(data);
 
   return (
     <form
@@ -29,7 +29,7 @@ export default function SignupForm() {
           type="text"
           placeholder="Email"
           aria-label="Email"
-          className="border-4 border-[#EFEFEF] bg-white"
+          className="border border-[#EFEFEF] bg-white"
           error={errors.email?.message}
           {...register("email")}
         />
@@ -37,7 +37,7 @@ export default function SignupForm() {
           type="password"
           placeholder="Password"
           aria-label="Password"
-          className="border-4 border-[#EFEFEF] bg-white"
+          className="border border-[#EFEFEF] bg-white"
           error={errors.password?.message}
           {...register("password")}
         />
@@ -45,10 +45,11 @@ export default function SignupForm() {
           type="password"
           placeholder="Confirm password"
           aria-label="Confirm password"
-          className="border-4 border-[#EFEFEF] bg-white"
+          className="border border-[#EFEFEF] bg-white"
           error={errors.confirmPassword?.message}
           {...register("confirmPassword")}
         />
+        {error && <p className="ml-2 -mt-6 text-red-500 text-sm">{error}</p>}
       </div>
       <div className="w-full flex flex-col items-center gap-6">
         <Button
