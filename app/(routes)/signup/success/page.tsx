@@ -10,7 +10,7 @@ export default function SignupSuccess() {
         <Header />
 
         <section className="flex flex-col gap-4 md:gap-18 items-center w-full -mb-52 md:-mb-40">
-          <h1 className="text-[#303153] text-4xl sm:text-5xl md:text-6xl font-bold dark:text-white">
+          <h1 className="font-sniglet tracking-wide text-[#303153] text-4xl sm:text-5xl md:text-6xl font-bold dark:text-white">
             Success!
           </h1>
           <div className="relative w-full max-w-md h-64 md:h-96 z-10">
@@ -24,7 +24,7 @@ export default function SignupSuccess() {
         </section>
 
         <section className="flex-1 py-12 w-full px-4 flex flex-col items-center justify-center md:justify-center gap-8 bg-[#FEFEFE] rounded-t-[100%_30%] md:rounded-t-[50%_100%] drop-shadow-2xl dark:bg-[#32334B]">
-          <div className="flex flex-col gap-2 items-center text-center">
+          <div className="font-sniglet tracking-wider flex flex-col gap-2 items-center text-center">
             <span className="text-black font-bold text-base sm:text-xl lg:text-2xl space dark:text-white">
               You are all set.
             </span>
@@ -44,7 +44,7 @@ export default function SignupSuccess() {
             </Link>
             <Link
               href={"/login"}
-              className="text-[#6F6F6F] text-base md:text-xl font-bold dark:text-white"
+              className="font-sniglet tracking-wider text-[#6F6F6F] text-base md:text-xl font-bold dark:text-white"
             >
               Back to Log in
             </Link>
