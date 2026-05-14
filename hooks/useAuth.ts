@@ -27,6 +27,7 @@ export function useAuth() {
     onSuccess: (data) => {
       setAuthError(null);
       localStorage.setItem("token", data.token);
+      document.cookie = `token=${data.token}; path=/; max-age=${7 * 24 * 60 * 60}`;
       queryClient.setQueryData(["user"], data.user);
       router.push("/dashboard");
     },
@@ -41,6 +42,8 @@ export function useAuth() {
     onSuccess: (data) => {
       setAuthError(null);
       localStorage.setItem("token", data.token);
+      document.cookie = `token=${data.token}; path=/; max-age=${7 * 24 * 60 * 60}`;
+      document.cookie = `just_signed_up=true; path=/; max-age=3600`;
       queryClient.setQueryData(["user"], data.user);
       router.push("/signup/success");
     },
@@ -52,6 +55,8 @@ export function useAuth() {
 
   const logout = () => {
     localStorage.removeItem("token");
+    document.cookie = "token=; path=/; max-age=0";
+    document.cookie = "just_signed_up=; path=/; max-age=0";
     queryClient.clear();
     router.push("/");
   };
