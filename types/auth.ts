@@ -1,3 +1,5 @@
+import { Task, TaskCategory } from "./task";
+
 export interface User {
   id: string;
   email: string;
@@ -7,6 +9,8 @@ export interface User {
 
 export interface DB {
   users: User[];
+  categories: TaskCategory[];
+  tasks: Task[];
 }
 
 export interface JWTPayload {
