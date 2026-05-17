@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/app/components/Elements/Button";
+import GuestButton from "@/app/components/Elements/GuestButton";
 import { Input } from "@/app/components/Elements/Input";
 import { useAuth } from "@/hooks/useAuth";
 import { LoginFormData, loginSchema } from "@/lib/validations/auth";
@@ -64,12 +65,7 @@ export default function LoginForm() {
       </div>
 
       <div>
-        <Link
-          className="text-[#6F6F6F] text-sm md:text-base font-sniglet tracking-wider font-bold outline-none hover:text-[#565656] dark:text-white"
-          href={"/dashboard"}
-        >
-          Continue as guest
-        </Link>
+        <GuestButton />
       </div>
     </form>
   );

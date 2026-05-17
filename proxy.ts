@@ -3,9 +3,11 @@ import { NextRequest, NextResponse } from "next/server";
 export function proxy(request: NextRequest) {
   const token = request.cookies.get("token")?.value;
   const justSignedUp = request.cookies.get("just_signed_up")?.value;
+  const guestToken = request.cookies.get("guest_token")?.value;
   const { pathname } = request.nextUrl;
 
   const isLoggedIn = !!token;
+  const isGuest = !!guestToken;
   const authRoutes = ["/login", "/signup"];
   const protectedRoutes = ["/dashboard", "/tasks", "pomodoro"];
 
@@ -13,7 +15,7 @@ export function proxy(request: NextRequest) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
-  if (!isLoggedIn && protectedRoutes.includes(pathname)) {
+  if (!isLoggedIn && !isGuest && protectedRoutes.includes(pathname)) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 

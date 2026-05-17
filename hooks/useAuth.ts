@@ -28,6 +28,7 @@ export function useAuth() {
       setAuthError(null);
       localStorage.setItem("token", data.token);
       document.cookie = `token=${data.token}; path=/; max-age=${7 * 24 * 60 * 60}`;
+      document.cookie = "guest_token=; max-age=0; path=/";
       queryClient.setQueryData(["user"], data.user);
       router.push("/dashboard");
     },

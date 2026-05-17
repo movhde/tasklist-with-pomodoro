@@ -1,4 +1,5 @@
 import { Button } from "@/app/components/Elements/Button";
+import GuestButton from "@/app/components/Elements/GuestButton";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -53,12 +54,7 @@ export default function HomePage() {
                 <Button variant="secondary">Sign Up</Button>
               </Link>
             </div>
-            <Link
-              className="font-sniglet tracking-widest outline-none text-[#6F6F6F] text-sm md:text-base font-bold hover:text-[#565656] dark:text-white"
-              href={"/dashboard"}
-            >
-              continue as guest
-            </Link>
+            <GuestButton />
           </div>
         </div>
       </section>
