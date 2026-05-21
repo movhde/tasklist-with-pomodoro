@@ -61,3 +61,33 @@ export default function HomePage() {
     </main>
   );
 }
+
+/////////////////////////////////////////////////////////
+
+// "use client";
+
+// import { useState } from "react";
+// import EmptyState from "@/app/components/Tasks/EmptyState";
+
+// export default function HomePage() {
+//   const [tasks, setTasks] = useState([]); // فعلاً خالی
+
+//   const handleAddTask = () => {
+//     alert("باز کردن مودال افزودن تسک");
+//   };
+
+//   return (
+//     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-[#1E1F2E] dark:to-[#2A2B40]">
+//       {/* کامپوننت EmptyState */}
+//       <EmptyState onAddTask={handleAddTask} />
+//     </div>
+//   );
+// }
+
+///////////////////////////////
+
+// import TaskTimelinePreview from "@/app/components/Tasks/TaskTimelinePreview";
+
+// export default function HomePage() {
+//   return <TaskTimelinePreview />;
+// }

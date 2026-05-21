@@ -28,3 +28,35 @@ body {
 }
 
 @custom-variant dark (.dark &);
+
+@keyframes grow-line {
+  from {
+    transform: translateX(-50%) scaleY(0);
+  }
+
+  to {
+    transform: translateX(-50%) scaleY(1);
+  }
+}
+
+.animate-grow-line {
+  animation: grow-line 0.7s ease-out;
+}
+
+@keyframes scale-in {
+  from {
+    transform: scale(0.5);
+
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+
+    opacity: 1;
+  }
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s ease-out;
+}
