@@ -25,8 +25,19 @@ export async function GET(request: Request) {
     );
 
     const categoryId = searchParams.get("categoryId");
+    const date = searchParams.get("date");
+
     if (categoryId) {
       userTasks = userTasks.filter((t: Task) => t.categoryId === categoryId);
+    }
+
+    if (date) {
+      const targetDate = date.slice(0, 10);
+      userTasks = userTasks.filter((task) => {
+        if (!task.dueDate) return false;
+        const taskDate = new Date(task.dueDate).toISOString().slice(0, 10);
+        return taskDate === targetDate;
+      });
     }
 
     const taskWithCategory: TaskWithCategory[] = userTasks.map((task: Task) => {
