@@ -16,6 +16,7 @@ import { useUser } from "@/hooks/useUser";
 import UserActions from "@/app/components/dashboard/UserActions";
 import { useTasks } from "@/hooks/useTasks";
 import EmptyState from "@/app/components/dashboard/EmptyState";
+import { useCategories } from "@/hooks/useCategories";
 
 type FilterMode = "all" | "today" | "category" | "calendar";
 
@@ -29,15 +30,16 @@ interface DashboardFilter {
 
 export default function DashboardPage() {
   const router = useRouter();
-
   const { user, isLoading } = useUser();
-  console.log({
-    user,
-    isLoading,
-  });
+  const { categories } = useCategories();
   const [filter, setFilter] = useState<DashboardFilter>({
     mode: "all",
   });
+
+  const categoryName =
+    filter.mode === "category" && filter.categoryId
+      ? categories.find((c) => c.id === filter.categoryId)?.name
+      : undefined;
 
   useEffect(() => {
     if (!isLoading && !user) {
@@ -68,7 +70,7 @@ export default function DashboardPage() {
 
   const subtitle =
     filter.mode === "category"
-      ? filter.categoryId
+      ? categoryName
       : filter.mode === "calendar"
         ? filter.date
         : undefined;
@@ -78,7 +80,7 @@ export default function DashboardPage() {
       <div className="min-h-screen lg:flex">
         <Sidebar email={user.email} filter={filter} onChange={setFilter} />
 
-        <section className="flex-1 min-w-0 overflow-y-auto px-5 md:px-8 lg:px-14 pt-4 lg:py-8">
+        <section className="flex-1 min-h-screen min-w-0 overflow-y-auto px-5 md:px-8 lg:px-14 pt-4 lg:py-8">
           {/* MOBILE HEADER */}
           <div className="lg:hidden mb-3">
             {/* avatar */}

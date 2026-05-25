@@ -20,7 +20,7 @@ export default function TasksSection({
       </h1>
 
       {subtitle && (
-        <p className="mt-2 text-sm text-gray-500 dark:text-[#C6C7D2]">
+        <p className="mt-2 font-sniglet text-md text-gray-500 dark:text-[#C6C7D2]">
           {subtitle}
         </p>
       )}

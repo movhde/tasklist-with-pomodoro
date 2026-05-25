@@ -31,18 +31,19 @@ export default function UserActions({ onLogout }: Props) {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="w-[42px] h-[42px] flex rounded-full items-center justify-center transition hover:bg-[#EEF5FF] dark:hover:bg-[#414462]"
+        className="w-fit flex rounded-full items-center justify-center transition hover:bg-[#EEF5FF] dark:hover:bg-[#414462]"
       >
-        <Image
+        {/* <Image
           src="/icons/setting.svg"
           alt="settings"
           width={40}
           height={40}
           className="dark:[filter:brightness(0)_saturate(100%)_invert(72%)_sepia(29%)_saturate(2697%)_hue-rotate(290deg)]"
-        />
+          /> */}
+        <DarkModeButton />
       </button>
 
-      <div
+      {/* <div
         className={`absolute top-[52px] right-0 w-[80px] overflow-hidden shadow-[0_0_10px_rgba(89,190,255,0.2)] border border-[#eaf1f7] bg-white dark:bg-[#32334B] rounded-[28px] transition-all duration-300 ${
           open
             ? "opacity-100 translate-x-0"
@@ -59,7 +60,7 @@ export default function UserActions({ onLogout }: Props) {
         >
           Log out
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }

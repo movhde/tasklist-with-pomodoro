@@ -20,7 +20,7 @@ export default function GreetingHeader() {
           {greeting}, Friend
         </h1>
 
-        <p className="mt-1 md:mt-2 text-[14px] text-[#707070] dark:text-[#B7B7C9]">
+        <p className="mt-1 font-sniglet md:mt-2 text-[14px] text-[#707070] dark:text-[#B7B7C9]">
           {date}
         </p>
       </div>

@@ -31,7 +31,7 @@ export default function SidebarMenu({ email, filter, onChange }: Props) {
   const [open, setOpen] = useState(true);
 
   const getSize = (label: string) =>
-    label === "Add task" || label === "Pomodoro timer" ? 16 : 18;
+    label === "Add task" || label === "Pomodoro timer" ? 22 : 18;
 
   const iconClass =
     "dark:[filter:brightness(0)_saturate(100%)_invert(73%)_sepia(29%)_saturate(2290%)_hue-rotate(295deg)_brightness(101%)_contrast(102%)]";
@@ -98,7 +98,7 @@ export default function SidebarMenu({ email, filter, onChange }: Props) {
               <button
                 key={item.label}
                 onClick={() => handleMenu(item.label)}
-                className={`w-full h-[50px] rounded-2xl px-3 flex items-center gap-4 transition-all duration-200 ${
+                className={`w-full h-[50px] rounded-2xl px-3 flex items-center gap-4 cursor-pointer transition-all duration-200 ${
                   active
                     ? "bg-[#EEF5FF] dark:bg-[#414462] dark:shadow-[0_0_18px_#00000040]"
                     : "hover:bg-[#EEF5FF] dark:hover:bg-[#3D3E58]"
@@ -133,7 +133,7 @@ export default function SidebarMenu({ email, filter, onChange }: Props) {
         <div className="flex flex-col flex-1 min-h-0">
           <button
             onClick={() => setOpen(!open)}
-            className="w-full px-3 py-2 flex items-center justify-between rounded-2xl transition-all duration-200 hover:bg-[#EEF5FF] dark:hover:bg-[#3D3E58]"
+            className="w-full px-3 py-2 flex items-center justify-between rounded-2xl cursor-pointer transition-all duration-200 hover:bg-[#EEF5FF] dark:hover:bg-[#3D3E58]"
           >
             <span className="text-[#303153] dark:text-white font-semibold">
               Categories
@@ -155,7 +155,7 @@ export default function SidebarMenu({ email, filter, onChange }: Props) {
                       mode: "all",
                     })
                   }
-                  className={`w-full h-[42px] rounded-xl pl-8 pr-4 text-left text-[13px] transition-all duration-200 ${
+                  className={`w-full h-[42px] cursor-pointer rounded-xl pl-8 pr-4 text-left text-[13px] transition-all duration-200 ${
                     filter.mode === "all"
                       ? "bg-[#EEF5FF] dark:bg-[#414462] text-[#303153] dark:text-white font-semibold dark:shadow-[0_0_18px_#00000040]"
                       : "text-[#6D7085] dark:text-[#D6D6E7] hover:bg-[#EEF5FF] dark:hover:bg-[#3D3E58]"
@@ -173,7 +173,7 @@ export default function SidebarMenu({ email, filter, onChange }: Props) {
                         categoryId: category.id,
                       })
                     }
-                    className={`w-full h-[42px] rounded-xl pl-8 pr-4 text-left text-[13px] transition-all duration-200 ${
+                    className={`w-full h-[42px] rounded-xl pl-8 pr-4 text-left text-[13px] cursor-pointer transition-all duration-200 ${
                       filter.mode === "category" &&
                       filter.categoryId === category.id
                         ? "bg-[#EEF5FF] dark:bg-[#414462] text-[#303153] dark:text-white font-semibold dark:shadow-[0_0_18px_#00000040]"
