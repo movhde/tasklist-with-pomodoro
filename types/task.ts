@@ -5,6 +5,12 @@ export interface TaskCategory {
   createdAt: string | null;
 }
 
+export interface Subtask {
+  id: string;
+  title: string;
+  completed: boolean;
+}
+
 export interface Task {
   id: string;
   title: string;
@@ -13,7 +19,9 @@ export interface Task {
   userId: string;
   categoryId: string | null;
   dueDate: string | null;
-  createdAt: string | null;
+  estimatedDuration: number | null;
+  subtasks: Subtask[];
+  createdAt: string;
 }
 
 export interface TaskWithCategory extends Task {
