@@ -47,11 +47,18 @@ export default function MobileSidebar({
         {/* floating menu */}
 
         <div
-          className={`absolute top-[-2px] right-[-2px] w-[360px] h-[160px] max-w-[92vw] rounded-[18px] border border-[#59B7FF]/50 dark:border-[#FD81B0]/30 bg-white/45 dark:bg-[#2F3048]/55 backdrop-blur-[22px] backdrop-saturate-150 shadow-[0_10px_40px_rgba(89,183,255,.18)] dark:shadow-[0_0_40px_#00000040] transition-all duration-300 overflow-y-auto overflow-x-hidden [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden z-[999] ${
-            open
-              ? "opacity-100 translate-y-0 pointer-events-auto"
-              : "opacity-0 -translate-y-2 pointer-events-none"
-          }`}
+          className={`fixed top-39 left-4 right-4 w-auto h-auto max-h-screen overflow-y-auto 
+    border border-[#59B7FF]/30 dark:border-[#FD81B0]/20 
+    bg-white/50 dark:bg-[#2F3048]/40 
+    backdrop-blur-sm backdrop-saturate-100 
+    shadow-[0_10px_40px_rgba(89,183,255,.15)] 
+    dark:shadow-[0_0_40px_#00000020] transition-all duration-300
+    rounded-2xl
+     z-[999] ${
+       open
+         ? "opacity-100 translate-y-0 pointer-events-auto"
+         : "opacity-0 -translate-y-2 pointer-events-none"
+     }`}
         >
           {/* top glow */}
 
@@ -76,7 +83,7 @@ export default function MobileSidebar({
 
           {/* content */}
 
-          <div className="relative z-10 min-h-max px-5 py-4 pr-12 space-y-2 text-[#303153] dark:text-white">
+          <div className="relative z-10 px-5 py-5 pr-12 space-y-2 text-[#303153] dark:text-white">
             {children}
           </div>
         </div>

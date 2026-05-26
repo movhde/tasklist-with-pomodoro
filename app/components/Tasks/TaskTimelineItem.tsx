@@ -18,7 +18,7 @@ export default function TaskTimelineItem({ task, isLast }: Props) {
         {/* line */}
         {!isLast && (
           <div
-            className="absolute left-1/2 top-[24px] h-[90px] md:h-[98px] 
+            className="absolute left-1/2 top-[24px] h-[80px] md:h-[98px] 
           -translate-x-1/2 w-[2px] bg-[#59B7FF] rounded-full animate-grow-line origin-top"
           />
         )}
