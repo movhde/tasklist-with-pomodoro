@@ -9,6 +9,8 @@ export interface Subtask {
   id: string;
   title: string;
   completed: boolean;
+  estimatedDuration: number | null;
+  createdAt: string;
 }
 
 export interface Task {

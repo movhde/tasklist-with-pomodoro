@@ -1,6 +1,6 @@
 import { readDB, writeDB } from "@/lib/db";
 import { verifyToken } from "@/lib/jwt";
-import { Task, TaskCategory, TaskWithCategory } from "@/types/task";
+import { Subtask, Task, TaskCategory, TaskWithCategory } from "@/types/task";
 import { NextResponse } from "next/server";
 import { randomUUID } from "crypto";
 
@@ -88,7 +88,16 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { title, description, estimatedDuration, dueDate, categoryId } = body;
+    const {
+      title,
+      description,
+      estimatedDuration,
+      dueDate,
+      categoryId,
+      subtasks,
+    } = body;
+
+    const db = readDB();
 
     if (!title || typeof title !== "string" || title.trim().length === 0) {
       return NextResponse.json(
@@ -114,7 +123,37 @@ export async function POST(request: Request) {
       );
     }
 
-    const db = readDB();
+    if (categoryId && categoryId.trim() !== "") {
+      const categoryExists = db.categories?.some((c) => c.id === categoryId);
+      if (!categoryExists) {
+        return NextResponse.json(
+          { error: "Category not found" },
+          { status: 400 },
+        );
+      }
+    }
+
+    let validatedSubtasks: Subtask[] = [];
+    if (subtasks && Array.isArray(subtasks)) {
+      for (const st of subtasks) {
+        if (!st.title || typeof st.title !== "string") {
+          return NextResponse.json(
+            { error: "Each subtask must have a title (string)" },
+            { status: 400 },
+          );
+        }
+      }
+      validatedSubtasks = subtasks.map((st: Subtask) => ({
+        id: st.id || randomUUID(),
+        title: st.title.trim(),
+        estimatedDuration:
+          typeof st.estimatedDuration === "number"
+            ? st.estimatedDuration
+            : null,
+        createdAt: st.createdAt || new Date().toISOString(),
+        completed: st.completed === true,
+      }));
+    }
 
     const newTask: Task = {
       id: randomUUID(),
@@ -125,7 +164,7 @@ export async function POST(request: Request) {
       categoryId: categoryId || null,
       dueDate: dueDate || null,
       estimatedDuration: estimatedDuration || null,
-      subtasks: [],
+      subtasks: validatedSubtasks,
       createdAt: new Date().toISOString(),
     };
 
