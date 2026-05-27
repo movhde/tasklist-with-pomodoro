@@ -207,17 +207,23 @@ export default function SidebarMenu({ email, filter, onChange }: Props) {
             {
               label: "Category",
             },
-          ].map((item) => (
-            <button
-              key={item.label}
-              onClick={() => handleMenu(item.label)}
-              className="w-full text-left pb-3 border-b border-[#59B7FF]/40 transition-all duration-200"
-            >
-              <span className="text-[16px] font-semibold text-[#303153] dark:text-white">
-                {item.label}
-              </span>
-            </button>
-          ))}
+          ].map((item, index, array) => {
+            const isLast = index === array.length - 1;
+
+            return (
+              <button
+                key={item.label}
+                onClick={() => handleMenu(item.label)}
+                className={`w-full text-left  transition-all duration-200 ${
+                  !isLast ? "pb-3 border-b border-[#59B7FF]/40" : "pb-0"
+                }`}
+              >
+                <span className="text-[16px] font-semibold text-[#303153] dark:text-white">
+                  {item.label}
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
 

@@ -11,7 +11,6 @@ import UserProfile from "@/app/components/dashboard/UserProfile";
 import GreetingHeader from "@/app/components/dashboard/GreetingHeader";
 import WeekCalendar from "@/app/components/dashboard/WeekCalendar";
 import TasksSection from "@/app/components/dashboard/TasksSection";
-
 import { useUser } from "@/hooks/useUser";
 import { useCategories } from "@/hooks/useCategories";
 

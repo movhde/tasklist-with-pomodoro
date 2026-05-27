@@ -27,7 +27,7 @@ export default function MobileSidebar({
   }, []);
 
   return (
-    <div className="lg:hidden relative">
+    <div ref={ref} className="lg:hidden relative">
       <div ref={ref} className="relative">
         {/* trigger */}
 
@@ -47,18 +47,22 @@ export default function MobileSidebar({
         {/* floating menu */}
 
         <div
-          className={`fixed top-39 left-4 right-4 w-auto h-auto max-h-screen overflow-y-auto 
-    border border-[#59B7FF]/30 dark:border-[#FD81B0]/20 
-    bg-white/50 dark:bg-[#2F3048]/40 
-    backdrop-blur-sm backdrop-saturate-100 
-    shadow-[0_10px_40px_rgba(89,183,255,.15)] 
-    dark:shadow-[0_0_40px_#00000020] transition-all duration-300
-    rounded-2xl
-     z-[999] ${
-       open
-         ? "opacity-100 translate-y-0 pointer-events-auto"
-         : "opacity-0 -translate-y-2 pointer-events-none"
-     }`}
+          className={`absolute top-0 right-0
+  w-[calc(100vw-40px)]
+  max-w-[980px]
+  rounded-2xl
+  border border-[#59B7FF]/30 dark:border-[#FD81B0]/20
+  bg-white/50 dark:bg-[#2F3048]/40
+  backdrop-blur-sm backdrop-saturate-100
+  shadow-[0_10px_40px_rgba(89,183,255,.15)]
+  dark:shadow-[0_0_40px_#00000020]
+  transition-all duration-300
+  z-[999]
+  ${
+    open
+      ? "opacity-100 scale-100 pointer-events-auto"
+      : "opacity-0 scale-95 pointer-events-none"
+  }`}
         >
           {/* top glow */}
 
