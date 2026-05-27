@@ -111,7 +111,7 @@ export default function DashboardPage() {
 
             {/*  DESKTOP CALENDAR (category -> hide) */}
             {filter.mode !== "category" && (
-              <div className="hidden md:block">
+              <div className="hidden lg:block">
                 <WeekCalendar
                   selected={filter.date}
                   onChange={(date) => {
@@ -130,7 +130,7 @@ export default function DashboardPage() {
             )}
 
             {/*  MOBILE CALENDAR (category -> hide) */}
-            <div className="md:hidden">
+            <div className="lg:hidden">
               {filter.mode !== "category" && (
                 <WeekCalendar
                   selected={filter.date}
@@ -151,7 +151,7 @@ export default function DashboardPage() {
 
             {/* MOBILE CATEGORY CHIPS */}
             {filter.mode === "category" && (
-              <div className="md:hidden mt-4">
+              <div className="lg:hidden mt-4">
                 <div className="flex gap-2 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
                   <button
                     onClick={() =>
@@ -204,6 +204,20 @@ export default function DashboardPage() {
                     ? filter.date
                     : undefined
               }
+              onMobileFilter={(mode) => {
+                if (mode === "today") {
+                  setFilter({
+                    mode: "today",
+                    date: new Date().toISOString().slice(0, 10),
+                  });
+                }
+
+                if (mode === "all") {
+                  setFilter({
+                    mode: "all",
+                  });
+                }
+              }}
             />
           </div>
         </section>

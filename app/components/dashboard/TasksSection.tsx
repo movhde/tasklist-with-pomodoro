@@ -1,23 +1,31 @@
 import TaskTimeline from "../Tasks/TaskTimeline";
-
+import MobileTaskFilter from "./MobileTaskFilter";
 interface Props {
   title: string;
   subtitle?: string;
   categoryId?: string;
   date?: string;
+  onMobileFilter?: (mode: "all" | "today") => void;
 }
-
 export default function TasksSection({
   title,
   subtitle,
   categoryId,
   date,
 }: Props) {
+  function onMobileFilter(mode: string): void {
+    throw new Error("Function not implemented.");
+  }
+
   return (
     <div className="mt-5 flex flex-col items-start">
-      <h1 className="font-sniglet  font-bold text-2xl md:text-4xl text-[#303153] dark:text-white text-right">
-        {title}
-      </h1>
+      <div className="flex w-full justify-between items-center  ">
+        <h1 className="font-sniglet font-bold text-2xl md:text-4xl text-[#303153] dark:text-white">
+          {title}
+        </h1>
+
+        <MobileTaskFilter onChange={(mode) => onMobileFilter?.(mode)} />
+      </div>
 
       {subtitle && (
         <p className="font-sniglet pl-2 text-md text-gray-500 dark:text-[#C6C7D2] text-right">
