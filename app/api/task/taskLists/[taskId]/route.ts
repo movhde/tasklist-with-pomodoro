@@ -7,12 +7,13 @@ function isValidDateString(dateStr: string): boolean {
   const date = new Date(dateStr);
   return !isNaN(date.getTime());
 }
-
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ taskId: string }> },
 ) {
   try {
+    const { taskId } = await params;
+
     const authHeader = request.headers.get("authorization");
     const token = authHeader?.split(" ")[1];
     if (!token) {
@@ -25,7 +26,7 @@ export async function PATCH(
 
     const db = readDB();
     const taskIndex = db.tasks.findIndex(
-      (t: Task) => t.id === params.id && t.userId === payload.id,
+      (t: Task) => t.id === taskId && t.userId === payload.id,
     );
     if (taskIndex === -1) {
       return NextResponse.json({ error: "Task not found" }, { status: 404 });
@@ -144,7 +145,7 @@ export async function PATCH(
     const taskWithCategory = { ...updatedTask, category: category || null };
     return NextResponse.json(taskWithCategory);
   } catch (error) {
-    console.error("Error in PATCH /api/task/tasklists/[id]:", error);
+    console.error("Error in PATCH /api/task/taskLists/[id]:", error);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 },
@@ -154,9 +155,11 @@ export async function PATCH(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ taskId: string }> },
 ) {
   try {
+    const { taskId } = await params;
+
     const authHeader = request.headers.get("authorization");
     const token = authHeader?.split(" ")[1];
     if (!token) {
@@ -169,7 +172,7 @@ export async function DELETE(
 
     const db = readDB();
     const taskIndex = db.tasks.findIndex(
-      (t: Task) => t.id === params.id && t.userId === payload.id,
+      (t: Task) => t.id === taskId && t.userId === payload.id,
     );
     if (taskIndex === -1) {
       return NextResponse.json({ error: "Task not found" }, { status: 404 });
@@ -180,7 +183,7 @@ export async function DELETE(
 
     return NextResponse.json({ message: "Task deleted successfully" });
   } catch (error) {
-    console.error("Error in DELETE /api/task/tasklists/[id]:", error);
+    console.error("Error in DELETE /api/task/taskLists/[id]:", error);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 },
@@ -190,9 +193,11 @@ export async function DELETE(
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ taskId: string }> },
 ) {
   try {
+    const { taskId } = await params;
+
     const authHeader = request.headers.get("authorization");
     const token = authHeader?.split(" ")[1];
     if (!token) {
@@ -205,7 +210,7 @@ export async function GET(
 
     const db = readDB();
     const task = db.tasks.find(
-      (t: Task) => t.id === params.id && t.userId === payload.id,
+      (t: Task) => t.id === taskId && t.userId === payload.id,
     );
     if (!task) {
       return NextResponse.json({ error: "Task not found" }, { status: 404 });
@@ -217,7 +222,7 @@ export async function GET(
     const taskWithCategory = { ...task, category: category || null };
     return NextResponse.json(taskWithCategory);
   } catch (error) {
-    console.error("Error in GET /api/task/tasklists/[id]:", error);
+    console.error("Error in GET /api/task/taskLists/[id]:", error);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 },

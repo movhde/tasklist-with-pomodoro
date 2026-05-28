@@ -5,9 +5,11 @@ import { NextResponse } from "next/server";
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { taskId: string; subtaskId: string } },
+  { params }: { params: Promise<{ taskId: string; subtaskId: string }> },
 ) {
   try {
+    const { taskId, subtaskId } = await params;
+
     const authHeader = request.headers.get("authorization");
     const token = authHeader?.split(" ")[1];
     if (!token)
@@ -26,21 +28,19 @@ export async function PATCH(
 
     const db = readDB();
     const task = db.tasks.find(
-      (t: Task) => t.id === params.taskId && t.userId === payload.id,
+      (t: Task) => t.id === taskId && t.userId === payload.id,
     );
     if (!task)
       return NextResponse.json({ error: "Task not found" }, { status: 404 });
 
-    const subtask = task.subtasks?.find(
-      (st: Subtask) => st.id === params.subtaskId,
-    );
+    const subtask = task.subtasks?.find((st: Subtask) => st.id === subtaskId);
     if (!subtask)
       return NextResponse.json({ error: "Subtask not found" }, { status: 404 });
 
     subtask.completed = completed;
     writeDB(db);
 
-    return NextResponse.json({ id: params.subtaskId, completed });
+    return NextResponse.json({ id: subtaskId, completed });
   } catch (error) {
     console.error(error);
     return NextResponse.json(
