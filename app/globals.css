@@ -31,16 +31,18 @@ body {
 
 @keyframes grow-line {
   from {
-    transform: translateX(-50%) scaleY(0);
+    height: 0;
+    opacity: 0;
   }
 
   to {
-    transform: translateX(-50%) scaleY(1);
+    height: calc(100% + 20px);
+    opacity: 1;
   }
 }
 
 .animate-grow-line {
-  animation: grow-line 0.7s ease-out;
+  animation: grow-line 0.9s ease-out forwards;
 }
 
 @keyframes scale-in {

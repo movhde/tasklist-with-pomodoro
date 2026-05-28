@@ -2,14 +2,13 @@
 
 import { useTasks } from "@/hooks/useTasks";
 
-import TaskTimelineItem from "./TaskTimelineItem";
-
 import AppLoader from "../ui/AppLoader";
 import EmptyState from "../dashboard/EmptyState";
 
+import TaskGroup from "./TaskGroup";
+
 interface Props {
   categoryId?: string;
-
   date?: string;
 }
 
@@ -19,15 +18,15 @@ export default function TaskTimeline({ categoryId, date }: Props) {
   if (isLoading) {
     return <AppLoader />;
   }
-  if (tasks.length <= 0) return <EmptyState onAddTask={() => {}} />;
+
+  if (tasks.length <= 0) {
+    return <EmptyState onAddTask={() => {}} />;
+  }
+
   return (
-    <div className="flex flex-col max-w-[760px]">
-      {tasks.map((task, index) => (
-        <TaskTimelineItem
-          key={task.id}
-          task={task}
-          isLast={index === tasks.length - 1}
-        />
+    <div className="flex flex-col gap-4 max-w-[760px]">
+      {tasks.map((task: any) => (
+        <TaskGroup key={task.id} task={task} />
       ))}
     </div>
   );

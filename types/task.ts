@@ -7,23 +7,34 @@ export interface TaskCategory {
 
 export interface Subtask {
   id: string;
+
   title: string;
+
+  duration?: number;
+
   completed: boolean;
-  estimatedDuration: number | null;
-  createdAt: string;
 }
 
 export interface Task {
   id: string;
+
   title: string;
-  description: string | null;
+
+  description?: string;
+
   completed: boolean;
+
   userId: string;
-  categoryId: string | null;
-  dueDate: string | null;
-  estimatedDuration: number | null;
-  subtasks: Subtask[];
+
+  categoryId?: string;
+
+  dueDate?: string;
+
+  duration?: number;
+
   createdAt: string;
+
+  subtasks?: Subtask[];
 }
 
 export interface TaskWithCategory extends Task {
