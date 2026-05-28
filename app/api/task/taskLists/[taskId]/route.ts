@@ -151,3 +151,76 @@ export async function PATCH(
     );
   }
 }
+
+export async function DELETE(
+  request: Request,
+  { params }: { params: { id: string } },
+) {
+  try {
+    const authHeader = request.headers.get("authorization");
+    const token = authHeader?.split(" ")[1];
+    if (!token) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    const payload = await verifyToken(token);
+    if (!payload) {
+      return NextResponse.json({ error: "Invalid token" }, { status: 401 });
+    }
+
+    const db = readDB();
+    const taskIndex = db.tasks.findIndex(
+      (t: Task) => t.id === params.id && t.userId === payload.id,
+    );
+    if (taskIndex === -1) {
+      return NextResponse.json({ error: "Task not found" }, { status: 404 });
+    }
+
+    db.tasks.splice(taskIndex, 1);
+    writeDB(db);
+
+    return NextResponse.json({ message: "Task deleted successfully" });
+  } catch (error) {
+    console.error("Error in DELETE /api/task/tasklists/[id]:", error);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 },
+    );
+  }
+}
+
+export async function GET(
+  request: Request,
+  { params }: { params: { id: string } },
+) {
+  try {
+    const authHeader = request.headers.get("authorization");
+    const token = authHeader?.split(" ")[1];
+    if (!token) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    const payload = await verifyToken(token);
+    if (!payload) {
+      return NextResponse.json({ error: "Invalid token" }, { status: 401 });
+    }
+
+    const db = readDB();
+    const task = db.tasks.find(
+      (t: Task) => t.id === params.id && t.userId === payload.id,
+    );
+    if (!task) {
+      return NextResponse.json({ error: "Task not found" }, { status: 404 });
+    }
+
+    const category = db.categories?.find(
+      (c: TaskCategory) => c.id === task.categoryId,
+    );
+    const taskWithCategory = { ...task, category: category || null };
+    return NextResponse.json(taskWithCategory);
+  } catch (error) {
+    console.error("Error in GET /api/task/tasklists/[id]:", error);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 },
+    );
+  }
+}
