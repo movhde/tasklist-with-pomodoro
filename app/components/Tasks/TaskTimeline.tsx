@@ -10,9 +10,10 @@ import TaskGroup from "./TaskGroup";
 interface Props {
   categoryId?: string;
   date?: string;
+  onAddTask: () => void;
 }
 
-export default function TaskTimeline({ categoryId, date }: Props) {
+export default function TaskTimeline({ categoryId, date, onAddTask }: Props) {
   const { tasks, isLoading } = useTasks(categoryId, date);
 
   if (isLoading) {
@@ -20,7 +21,7 @@ export default function TaskTimeline({ categoryId, date }: Props) {
   }
 
   if (tasks.length <= 0) {
-    return <EmptyState onAddTask={() => {}} />;
+    return <EmptyState onAddTask={onAddTask} />;
   }
 
   return (

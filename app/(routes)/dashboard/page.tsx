@@ -192,6 +192,7 @@ export default function DashboardPage() {
 
             <TasksSection
               title={title}
+              onAddTask={() => setOpenTaskModal(true)}
               subtitle={subtitle}
               categoryId={
                 filter.mode === "category" ? filter.categoryId : undefined

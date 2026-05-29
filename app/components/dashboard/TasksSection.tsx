@@ -7,6 +7,7 @@ interface Props {
   categoryId?: string;
   date?: string;
   onMobileFilter?: (mode: "all" | "today") => void;
+  onAddTask?: () => void;
 }
 
 export default function TasksSection({
@@ -15,6 +16,7 @@ export default function TasksSection({
   categoryId,
   date,
   onMobileFilter,
+  onAddTask,
 }: Props) {
   return (
     <div className="mt-5 flex flex-col items-start">
@@ -33,7 +35,11 @@ export default function TasksSection({
       )}
 
       <div className="mt-4 md:mt-8 w-full">
-        <TaskTimeline categoryId={categoryId} date={date} />
+        <TaskTimeline
+          categoryId={categoryId}
+          date={date}
+          onAddTask={onAddTask}
+        />
       </div>
     </div>
   );

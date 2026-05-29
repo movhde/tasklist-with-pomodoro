@@ -20,7 +20,7 @@ export default function EmptyState({ onAddTask }: EmptyStateProps) {
           </p>
 
           <button
-            onClick={onAddTask}
+            onClick={() => onAddTask()}
             className="relative w-6 h-6 md:w-10 md:h-10 mt-5 cursor-pointer focus:outline-none transition-transform duration-200 hover:scale-105"
           >
             <Image
