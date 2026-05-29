@@ -28,7 +28,7 @@ export default function MobileSidebar({
 
   return (
     <div ref={ref} className="lg:hidden relative">
-      <div ref={ref} className="relative">
+      <div className="relative">
         {/* trigger */}
 
         <button

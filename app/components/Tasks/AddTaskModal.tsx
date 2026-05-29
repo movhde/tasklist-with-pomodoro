@@ -69,6 +69,7 @@ export default function AddTaskModal({ open, onClose }: Props) {
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["tasks"],
+        exact: false,
       });
 
       setTitle("");

@@ -48,7 +48,7 @@ export default function TaskGroup({ task }: Props) {
     try {
       const token = localStorage.getItem("token");
 
-      await fetch(`/api/tasks/${task.id}`, {
+      await fetch(`/api/task/taskLists/${task.id}`, {
         method: "PATCH",
 
         headers: {
@@ -66,6 +66,8 @@ export default function TaskGroup({ task }: Props) {
   }
 
   async function toggleSubtask(subtaskId: string) {
+    const previousTask = taskState;
+
     const updatedSubtasks =
       taskState.subtasks?.map((s) =>
         s.id === subtaskId
@@ -89,20 +91,32 @@ export default function TaskGroup({ task }: Props) {
     try {
       const token = localStorage.getItem("token");
 
-      await fetch(`/api/tasks/${task.id}/subtasks/${subtaskId}`, {
-        method: "PATCH",
+      const targetSubtask = updatedSubtasks.find((s) => s.id === subtaskId);
 
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+      const res = await fetch(
+        `/api/task/taskLists/${task.id}/subtasks/${subtaskId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            completed: targetSubtask?.completed,
+          }),
         },
+      );
 
-        body: JSON.stringify({
-          completed: updatedSubtasks.find((s) => s.id === subtaskId)?.completed,
-        }),
-      });
-    } catch {
-      setTaskState(taskState);
+      if (!res.ok) {
+        throw new Error(`Request failed: ${res.status}`);
+      }
+
+      console.log(await res.json());
+    } catch (error) {
+      console.error(error);
+
+      // rollback
+      setTaskState(previousTask);
     }
   }
 
@@ -183,10 +197,10 @@ export default function TaskGroup({ task }: Props) {
                     : "Not completed"}
               </p>
 
-              {taskState.duration && (
+              {taskState.estimatedDuration && (
                 <div className="flex items-center gap-1 text-[12px] text-[#7B7D93] dark:text-[#C6C7D2]">
                   <Clock3 size={13} />
-                  <span>{taskState.duration}m</span>
+                  <span>{taskState.estimatedDuration}m</span>
                 </div>
               )}
             </div>
@@ -198,23 +212,28 @@ export default function TaskGroup({ task }: Props) {
         <div className="flex items-center gap-3 shrink-0">
           <ProgressRing progress={progress} completed={completed} />
 
-          {!!taskState.subtasks?.length && (
-            <button onClick={() => setOpen(!open)}>
-              <motion.div
-                animate={{
-                  rotate: open ? 180 : 0,
-                }}
-                transition={{
-                  duration: 0.25,
-                }}
-              >
-                <ChevronDown
-                  size={20}
-                  className="text-[#59B7FF] dark:text-[#FD81B0]"
-                />
-              </motion.div>
-            </button>
-          )}
+          <button
+            onClick={() => taskState.subtasks?.length && setOpen(!open)}
+            disabled={!taskState.subtasks?.length}
+          >
+            <motion.div
+              animate={{
+                rotate: open ? 180 : 0,
+              }}
+              transition={{
+                duration: 0.25,
+              }}
+            >
+              <ChevronDown
+                size={20}
+                className={
+                  taskState.subtasks?.length
+                    ? "text-[#59B7FF] dark:text-[#FD81B0]"
+                    : "text-gray-300 dark:text-gray-600"
+                }
+              />
+            </motion.div>
+          </button>
         </div>
       </div>
 

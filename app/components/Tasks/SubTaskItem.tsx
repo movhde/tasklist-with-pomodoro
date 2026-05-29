@@ -86,10 +86,6 @@ export default function SubTaskItem({ subtask, isLast, onToggle }: Props) {
             {subtask.title}
           </p>
         </div>
-
-        <span className="text-[12px] text-[#75767f] dark:text-[#C6C7D2] shrink-0 ml-3">
-          {subtask.duration}m
-        </span>
       </div>
     </div>
   );

@@ -15,6 +15,7 @@ import { useUser } from "@/hooks/useUser";
 import CategoryChip from "@/app/components/ui/category-chip";
 import { useCategories } from "@/hooks/useCategories";
 import AddTaskModal from "@/app/components/Tasks/AddTaskModal";
+
 type FilterMode = "all" | "today" | "category" | "calendar";
 
 interface DashboardFilter {
@@ -25,7 +26,7 @@ interface DashboardFilter {
 
 export default function DashboardPage() {
   const router = useRouter();
-  const { user, isLoading } = useUser();
+  const { user, isLoading, error } = useUser();
   const { categories } = useCategories();
   const [openTaskModal, setOpenTaskModal] = useState(false);
   const [filter, setFilter] = useState<DashboardFilter>({
@@ -38,19 +39,10 @@ export default function DashboardPage() {
       : undefined;
 
   useEffect(() => {
-    if (!isLoading && !user) {
+    if (!isLoading && (!user || error)) {
       router.replace("/login");
     }
-  }, [isLoading, user, router]);
-
-  if (isLoading) {
-    return (
-      <main className="min-h-screen flex items-center justify-center">
-        Loading...
-      </main>
-    );
-  }
-
+  }, [user, isLoading, error, router]);
   if (!user) return null;
 
   const title =
@@ -93,7 +85,7 @@ export default function DashboardPage() {
               <UserProfile mobile email={user.email} />
             </div>
 
-            <GreetingHeader />
+            <GreetingHeader name={user.name} />
 
             <div className="flex items-center justify-end gap-1">
               <EditIcon className="w-6 h-6" />
@@ -122,7 +114,7 @@ export default function DashboardPage() {
             {/* DESKTOP GREETING (category -> hide) */}
             {filter.mode !== "category" && (
               <div className="hidden lg:block">
-                <GreetingHeader />
+                <GreetingHeader name={user.name} />
               </div>
             )}
 

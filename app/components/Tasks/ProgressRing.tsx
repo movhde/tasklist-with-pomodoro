@@ -1,3 +1,4 @@
+import { Check } from "lucide-react";
 interface Props {
   progress: number;
   completed?: boolean;
@@ -52,7 +53,11 @@ export default function ProgressRing({ progress, completed }: Props) {
         text-[10px] font-semibold
         text-[#303153] dark:text-white"
       >
-        {completed ? "✓" : `${progress}%`}
+        {completed ? (
+          <Check size={20} className="text-[#59B7FF]" />
+        ) : (
+          `${progress}%`
+        )}
       </div>
     </div>
   );
