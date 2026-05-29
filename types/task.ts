@@ -10,7 +10,9 @@ export interface Subtask {
 
   title: string;
 
-  duration?: number;
+  estimatedDuration?: number | null;
+
+  createdAt?: string;
 
   completed: boolean;
 }
@@ -20,17 +22,17 @@ export interface Task {
 
   title: string;
 
-  description?: string;
+  description?: string | null;
 
   completed: boolean;
 
   userId: string;
 
-  categoryId?: string;
+  categoryId?: string | null;
 
-  dueDate?: string;
+  dueDate?: string | null;
 
-  duration?: number;
+  estimatedDuration?: number | null;
 
   createdAt: string;
 

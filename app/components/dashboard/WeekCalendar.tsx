@@ -5,6 +5,16 @@ interface Props {
   onChange: (date: string) => void;
 }
 
+function formatLocalDate(date: Date) {
+  const year = date.getFullYear();
+
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
 export default function WeekCalendar({ selected, onChange }: Props) {
   const today = new Date();
 
@@ -22,10 +32,10 @@ export default function WeekCalendar({ selected, onChange }: Props) {
 
   return (
     <div className="mt-3 md:mt-1 py-1 md:py-2 pr-0 md:pr-5 rounded-[22px] md:rounded-[28px]">
-      {/* موبایل: گرید با ۷ ستون */}
       <div className="grid grid-cols-7 gap-2 md:hidden py-3">
         {days.map((day) => {
-          const value = day.toISOString().slice(0, 10);
+          const value = formatLocalDate(day);
+
           const active = selected === value;
 
           return (
@@ -36,6 +46,7 @@ export default function WeekCalendar({ selected, onChange }: Props) {
                   onChange("");
                   return;
                 }
+
                 onChange(value);
               }}
               className={`
@@ -59,7 +70,9 @@ export default function WeekCalendar({ selected, onChange }: Props) {
                     : "text-[#303153] dark:text-[#F4F4F5]"
                 }`}
               >
-                {day.toLocaleDateString("en", { weekday: "short" })}
+                {day.toLocaleDateString("en", {
+                  weekday: "short",
+                })}
               </div>
 
               <div
@@ -76,10 +89,10 @@ export default function WeekCalendar({ selected, onChange }: Props) {
         })}
       </div>
 
-      {/* دسکتاپ: فلکس با اسکرول (همون حالت قبلی) */}
       <div className="hidden md:flex gap-2 md:gap-3 overflow-x-auto py-3 md:py-5 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         {days.map((day) => {
-          const value = day.toISOString().slice(0, 10);
+          const value = formatLocalDate(day);
+
           const active = selected === value;
 
           return (
@@ -90,14 +103,15 @@ export default function WeekCalendar({ selected, onChange }: Props) {
                   onChange("");
                   return;
                 }
+
                 onChange(value);
               }}
               className={`
                 w-[39px] sm:w-[78px] sm:h-[68px]
                 h-[49px]
-                cursor-pointer 
-                shrink-0 
-                rounded-[14px] md:rounded-[18px] 
+                cursor-pointer
+                shrink-0
+                rounded-[14px] md:rounded-[18px]
                 border transition-all duration-200
                 flex flex-col items-center justify-center
                 ${
@@ -114,7 +128,9 @@ export default function WeekCalendar({ selected, onChange }: Props) {
                     : "text-[#303153] dark:text-[#F4F4F5]"
                 }`}
               >
-                {day.toLocaleDateString("en", { weekday: "short" })}
+                {day.toLocaleDateString("en", {
+                  weekday: "short",
+                })}
               </div>
 
               <div

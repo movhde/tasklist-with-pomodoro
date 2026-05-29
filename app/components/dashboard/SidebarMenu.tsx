@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import UserAvatar from "./UserProfile";
 import { useCategories } from "@/hooks/useCategories";
-
+import { TaskCategory } from "@/types/task";
 interface Filter {
   mode: "all" | "today" | "category" | "calendar";
   categoryId?: string;
@@ -15,6 +15,7 @@ interface Props {
   email?: string;
   filter: Filter;
   onChange: (filter: Filter) => void;
+  onAddTask: () => void;
 }
 
 const menu = [
@@ -24,7 +25,12 @@ const menu = [
   { label: "Pomodoro timer", icon: "/icons/pomodoro.svg" },
 ];
 
-export default function SidebarMenu({ email, filter, onChange }: Props) {
+export default function SidebarMenu({
+  email,
+  filter,
+  onChange,
+  onAddTask,
+}: Props) {
   const { categories } = useCategories();
 
   const [open, setOpen] = useState(true);
@@ -36,6 +42,12 @@ export default function SidebarMenu({ email, filter, onChange }: Props) {
     "dark:[filter:brightness(0)_saturate(100%)_invert(73%)_sepia(29%)_saturate(2290%)_hue-rotate(295deg)_brightness(101%)_contrast(102%)]";
 
   function handleMenu(label: string) {
+    if (label === "Add task") {
+      onAddTask();
+
+      return;
+    }
+
     if (label === "Today") {
       onChange({
         mode: "today",
@@ -44,6 +56,7 @@ export default function SidebarMenu({ email, filter, onChange }: Props) {
 
       return;
     }
+
     if (label === "Category") {
       onChange({
         mode: "category",
@@ -53,6 +66,7 @@ export default function SidebarMenu({ email, filter, onChange }: Props) {
 
       return;
     }
+
     if (label === "Calendar") {
       onChange({
         mode: "calendar",
@@ -171,7 +185,7 @@ export default function SidebarMenu({ email, filter, onChange }: Props) {
                   All
                 </button>
 
-                {categories.map((category: any) => (
+                {categories.map((category: TaskCategory) => (
                   <button
                     key={category.id}
                     onClick={() =>
