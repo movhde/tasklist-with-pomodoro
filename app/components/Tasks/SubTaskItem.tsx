@@ -32,21 +32,21 @@ export default function SubTaskItem({ subtask, isLast, onToggle }: Props) {
         {/* circle */}
         <button
           onClick={() => onToggle(subtask.id)}
-          className="
-            relative z-10
-            w-[20px]
-            h-[20px]
-            rounded-full
-            border-[4px]
-            transition-all duration-200
-            flex items-center justify-center
-            shadow-[0_0_10px_rgba(0,0,0,.08)]
-            dark:shadow-[0_0_12px_rgba(0,0,0,.25)]
-          "
-          style={{
-            borderColor: subtask.completed ? "#FD81B0" : "#FD81B0",
-            background: subtask.completed ? "#FD81B0" : "#303153",
-          }}
+          className={`
+    relative z-10
+    w-[20px] h-[20px]
+    rounded-full
+    border-[4px]
+    transition-all duration-200
+    flex items-center justify-center
+    shadow-[0_0_10px_rgba(0,0,0,.08)]
+    dark:shadow-[0_0_12px_rgba(0,0,0,.25)]
+    ${
+      subtask.completed
+        ? "bg-[#FD81B0] border-[#FD81B0]"
+        : "bg-white dark:bg-[#2B2D42] border-[#FD81B0]"
+    }
+  `}
         >
           <div
             className={`

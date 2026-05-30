@@ -14,7 +14,7 @@ import TasksSection from "@/app/components/dashboard/TasksSection";
 import { useUser } from "@/hooks/useUser";
 import CategoryChip from "@/app/components/ui/category-chip";
 import { useCategories } from "@/hooks/useCategories";
-import AddTaskModal from "@/app/components/Tasks/AddTaskModal";
+import AddTaskModal from "@/app/components/Tasks/add-task/AddTaskModal";
 
 type FilterMode = "all" | "today" | "category" | "calendar";
 
