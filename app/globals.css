@@ -62,3 +62,162 @@ body {
 .animate-scale-in {
   animation: scale-in 0.3s ease-out;
 }
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100px) scale(0.9);
+  }
+}
+
+.subtask-enter {
+  animation: slideIn 0.2s ease-out forwards;
+}
+
+.subtask-exit {
+  animation: slideOut 0.2s ease-in forwards;
+}
+
+.rdp-root {
+  --rdp-accent-color: transparent;
+  --rdp-accent-background-color: transparent;
+}
+
+/* DAY BUTTON */
+
+.rdp-day_button {
+  width: 42px;
+  height: 42px;
+
+  color: white;
+
+  border: none;
+
+  border-radius: 999px;
+
+  background: transparent;
+
+  transition: all 0.2s ease;
+}
+
+/* HOVER */
+
+.rdp-day_button:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* TODAY */
+
+.rdp-today:not(.rdp-selected) .rdp-day_button {
+  background: white;
+
+  color: #252842;
+
+  font-weight: 700;
+
+  border-radius: 999px;
+}
+
+/* SELECTED */
+
+.rdp-selected .rdp-day_button {
+  background: transparent !important;
+
+  color: white !important;
+
+  border: 2px solid rgba(255, 255, 255, 0.9) !important;
+
+  box-shadow: none !important;
+}
+
+/* TODAY + SELECTED */
+
+.rdp-today.rdp-selected .rdp-day_button {
+  background: white !important;
+
+  color: #252842 !important;
+
+  border: 2px solid white !important;
+}
+
+/* OUTSIDE DAYS */
+
+.rdp-outside .rdp-day_button {
+  opacity: 0.25;
+}
+
+/* DISABLED */
+
+.rdp-disabled .rdp-day_button {
+  opacity: 0.15;
+}
+.rdp-button_previous,
+.rdp-button_next {
+  color: white !important;
+  fill: white !important;
+
+  border: none !important;
+
+  background: transparent !important;
+}
+
+/* Chevron icon */
+
+.rdp-chevron {
+  fill: white !important;
+
+  stroke: white !important;
+  fill: none !important;
+}
+
+.rdp-nav_button svg {
+  stroke: white !important;
+  color: white !important;
+  fill: white;
+}
+
+.rdp-button_previous svg,
+.rdp-button_next svg {
+  stroke: white !important;
+  fill: white !important;
+  color: white !important;
+}
+.rdp-day,
+.rdp-day_button {
+  width: 36px;
+  height: 36px;
+}
+@media (max-width: 640px) {
+  .rdp-day {
+    width: 20px;
+    height: 20px;
+  }
+
+  .rdp-day_button {
+    width: 30px;
+    height: 30px;
+  }
+
+  .rdp-caption_label {
+    font-size: 16px;
+  }
+
+  .rdp-weekday {
+    font-size: 11px;
+  }
+}

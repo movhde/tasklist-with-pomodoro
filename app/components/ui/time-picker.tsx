@@ -78,7 +78,27 @@ function NumberControl({ value, onChange, max }: NumberControlProps) {
             onChange(0);
           }
         }}
-        className="h-[42px] w-[56px] sm:h-[48px] sm:w-[64px] rounded-[14px] sm:rounded-[16px] border border-[#E7EEF8] bg-white text-center text-[16px] sm:text-[18px] font-semibold text-[#2D325A] shadow-[0_4px_14px_rgba(15,23,42,.04)] outline-none transition-all duration-200 focus:border-[#59B7FF] focus:ring-4 focus:ring-[#59B7FF]/10 [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+        className="
+  h-[42px] w-[56px] sm:h-[48px] sm:w-[64px]
+  rounded-[14px] sm:rounded-[16px]
+  border border-[#E7EEF8]
+  bg-white
+  text-center text-[16px] sm:text-[18px]
+  font-semibold text-[#2D325A]
+  shadow-[0_4px_14px_rgba(15,23,42,.04)]
+  outline-none transition-all duration-200
+  focus:border-[#59B7FF]
+  focus:ring-4 focus:ring-[#59B7FF]/10
+
+  dark:bg-[#3A3D5A]
+  dark:border-[#FFFFFF12]
+  dark:text-white
+  dark:shadow-none
+
+  [appearance:textfield]
+  [&::-webkit-inner-spin-button]:appearance-none
+  [&::-webkit-outer-spin-button]:appearance-none
+"
       />
 
       <button
@@ -107,7 +127,8 @@ export default function TimePicker({ value, onChange }: Props) {
   return (
     <div
       className="flex items-center justify-center gap-1 sm:gap-2 rounded-[18px] 
-    sm:rounded-[20px] border border-[#E7EEF8] bg-[#F8FBFF] px-1.5 py-1.5 sm:px-2 sm:py-2"
+    sm:rounded-[20px] border border-[#E7EEF8] bg-[#F8FBFF] dark:bg-[#2B2D42]/95 animate-in fade-in zoom-in-95 duration-200 
+     dark:border-[#FFFFFF10]   px-1.5 py-1.5 sm:px-2 sm:py-2"
     >
       <NumberControl value={hours} onChange={setHours} />
 
