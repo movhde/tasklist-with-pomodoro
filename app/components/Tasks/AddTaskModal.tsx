@@ -11,7 +11,7 @@ import axiosInstance from "@/lib/axios";
 import { useCategories } from "@/hooks/useCategories";
 
 import { Subtask } from "@/types/task";
-
+import { toast } from "sonner";
 import {
   CalendarDays,
   Clock3,
@@ -79,6 +79,10 @@ export default function AddTaskModal({ open, onClose }: Props) {
         exact: false,
       });
 
+      toast.success("Task created successfully ✨", {
+        description: "Your task has been added to today's workflow.",
+      });
+
       setTitle("");
       setDescription("");
       setDueDate(defaultDate);
@@ -89,8 +93,32 @@ export default function AddTaskModal({ open, onClose }: Props) {
 
       onClose();
     },
-  });
 
+    onError: () => {
+      toast.error("Failed to create task", {
+        description: "Something went wrong. Please try again.",
+      });
+    },
+  });
+  function handleCreateTask() {
+    if (!title.trim()) {
+      toast.error("Task title is required", {
+        description: "Give your task a clear name.",
+      });
+
+      return;
+    }
+
+    if (!categoryId) {
+      toast.error("Category is required", {
+        description: "Select a category before continuing.",
+      });
+
+      return;
+    }
+
+    createTask.mutate();
+  }
   function addSubtask() {
     if (!subtaskInput.trim()) return;
 
@@ -128,9 +156,14 @@ export default function AddTaskModal({ open, onClose }: Props) {
             <div className="flex items-start gap-4">
               <div
                 className="flex h-[62px] w-[62px] items-center justify-center rounded-[22px] 
+                 dark:from-[#2e3f5a] dark:to-[#2d1b2e] 
+  shadow-[0_10px_24px_rgba(15,23,42,.06)] dark:shadow-[0_10px_24px_rgba(0,0,0,.2)]
               bg-gradient-to-br from-[#EEF5FF] to-[#FCEEF5] shadow-[0_10px_24px_rgba(15,23,42,.06)]"
               >
-                <ListPlus size={24} className="text-[#7D8DF7]" />
+                <ListPlus
+                  size={28}
+                  className="text-[#7D8DF7] dark:text-[#bfc7f0]"
+                />
               </div>
 
               <div>
@@ -336,9 +369,11 @@ export default function AddTaskModal({ open, onClose }: Props) {
               </button>
 
               <button
-                disabled={!title || createTask.isPending}
-                onClick={() => createTask.mutate()}
-                className="flex items-center gap-2 cursor-pointer rounded-[20px] bg-gradient-to-r from-[#5DAEFF] via-[#7D8DF7] to-[#E58AB2] px-8 py-3 font-semibold text-white shadow-[0_10px_24px_rgba(89,183,255,.20)] transition-all duration-200 hover:scale-[1.02] disabled:opacity-50"
+                disabled={createTask.isPending}
+                onClick={handleCreateTask}
+                className="flex items-center gap-2 cursor-pointer rounded-[20px]
+                 bg-gradient-to-r from-[#5DAEFF] via-[#7D8DF7] to-[#E58AB2] px-8 py-3 font-semibold text-white shadow-[0_10px_24px_rgba(89,183,255,.20)] 
+                 transition-all duration-200 hover:scale-[1.02] "
               >
                 <Plus size={16} />
 
