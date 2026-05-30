@@ -45,12 +45,12 @@ export default function SubTaskItem({ subtask, isLast, onToggle }: Props) {
           "
           style={{
             borderColor: subtask.completed ? "#FD81B0" : "#FD81B0",
-            background: subtask.completed ? "#FD81B0" : "#fff",
+            background: subtask.completed ? "#FD81B0" : "#303153",
           }}
         >
           <div
             className={`
-              rounded-full bg-white transition-all duration-200
+              rounded-full bg-white dark:bg-[#303153] transition-all duration-200
               ${
                 subtask.completed
                   ? "w-[6px] h-[6px] opacity-100"

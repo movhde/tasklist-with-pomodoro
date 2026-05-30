@@ -28,7 +28,7 @@ export default function MobileTaskFilter({ onChange }: Props) {
       {" "}
       <button
         onClick={() => setOpen((v) => !v)}
-        className="text-[15px] font-medium underline text-[#484b4d] "
+        className="text-[15px] font-medium underline text-[#484b4d] dark:text-[#ffff]"
       >
         See all
       </button>

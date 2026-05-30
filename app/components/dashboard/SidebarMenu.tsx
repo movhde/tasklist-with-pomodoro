@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import UserAvatar from "./UserProfile";
 import { useCategories } from "@/hooks/useCategories";
 import { TaskCategory } from "@/types/task";
+import UserProfile from "./UserProfile";
 interface Filter {
   mode: "all" | "today" | "category" | "calendar";
   categoryId?: string;
@@ -86,7 +86,7 @@ export default function SidebarMenu({
 
       <div className="hidden lg:flex flex-col h-full px-8 py-8 overflow-hidden">
         <div className="flex items-center justify-between mb-8">
-          <UserAvatar email={email} />
+          <UserProfile email={email} />
         </div>
 
         {/* desktop menu */}

@@ -7,7 +7,7 @@ interface Props {
   categoryId?: string;
   date?: string;
   onMobileFilter?: (mode: "all" | "today") => void;
-  onAddTask?: () => void;
+  onAddTask: () => void;
 }
 
 export default function TasksSection({

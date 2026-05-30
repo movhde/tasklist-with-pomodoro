@@ -62,12 +62,13 @@ export default function DashboardPage() {
         : undefined;
 
   return (
-    <main className="min-h-screen bg-[#f8fcff] dark:bg-[#28273D]">
+    <main className="min-h-screen bg-[#f8fcff] dark:bg-[#78719dc7]">
       <div className="min-h-screen lg:flex">
         <Sidebar
           filter={filter}
           onChange={setFilter}
           onAddTask={() => setOpenTaskModal(true)}
+          email={user.email}
         />
 
         <section
@@ -85,7 +86,7 @@ export default function DashboardPage() {
               <UserProfile mobile email={user.email} />
             </div>
 
-            <GreetingHeader name={user.name} />
+            <GreetingHeader email={user.email} />
 
             <div className="flex items-center justify-end gap-1">
               <EditIcon className="w-6 h-6" />
@@ -114,7 +115,7 @@ export default function DashboardPage() {
             {/* DESKTOP GREETING (category -> hide) */}
             {filter.mode !== "category" && (
               <div className="hidden lg:block">
-                <GreetingHeader name={user.name} />
+                <GreetingHeader email={user.email} />
               </div>
             )}
 
