@@ -25,13 +25,14 @@ import {
 import CategoryChip from "@/app/components/ui/category-chip";
 import ModalInput from "@/app/components/ui/modal-input";
 import TimePicker from "@/app/components/ui/time-picker";
-
+import CalendarPicker from "@/app/components/ui/CalendarPicker";
 interface Props {
   open: boolean;
   onClose: () => void;
 }
 
 export default function AddTaskModal({ open, onClose }: Props) {
+  const today = new Date();
   const queryClient = useQueryClient();
 
   const { categories } = useCategories();
@@ -40,7 +41,13 @@ export default function AddTaskModal({ open, onClose }: Props) {
 
   const [description, setDescription] = useState("");
 
-  const [dueDate, setDueDate] = useState("");
+  const defaultDate = [
+    today.getFullYear(),
+    String(today.getMonth() + 1).padStart(2, "0"),
+    String(today.getDate()).padStart(2, "0"),
+  ].join("-");
+
+  const [dueDate, setDueDate] = useState(defaultDate);
 
   const [estimatedDuration, setEstimatedDuration] = useState<number | null>(
     null,
@@ -74,7 +81,7 @@ export default function AddTaskModal({ open, onClose }: Props) {
 
       setTitle("");
       setDescription("");
-      setDueDate("");
+      setDueDate(defaultDate);
       setEstimatedDuration(null);
       setCategoryId("");
       setSubtaskInput("");
@@ -108,7 +115,10 @@ export default function AddTaskModal({ open, onClose }: Props) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 p-6 backdrop-blur-[3px]">
-      <div className="relative w-full max-w-[760px] max-h-[88vh] overflow-y-auto rounded-[34px] border border-white/20 bg-gray-100 shadow-[0_20px_70px_rgba(0,0,0,0.18)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden dark:bg-[#2B2D42]/95 animate-in fade-in zoom-in-95 duration-200">
+      <div
+        className="relative w-full max-w-[760px] max-h-[88vh] overflow-y-auto 
+      rounded-[34px] border border-white/20 bg-gray-100 shadow-[0_20px_70px_rgba(0,0,0,0.18)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden dark:bg-[#2B2D42]/95 animate-in fade-in zoom-in-95 duration-200"
+      >
         <div className="pointer-events-none absolute inset-0 rounded-[34px] " />
 
         <div className="relative z-10 p-4 md:p-5">
@@ -116,7 +126,10 @@ export default function AddTaskModal({ open, onClose }: Props) {
 
           <div className="flex items-start justify-between gap-4">
             <div className="flex items-start gap-4">
-              <div className="flex h-[62px] w-[62px] items-center justify-center rounded-[22px] bg-gradient-to-br from-[#EEF5FF] to-[#FCEEF5] shadow-[0_10px_24px_rgba(15,23,42,.06)]">
+              <div
+                className="flex h-[62px] w-[62px] items-center justify-center rounded-[22px] 
+              bg-gradient-to-br from-[#EEF5FF] to-[#FCEEF5] shadow-[0_10px_24px_rgba(15,23,42,.06)]"
+              >
                 <ListPlus size={24} className="text-[#7D8DF7]" />
               </div>
 
@@ -164,23 +177,17 @@ export default function AddTaskModal({ open, onClose }: Props) {
               </label>
 
               <div
-                className="rounded-[26px] border border-[#E8EEF7] bg-[#F8FAFD] p-2
-               shadow-[0_4px_14px_rgba(15,23,42,.04)] dark:border-[#FFFFFF10] dark:bg-[#363750]"
+                className="rounded-[26px] border border-[#E8EEF7] bg-[#F8FAFD] p-1
+               shadow-[0_4px_14px_rgba(15,23,42,.04)]  dark:border-[#FFFFFF10] dark:bg-[#363750]"
               >
-                <div className="flex gap-3">
-                  <div
-                    className="pl-2 flex h-8 w-8 
-                  items-center justify-center rounded-full bg-[#EEF5FF] dark:bg-[#434560]"
-                  >
-                    <StickyNote size={18} className="text-[#7B84B2]" />
-                  </div>
-
+                <div className="flex gap-3 px-4 py-2">
                   <textarea
                     rows={4}
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="Write something..."
-                    className="w-full resize-none bg-transparent text-[15px] text-[#303153] outline-none placeholder:text-[#9EA3B5] dark:text-white"
+                    className="w-full resize-none bg-transparent text-[15px] text-[#303153]
+                     outline-none placeholder:text-[#9EA3B5] dark:text-white"
                   />
                 </div>
               </div>
@@ -190,16 +197,21 @@ export default function AddTaskModal({ open, onClose }: Props) {
 
             <div className=" grid grid-cols-1 gap-4 md:grid-cols-2">
               <div>
-                <label className="mb-3 flex items-center gap-2 text-[13px] font-medium text-[#5B6078] dark:text-[#D7D9E4]">
+                <label
+                  className="
+      mb-3
+      flex items-center gap-2
+      text-[13px]
+      font-medium
+      text-[#5B6078]
+      dark:text-[#D7D9E4]
+    "
+                >
                   <CalendarDays size={14} stroke="#5B8CFF" />
                   Due date
                 </label>
 
-                <ModalInput
-                  type="date"
-                  value={dueDate}
-                  onChange={(e) => setDueDate(e.target.value)}
-                />
+                <CalendarPicker value={dueDate} onChange={setDueDate} />
               </div>
 
               <div>
@@ -238,6 +250,7 @@ export default function AddTaskModal({ open, onClose }: Props) {
             </div>
 
             {/* SUBTASK */}
+            {/* SUBTASK */}
 
             <div className="rounded-[24px] border-2 border-dashed border-[#59B7FF]/16 bg-[#FCFDFF]/70 p-5 dark:border-[#FD81B0]/14 dark:bg-[#2F3047]/40">
               <div className="flex items-center justify-between">
@@ -261,6 +274,11 @@ export default function AddTaskModal({ open, onClose }: Props) {
                   value={subtaskInput}
                   onChange={(e) => setSubtaskInput(e.target.value)}
                   placeholder="Add subtask..."
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      addSubtask();
+                    }
+                  }}
                 />
 
                 <button
@@ -277,14 +295,26 @@ export default function AddTaskModal({ open, onClose }: Props) {
                   {subtasks.map((subtask) => (
                     <div
                       key={subtask.id}
-                      className="flex items-center justify-between rounded-[18px] border border-black/5 bg-white/70 px-4 py-3 dark:bg-[#363750]"
+                      id={`subtask-${subtask.id}`}
+                      className="subtask-enter flex items-center justify-between rounded-[18px] border border-black/5 bg-white/70 px-4 py-3 dark:bg-[#363750]"
                     >
                       <span className="text-[14px] text-[#303153] dark:text-white">
                         {subtask.title}
                       </span>
 
                       <button
-                        onClick={() => removeSubtask(subtask.id)}
+                        onClick={() => {
+                          const element = document.getElementById(
+                            `subtask-${subtask.id}`,
+                          );
+                          if (element) {
+                            element.classList.remove("subtask-enter");
+                            element.classList.add("subtask-exit");
+                            setTimeout(() => removeSubtask(subtask.id), 200);
+                          } else {
+                            removeSubtask(subtask.id);
+                          }
+                        }}
                         className="text-[13px] text-red-500 transition-all duration-200 hover:text-red-600"
                       >
                         <Trash2 className="text-red-500 cursor-pointer hover:text-red-700 transition-colors" />

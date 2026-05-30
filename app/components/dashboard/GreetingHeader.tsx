@@ -1,6 +1,7 @@
 import EditIcon from "../Elements/EditIcon";
 
-export default function GreetingHeader({ name }: { name: string }) {
+export default function GreetingHeader({ email }: { email: string }) {
+   const username = (email || "user@gmail.com").split("@")[0];
   const now = new Date();
 
   const hour = now.getHours();
@@ -17,7 +18,7 @@ export default function GreetingHeader({ name }: { name: string }) {
     <div className="flex items-start justify-between gap-6">
       <div>
         <h1 className="font-sniglet text-[26px] md:text-[34px] font-bold text-[#303153] dark:text-white">
-          {greeting}, {name}
+          {greeting}, {username}
         </h1>
 
         <p className="mt-1 font-sniglet md:mt-2 text-[14px] text-[#707070] dark:text-[#B7B7C9]">
