@@ -19,7 +19,7 @@ export default function TasksSection({
   onAddTask,
 }: Props) {
   return (
-    <div className="my-5 flex flex-col items-start">
+    <div className="mt-5 mb-22 lg:mb-0 flex flex-col items-start">
       <div className="flex w-full justify-between items-center">
         <h1 className="font-sniglet font-bold text-2xl md:text-4xl text-[#303153] dark:text-white">
           {title}

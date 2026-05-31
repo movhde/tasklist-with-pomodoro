@@ -27,7 +27,7 @@ export default function MobileSidebar({
   }, []);
 
   return (
-    <div ref={ref} className="lg:hidden relative">
+    <div ref={ref} className="lg:hidden font-sniglet relative">
       <div className="relative">
         {/* trigger */}
 
@@ -52,7 +52,7 @@ export default function MobileSidebar({
   max-w-[980px]
   rounded-2xl
   border border-[#59B7FF]/30 dark:border-[#FD81B0]/20
-  bg-white/50 dark:bg-[#2F3048]/40
+  bg-white/50 dark:bg-[#2F3048]/70
   backdrop-blur-sm backdrop-saturate-100
   shadow-[0_10px_40px_rgba(89,183,255,.15)]
   dark:shadow-[0_0_40px_#00000020]
@@ -66,7 +66,7 @@ export default function MobileSidebar({
         >
           {/* top glow */}
 
-          <div className="absolute inset-0 bg-gradient-to-br from-white/20 dark:from-[#FD81B0]/10 to-transparent pointer-events-none" />
+          <div className="absolute rounded-2xl inset-0 bg-gradient-to-br from-white/20 dark:from-[#FD81B0]/10 to-transparent pointer-events-none" />
 
           {/* menu icon */}
 
@@ -87,7 +87,7 @@ export default function MobileSidebar({
 
           {/* content */}
 
-          <div className="relative z-10 px-5 py-5 pr-12 space-y-2 text-[#303153] dark:text-white">
+          <div className="relative z-10 px-5 py-5 pr-12 space-y-2  rounded-2xl text-[#303153] dark:text-white">
             {children}
           </div>
         </div>
