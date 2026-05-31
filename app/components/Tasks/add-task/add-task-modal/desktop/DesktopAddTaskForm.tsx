@@ -1,104 +1,37 @@
-"use client";
-
-import { useState } from "react";
-
 import { CalendarDays, Clock3 } from "lucide-react";
-import { toast } from "sonner";
-
 import ModalInput from "@/app/components/ui/modal-input";
 import CalendarPicker from "@/app/components/ui/CalendarPicker";
 import TimePicker from "@/app/components/ui/time-picker";
 import CategoryChip from "@/app/components/ui/category-chip";
+import { TaskCategory } from "@/types/task";
 
-import { useCategories } from "@/hooks/useCategories";
-import { useCreateTask } from "@/hooks/useCreateTask";
+import TaskSubtasksSection from "../../TaskSubtasksSection";
+import AddTaskFooter from "../../AddTaskFooter";
+import { AddTaskProps } from "../type";
+import AddTaskHeader from "../../AddTaskHeader";
 
-import { Subtask } from "@/types/task";
-
-import TaskSubtasksSection from "./TaskSubtasksSection";
-import AddTaskFooter from "./AddTaskFooter";
-
-interface Props {
-  onClose: () => void;
-}
-
-export default function AddTaskForm({ onClose }: Props) {
-  const today = new Date();
-
-  const defaultDate = [
-    today.getFullYear(),
-    String(today.getMonth() + 1).padStart(2, "0"),
-    String(today.getDate()).padStart(2, "0"),
-  ].join("-");
-
-  const { categories } = useCategories();
-
-  const { createTask, isCreating } = useCreateTask();
-
-  const [title, setTitle] = useState("");
-
-  const [description, setDescription] = useState("");
-
-  const [dueDate, setDueDate] = useState(defaultDate);
-
-  const [estimatedDuration, setEstimatedDuration] = useState<number | null>(
-    null,
-  );
-
-  const [categoryId, setCategoryId] = useState("");
-
-  const [subtasks, setSubtasks] = useState<Subtask[]>([]);
-
-  async function handleCreateTask() {
-    if (!title.trim()) {
-      toast.error("Task title is required", {
-        description: "Give your task a clear name.",
-      });
-
-      return;
-    }
-
-    if (!categoryId) {
-      toast.error("Category is required", {
-        description: "Select a category before continuing.",
-      });
-
-      return;
-    }
-
-    try {
-      await createTask({
-        title,
-        description: description || undefined,
-        dueDate,
-        estimatedDuration: estimatedDuration || undefined,
-        categoryId,
-        subtasks: subtasks.map((subtask) => ({
-          title: subtask.title,
-        })),
-      });
-
-      toast.success("Task created successfully ✨", {
-        description: "Your task has been added to today's workflow.",
-      });
-
-      setTitle("");
-      setDescription("");
-      setDueDate(defaultDate);
-      setEstimatedDuration(null);
-      setCategoryId("");
-      setSubtasks([]);
-
-      onClose();
-    } catch {
-      toast.error("Failed to create task", {
-        description: "Something went wrong. Please try again.",
-      });
-    }
-  }
-
+export default function DesktopAddTaskForm({
+  title,
+  setTitle,
+  description,
+  setDescription,
+  dueDate,
+  setDueDate,
+  estimatedDuration,
+  setEstimatedDuration,
+  categoryId,
+  setCategoryId,
+  subtasks,
+  setSubtasks,
+  isCreating,
+  handleCreateTask,
+  onClose,
+  categories = [],
+}: AddTaskProps) {
   return (
     <div className="mt-4 space-y-6">
+      <AddTaskHeader onClose={onClose} />
+
       {/* TITLE */}
 
       <div>
@@ -166,7 +99,7 @@ export default function AddTaskForm({ onClose }: Props) {
         </label>
 
         <div className="flex flex-wrap gap-2.5">
-          {categories.map((category: any) => (
+          {categories.map((category: TaskCategory) => (
             <CategoryChip
               key={category.id}
               label={category.name}
