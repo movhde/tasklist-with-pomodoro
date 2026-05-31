@@ -69,7 +69,7 @@ export default function CalendarPicker({ value, onChange }: Props) {
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="flex w-full items-center gap-3 rounded-[24px] border border-white/5 bg-white
+        className="flex w-full items-center gap-3 rounded-2xl md:rounded-[24px] border border-[#3AAFF8] md:border-white/5 bg-white
         dark:bg-[#2B2D42]/95 animate-in fade-in zoom-in-95 duration-200 px-4 py-3 text-[#252842] dark:text-white"
       >
         <CalendarDays size={18} />

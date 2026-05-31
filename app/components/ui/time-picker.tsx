@@ -49,7 +49,7 @@ function NumberControl({ value, onChange, max }: NumberControlProps) {
         inputMode="numeric"
         value={formattedValue}
         onChange={(e) => {
-          let rawValue = e.target.value.replace(/[^\d]/g, "");
+          const rawValue = e.target.value.replace(/[^\d]/g, "");
 
           if (rawValue === "") {
             onChange(0);
