@@ -52,7 +52,7 @@ export default function EditTaskModal({
         title,
         description: description || null,
         dueDate: dueDate || null,
-        estimatedDuration,
+        estimatedDuration: estimatedDuration || null,
         categoryId: categoryId || null,
         subtasks: subtasks.map(({ id, title, completed }) => ({
           id,

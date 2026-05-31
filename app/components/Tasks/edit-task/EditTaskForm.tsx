@@ -22,7 +22,7 @@ interface Props {
   setDueDate: (value: string) => void;
 
   estimatedDuration: number | null;
-  setEstimatedDuration: (value: number) => void;
+  setEstimatedDuration: (value: number | null) => void;
 
   categoryId: string;
   setCategoryId: (value: string) => void;
