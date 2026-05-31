@@ -4,17 +4,19 @@ import { useMemo, useState } from "react";
 
 import { Task } from "@/types/task";
 import { getTaskProgress } from "@/utils/taskProgress";
-
+import { useQueryClient } from "@tanstack/react-query";
 export default function useTaskGroup(task: Task) {
   const [open, setOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
   const [taskState, setTaskState] = useState<Task>(task);
+  const [deleteOpen, setDeleteOpen] = useState(false);
 
+  const [deleteLoading, setDeleteLoading] = useState(false);
   const { progress, completed, done, total } = useMemo(
     () => getTaskProgress(taskState),
     [taskState],
   );
-
+  const queryClient = useQueryClient();
   async function toggleTask() {
     const updatedCompleted = !taskState.completed;
 
@@ -49,6 +51,34 @@ export default function useTaskGroup(task: Task) {
       });
     } catch {
       setTaskState(taskState);
+    }
+  }
+  async function deleteTask() {
+    try {
+      setDeleteLoading(true);
+
+      const token = localStorage.getItem("token");
+
+      const res = await fetch(`/api/task/taskLists/${task.id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!res.ok) {
+        return false;
+      }
+
+      queryClient.invalidateQueries({
+        queryKey: ["tasks"],
+      });
+
+      return true;
+    } catch {
+      return false;
+    } finally {
+      setDeleteLoading(false);
     }
   }
 
@@ -123,5 +153,12 @@ export default function useTaskGroup(task: Task) {
 
     toggleTask,
     toggleSubtask,
+
+    deleteTask,
+
+    deleteOpen,
+    setDeleteOpen,
+
+    deleteLoading,
   };
 }

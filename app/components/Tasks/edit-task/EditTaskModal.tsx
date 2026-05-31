@@ -88,37 +88,39 @@ export default function EditTaskModal({
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 p-6 backdrop-blur-[3px]">
-      <div className="relative w-full max-w-[760px] max-h-[88vh] overflow-y-auto rounded-[34px] border border-white/20 bg-gray-100 dark:bg-[#2B2D42]/95 shadow-[0_20px_70px_rgba(0,0,0,0.18)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        <div className="p-5">
-          <EditTaskHeader onClose={onClose} />
-          <div className="mt-6">
-            <EditTaskForm
-              title={title}
-              setTitle={setTitle}
-              description={description}
-              setDescription={setDescription}
-              dueDate={dueDate}
-              setDueDate={setDueDate}
-              estimatedDuration={estimatedDuration}
-              setEstimatedDuration={setEstimatedDuration}
-              categoryId={categoryId}
-              setCategoryId={setCategoryId}
-              categories={categories}
-              subtasks={subtasks}
-              setSubtasks={setSubtasks}
-            />
-          </div>
-          <div className="mt-8">
-            <EditTaskFooter
-              isLoading={updateTask.isPending || deleteTask.isPending}
-              onSave={() => updateTask.mutate()}
-              onDelete={() => deleteTask.mutate()}
-              onCancel={onClose}
-            />
+    <>
+      <div className="fixed inset-0 z-50 flex flex-col sm:flex sm:items-center sm:justify-center bg-white dark:bg-[#2B2D42] sm:bg-black/20 sm:backdrop-blur-[3px]">
+        <div className="flex-1 flex flex-col h-full sm:h-auto sm:max-w-[760px] sm:max-h-[88vh] sm:rounded-[34px] sm:border sm:border-white/20 sm:bg-gray-100 sm:dark:bg-[#2B2D42]/95 sm:shadow-[0_20px_70px_rgba(0,0,0,0.18)] overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div className="flex-1  p-5 pb-24  sm:pb-5">
+            <EditTaskHeader onClose={onClose} />
+            <div className="mt-6">
+              <EditTaskForm
+                title={title}
+                setTitle={setTitle}
+                description={description}
+                setDescription={setDescription}
+                dueDate={dueDate}
+                setDueDate={setDueDate}
+                estimatedDuration={estimatedDuration}
+                setEstimatedDuration={setEstimatedDuration}
+                categoryId={categoryId}
+                setCategoryId={setCategoryId}
+                categories={categories}
+                subtasks={subtasks}
+                setSubtasks={setSubtasks}
+              />
+            </div>
+            <div className="mt-8">
+              <EditTaskFooter
+                isLoading={updateTask.isPending || deleteTask.isPending}
+                onSave={() => updateTask.mutate()}
+                onDelete={() => deleteTask.mutate()}
+                onCancel={onClose}
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -59,16 +59,17 @@ export default function EditTaskSubtasks({ subtasks, setSubtasks }: Props) {
     <div
       className="
       rounded-[24px]
-      border-2 border-dashed
-      border-[#59B7FF]/16
+      border-3 md:border-2 border-dashed
+      border-[#FFB6D3] md:border-[#59B7FF]/16
       bg-[#FCFDFF]/70
       p-5
+      dark:border-[#FD81B0]/14
       dark:bg-[#2F3047]/40
     "
     >
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-[14px] font-semibold dark:text-white">
+          <h3 className="text-[14px] font-semibold text-[#404868] dark:text-white">
             Subtasks
           </h3>
 
@@ -77,7 +78,7 @@ export default function EditTaskSubtasks({ subtasks, setSubtasks }: Props) {
           </p>
         </div>
 
-        <span className="rounded-full bg-[#59B7FF]/10 px-3 py-1 text-[11px] font-medium text-[#59B7FF]">
+        <span className="rounded-full bg-[#ffb6d32e] md:bg-[#59B7FF]/10 px-3 py-1 text-[11px] font-medium text-[#ea75a4] md:text-[#59B7FF]">
           Optional
         </span>
       </div>

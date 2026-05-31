@@ -6,6 +6,7 @@ import useTaskGroup from "./useTaskGroup";
 import TaskGroupHeader from "./TaskGroupHeader";
 import TaskGroupContent from "./TaskGroupContent";
 import EditTaskModal from "../edit-task/EditTaskModal";
+import DeleteTaskModal from "../delete-task/DeleteTaskModal";
 interface Props {
   task: Task;
 }
@@ -28,6 +29,11 @@ export default function TaskGroup({ task }: Props) {
 
     toggleTask,
     toggleSubtask,
+
+    deleteOpen,
+    setDeleteOpen,
+    deleteLoading,
+    deleteTask,
   } = useTaskGroup(task);
   return (
     <div className="overflow-hidden rounded-[22px] border border-[#59B7FF]/20 bg-white shadow-[0_4px_20px_rgba(0,0,0,.03)] transition-all duration-300 dark:border-[#FD81B0]/15 dark:bg-[#31304A]">
@@ -41,6 +47,7 @@ export default function TaskGroup({ task }: Props) {
         onToggleTask={toggleTask}
         onToggleOpen={() => setOpen(!open)}
         onEdit={() => setEditOpen(true)}
+        onDelete={() => setDeleteOpen(true)}
       />
       <TaskGroupContent
         open={open}
@@ -52,6 +59,18 @@ export default function TaskGroup({ task }: Props) {
         onClose={() => setEditOpen(false)}
         task={taskState}
         onUpdated={setTaskState}
+      />
+      <DeleteTaskModal
+        open={deleteOpen}
+        loading={deleteLoading}
+        onClose={() => setDeleteOpen(false)}
+        onConfirm={async () => {
+          const success = await deleteTask();
+
+          if (success) {
+            setDeleteOpen(false);
+          }
+        }}
       />
     </div>
   );

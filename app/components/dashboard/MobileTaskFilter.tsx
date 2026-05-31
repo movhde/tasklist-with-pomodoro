@@ -28,7 +28,7 @@ export default function MobileTaskFilter({ onChange }: Props) {
       {" "}
       <button
         onClick={() => setOpen((v) => !v)}
-        className="text-[15px] font-medium underline text-[#484b4d] dark:text-[#ffff]"
+        className="text-[15px] font-sniglet font-medium underline text-[#484b4d] dark:text-[#ffff]"
       >
         See all
       </button>
@@ -52,7 +52,7 @@ ${
               onChange("all");
               setOpen(false);
             }}
-            className="w-full text-left pb-2 border-b border-[#59B7FF]/20"
+            className="w-full font-sniglet dark:text-white text-left pb-2 border-b border-[#59B7FF]/20"
           >
             See all
           </button>
@@ -62,7 +62,7 @@ ${
               onChange("today");
               setOpen(false);
             }}
-            className="w-full text-left"
+            className="w-full text-left dark:text-white font-sniglet"
           >
             Just today
           </button>

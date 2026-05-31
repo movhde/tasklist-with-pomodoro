@@ -55,12 +55,15 @@ export default function EditTaskForm({
   setSubtasks,
 }: Props) {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 font-sniglet">
       {/* TITLE */}
 
       <div>
-        <label className="mb-3 block text-[13px] font-medium text-[#5B6078] dark:text-[#D7D9E4]">
-          Task title
+        <label
+          className="mb-3 block md:p-0  pl-3 text-[20px] md:text-[15px]
+         font-bold md:font-medium text-[#303153] md:text-[#5B6078] dark:text-[#D7D9E4]"
+        >
+          Title
         </label>
 
         <ModalInput
@@ -73,47 +76,36 @@ export default function EditTaskForm({
       {/* DESCRIPTION */}
 
       <div>
-        <label className="mb-3 block text-[13px] font-medium text-[#5B6078] dark:text-[#D7D9E4]">
+        <label className="mb-2 md:p-0  pl-3 text-[20px] md:text-[12px] font-bold md:font-medium text-[#303153] md:text-[#5B6078] dark:text-[#D7D9E4]">
           Description
         </label>
 
         <div
           className="
-          rounded-[26px]
-          border border-[#E8EEF7]
-          bg-[#F8FAFD]
-          p-3
-          dark:border-[#FFFFFF10]
-          dark:bg-[#363750]
-        "
+  border border-[#3AAFF8] 
+      rounded-[20px] sm:rounded-[26px]
+       md:border-[#E8EEF7]
+      bg-[#F8FAFD]
+      p-2 sm:p-3
+      dark:border-[#FFFFFF10]
+      dark:bg-[#363750]
+    "
         >
-          <div className="flex gap-3">
-            <div
-              className="
-              flex h-8 w-8
-              items-center justify-center
-              rounded-full
-              bg-[#EEF5FF]
-              dark:bg-[#434560]
-            "
-            >
-              <StickyNote size={18} className="text-[#7B84B2]" />
-            </div>
-
+          <div className="flex gap-2 sm:gap-3">
             <textarea
-              rows={4}
+              rows={3}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Write something..."
               className="
-                w-full
-                resize-none
-                bg-transparent
-                text-[15px]
-                text-[#303153]
-                outline-none
-                dark:text-white
-              "
+          w-full
+          resize-none
+          bg-transparent
+          text-[14px] sm:text-[15px]
+          text-[#303153]
+          outline-none
+          dark:text-white
+        "
             />
           </div>
         </div>
@@ -123,8 +115,8 @@ export default function EditTaskForm({
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div>
-          <label className="mb-3 flex items-center gap-2 text-[13px] font-medium text-[#5B6078] dark:text-[#D7D9E4]">
-            <CalendarDays size={14} />
+          <label className="mb-3 flex items-center gap-2  md:p-0  pl-3 text-[20px] md:text-[12px] font-bold md:font-medium text-[#303153] md:text-[#5B6078] dark:text-[#D7D9E4]">
+            <CalendarDays size={14} className="hidden sm:block" />
             Due date
           </label>
 
@@ -132,9 +124,9 @@ export default function EditTaskForm({
         </div>
 
         <div>
-          <label className="mb-3 flex items-center gap-2 text-[13px] font-medium text-[#5B6078] dark:text-[#D7D9E4]">
-            <Clock3 size={14} />
-            Focus time
+          <label className="mb-3 flex items-center gap-2 md:p-0  pl-3 text-[20px] md:text-[12px] font-bold md:font-medium text-[#303153] md:text-[#5B6078] dark:text-[#D7D9E4]">
+            <Clock3 size={14} className="hidden sm:block" />
+            <span>Focus time</span>
           </label>
 
           <TimePicker
@@ -147,7 +139,7 @@ export default function EditTaskForm({
       {/* CATEGORY */}
 
       <div>
-        <label className="mb-3 block text-[13px] font-medium text-[#5B6078] dark:text-[#D7D9E4]">
+        <label className="mb-3 block md:p-0  pl-3 text-[20px] md:text-[12px] font-bold md:font-medium text-[#303153] md:text-[#5B6078] dark:text-[#D7D9E4]">
           Category
         </label>
 

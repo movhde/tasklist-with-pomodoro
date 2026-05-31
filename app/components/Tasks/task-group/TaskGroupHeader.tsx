@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ChevronDown, Clock3, SquarePen } from "lucide-react";
+import { ChevronDown, Clock3, SquarePen, Trash2 } from "lucide-react";
 
 import ProgressRing from "./ProgressRing";
 import { TaskGroupHeaderProps } from "./types";
@@ -16,6 +16,7 @@ export default function TaskGroupHeader({
   onToggleTask,
   onToggleOpen,
   onEdit,
+  onDelete,
 }: TaskGroupHeaderProps) {
   return (
     <div className="flex items-center justify-between gap-4 px-5 py-4">
@@ -33,7 +34,7 @@ export default function TaskGroupHeader({
 
         <div className="min-w-0 flex-1">
           <h3
-            className={`font-sniglet text-[17px] font-semibold tracking-wide transition-all duration-300 md:text-[19px] ${
+            className={`font-sniglet text-[16px] font-semibold tracking-wide transition-all duration-300 md:text-[20px] ${
               completed
                 ? "line-through text-[#7E809A] opacity-50"
                 : "text-[#303153] dark:text-white"
@@ -61,10 +62,16 @@ export default function TaskGroupHeader({
         </div>
       </div>
 
-      <div className="flex shrink-0 items-center gap-2">
+      <div className="flex shrink-0 items-center  md:gap-2">
+        <button
+          onClick={onDelete}
+          className="flex h-8 w-8 mr-1 md:m-0 items-center justify-center rounded-full bg-[#FD81B0]/10 text-[#FD81B0] transition-all duration-200 hover:bg-[#FD81B0]/20"
+        >
+          <Trash2 size={16} />
+        </button>
         <button
           onClick={onEdit}
-          className="flex h-9 w-9 items-center justify-center rounded-full bg-[#59B7FF]/10 text-[#59B7FF] transition-all duration-200 hover:scale-105 hover:bg-[#59B7FF]/20 dark:bg-[#FD81B0]/10 dark:text-[#FD81B0] dark:hover:bg-[#FD81B0]/20"
+          className="flex h-8 w-8 items-center justify-center rounded-full bg-[#59B7FF]/10 text-[#59B7FF] transition-all duration-200 hover:scale-105 hover:bg-[#59B7FF]/20 dark:bg-[#FD81B0]/10 dark:text-[#FD81B0] dark:hover:bg-[#FD81B0]/20"
         >
           <SquarePen size={16} />
         </button>

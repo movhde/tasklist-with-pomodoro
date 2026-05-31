@@ -16,7 +16,7 @@ export interface TaskGroupHeaderProps {
   onToggleTask: () => void;
 
   onToggleOpen: () => void;
-
+  onDelete: () => void;
   onEdit: () => void;
 }
 

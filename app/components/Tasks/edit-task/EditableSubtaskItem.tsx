@@ -44,9 +44,9 @@ export default function EditableSubtaskItem({
 
       <button
         onClick={onDelete}
-        className="text-[13px] text-red-500 transition-all duration-200 hover:text-red-600"
+        className="text-[13px]  text-[#FD81B0] transition-all duration-200 hover: text-[#e06e9a]"
       >
-        <Trash2 className="cursor-pointer text-red-500 transition-colors hover:text-red-700" />
+        <Trash2 className="cursor-pointer text-[#FD81B0] transition-colors hover:text-[#ec4b89]" />
       </button>
     </div>
   );
