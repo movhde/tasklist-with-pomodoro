@@ -1,4 +1,4 @@
-import TaskTimeline from "../Tasks/TaskTimeline";
+import TaskTimeline from "../Tasks/task-group/TaskTimeline";
 import MobileTaskFilter from "./MobileTaskFilter";
 
 interface Props {

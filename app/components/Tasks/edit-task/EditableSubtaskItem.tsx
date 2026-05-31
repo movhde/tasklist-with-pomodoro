@@ -3,26 +3,31 @@
 import { Trash2 } from "lucide-react";
 
 interface Props {
+  id: string;
   value: string;
   onChange: (value: string) => void;
   onDelete: () => void;
 }
 
 export default function EditableSubtaskItem({
+  id,
   value,
   onChange,
   onDelete,
 }: Props) {
   return (
     <div
+      id={`edit-subtask-${id}`}
       className="
-      flex items-center justify-between
-      rounded-[18px]
-      border border-black/5
-      bg-white/70
-      px-4 py-3
-      dark:bg-[#363750]
-    "
+        subtask-enter
+        flex items-center justify-between
+        rounded-[18px]
+        border border-black/5
+        bg-white/70
+        px-4 py-3
+        dark:bg-[#363750]
+        transition-all duration-200
+      "
     >
       <input
         value={value}
@@ -39,9 +44,9 @@ export default function EditableSubtaskItem({
 
       <button
         onClick={onDelete}
-        className="text-red-500 transition-all hover:text-red-700"
+        className="text-[13px] text-red-500 transition-all duration-200 hover:text-red-600"
       >
-        <Trash2 size={16} />
+        <Trash2 className="cursor-pointer text-red-500 transition-colors hover:text-red-700" />
       </button>
     </div>
   );

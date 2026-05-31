@@ -1,10 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { Plus } from "lucide-react";
-
 import EditableSubtaskItem from "./EditableSubtaskItem";
-
 import { Subtask } from "@/types/task";
+import ModalInput from "@/app/components/ui/modal-input";
 
 interface Props {
   subtasks: Subtask[];
@@ -12,15 +12,21 @@ interface Props {
 }
 
 export default function EditTaskSubtasks({ subtasks, setSubtasks }: Props) {
+  const [subtaskInput, setSubtaskInput] = useState("");
+
   function addSubtask() {
+    if (!subtaskInput.trim()) return;
+
     setSubtasks((prev) => [
       ...prev,
       {
         id: crypto.randomUUID(),
-        title: "",
+        title: subtaskInput,
         completed: false,
       },
     ]);
+
+    setSubtaskInput("");
   }
 
   function updateSubtask(id: string, title: string) {
@@ -37,7 +43,16 @@ export default function EditTaskSubtasks({ subtasks, setSubtasks }: Props) {
   }
 
   function removeSubtask(id: string) {
-    setSubtasks((prev) => prev.filter((s) => s.id !== id));
+    const element = document.getElementById(`edit-subtask-${id}`);
+
+    if (element) {
+      element.classList.add("subtask-exit");
+      setTimeout(() => {
+        setSubtasks((prev) => prev.filter((s) => s.id !== id));
+      }, 200);
+    } else {
+      setSubtasks((prev) => prev.filter((s) => s.id !== id));
+    }
   }
 
   return (
@@ -58,35 +73,49 @@ export default function EditTaskSubtasks({ subtasks, setSubtasks }: Props) {
           </h3>
 
           <p className="mt-1 text-[12px] text-[#8C95B2]">
-            Manage your task steps
+            Split big tasks into smaller steps
           </p>
         </div>
 
+        <span className="rounded-full bg-[#59B7FF]/10 px-3 py-1 text-[11px] font-medium text-[#59B7FF]">
+          Optional
+        </span>
+      </div>
+
+      <div className="mt-4 flex items-center justify-between gap-2">
+        <ModalInput
+          value={subtaskInput}
+          onChange={(e) => setSubtaskInput(e.target.value)}
+          placeholder="Add subtask..."
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              addSubtask();
+            }
+          }}
+        />
+
         <button
           onClick={addSubtask}
-          className="
-            flex items-center gap-2
-            rounded-full
-            bg-[#59B7FF]
-            px-3 py-2
-            text-white
-          "
+          className="flex h-10 cursor-pointer items-center gap-2 rounded-[22px] bg-[#59B7FF] px-4 font-medium text-white transition-all duration-200 hover:scale-[1.02]"
         >
-          <Plus size={14} />
+          <Plus size={16} />
           Add
         </button>
       </div>
 
-      <div className="mt-4 space-y-2">
-        {subtasks.map((subtask) => (
-          <EditableSubtaskItem
-            key={subtask.id}
-            value={subtask.title}
-            onChange={(title) => updateSubtask(subtask.id, title)}
-            onDelete={() => removeSubtask(subtask.id)}
-          />
-        ))}
-      </div>
+      {subtasks.length > 0 && (
+        <div className="mt-4 space-y-2">
+          {subtasks.map((subtask) => (
+            <EditableSubtaskItem
+              key={subtask.id}
+              id={subtask.id}
+              value={subtask.title}
+              onChange={(title) => updateSubtask(subtask.id, title)}
+              onDelete={() => removeSubtask(subtask.id)}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

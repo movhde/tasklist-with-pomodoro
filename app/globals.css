@@ -221,3 +221,34 @@ body {
     font-size: 11px;
   }
 }
+
+/* Subtask animations */
+.subtask-enter {
+  animation: subtaskEnter 0.2s ease-out forwards;
+}
+
+.subtask-exit {
+  animation: subtaskExit 0.2s ease-in forwards;
+}
+
+@keyframes subtaskEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes subtaskExit {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+}
