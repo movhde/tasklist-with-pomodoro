@@ -22,7 +22,7 @@ export interface AddTaskProps {
   isCreating: boolean;
   handleCreateTask: () => void;
 
-  onClose: () => void;
+  onClose?: () => void;
 
   categories?: TaskCategory[];
 
