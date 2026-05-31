@@ -38,9 +38,21 @@ export async function PATCH(
       return NextResponse.json({ error: "Subtask not found" }, { status: 404 });
 
     subtask.completed = completed;
+
+    const subtasks = task.subtasks || [];
+    const allSubtasksCompleted =
+      subtasks.length > 0 && subtasks.every((st) => st.completed);
+    if (subtasks.length > 0) {
+      task.completed = allSubtasksCompleted;
+    }
+
     writeDB(db);
 
-    return NextResponse.json({ id: subtaskId, completed });
+    return NextResponse.json({
+      id: subtaskId,
+      completed,
+      taskCompleted: task.completed,
+    });
   } catch (error) {
     console.error(error);
     return NextResponse.json(

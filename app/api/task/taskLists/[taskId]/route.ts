@@ -1,6 +1,7 @@
 import { readDB, writeDB } from "@/lib/db";
 import { verifyToken } from "@/lib/jwt";
 import { Task, TaskCategory, Subtask } from "@/types/task";
+import { randomUUID } from "crypto";
 import { NextResponse } from "next/server";
 
 function isValidDateString(dateStr: string): boolean {
@@ -68,6 +69,13 @@ export async function PATCH(
         );
       }
       updatedTask.completed = completed;
+
+      if (updatedTask.subtasks && updatedTask.subtasks.length > 0) {
+        updatedTask.subtasks = updatedTask.subtasks.map((st) => ({
+          ...st,
+          completed: completed,
+        }));
+      }
     }
 
     if (dueDate !== undefined) {
@@ -123,7 +131,7 @@ export async function PATCH(
           );
         }
         validatedSubtasks.push({
-          id: st.id || crypto.randomUUID(),
+          id: st.id || randomUUID(),
           title: st.title.trim(),
           estimatedDuration:
             typeof st.estimatedDuration === "number"
@@ -134,6 +142,16 @@ export async function PATCH(
         });
       }
       updatedTask.subtasks = validatedSubtasks;
+
+      if (completed === undefined) {
+        const allSubtasksCompleted =
+          updatedTask.subtasks.length > 0 &&
+          updatedTask.subtasks.every((st) => st.completed);
+        updatedTask.completed =
+          updatedTask.subtasks.length > 0
+            ? allSubtasksCompleted
+            : updatedTask.completed;
+      }
     }
 
     db.tasks[taskIndex] = updatedTask;
