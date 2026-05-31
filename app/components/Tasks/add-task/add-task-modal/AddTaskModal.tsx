@@ -107,7 +107,7 @@ export default function AddTaskModal({ open, onClose }: Props) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/20 p-0 md:p-6 backdrop-blur-[3px]">
-      <div className="relative w-full max-w-190 md:max-h-[88vh] max-h-fit overflow-y-auto md:rounded-[34px] rounded-b-none rounded-t-[34px] border border-white/20 bg-white md:bg-gray-100 shadow-[0_20px_70px_rgba(0,0,0,0.18)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden dark:bg-[#2B2D42]/95 animate-in fade-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-190 md:max-h-[88vh] max-h-fit overflow-y-auto md:rounded-[34px] rounded-b-none rounded-t-[34px] md:border md:border-white/20 bg-white md:bg-gray-100 shadow-[0_20px_70px_rgba(0,0,0,0.18)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden dark:bg-[#32334B] md:dark:bg-[#2B2D42]/95 animate-in fade-in zoom-in-95 duration-200">
         <div className="relative z-10 p-2 px-6 md:p-5">
           <div className="hidden md:block">
             <DesktopAddTaskForm {...formProps} onClose={onClose} />

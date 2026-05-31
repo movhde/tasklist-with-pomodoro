@@ -11,7 +11,8 @@ export default function ModalInput({ icon: Icon, ...props }: Props) {
     <div
       className="group flex h-12 items-center gap-3 rounded-2xl md:rounded-3xl border border-[#3AAFF8] md:border-[#E8EEF7] bg-white px-5 
     shadow-[0_4px_18px_rgba(15,23,42,.04)] transition-all duration-300  dark:bg-[#363750] dark:shadow-none 
-    dark:border-[#FFFFFF10]  
+    md:dark:border-[#FFFFFF10] 
+      dark:border-[#3AAFF8]
       focus-within:border-[#8EC5FF] focus-within:shadow-[0_10px_28px_rgba(89,183,255,.14)]"
     >
       {Icon && (

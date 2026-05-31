@@ -34,20 +34,68 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex bg-[#f4c1d4] flex-col">
         <ThemeProvider>
           <ReactQueryProvider>
             {children}
 
             <Toaster
-              position="top-center"
-              richColors
-              closeButton
-              duration={3000}
+              position="top-right"
               theme="system"
               toastOptions={{
-                className:
-                  "rounded-3xl border border-white/10 backdrop-blur-xl",
+                classNames: {
+                  toast: `
+                font-sniglet
+                !rounded-[24px]
+                !border
+                !shadow-[0_12px_35px_rgba(0,0,0,.10)]
+                !backdrop-blur-md
+
+                !bg-white
+                dark:!bg-[#31304A]
+
+                !text-[#303153]
+                dark:!text-white
+              `,
+
+                  title: `
+                font-sniglet
+                !font-semibold
+                !text-[15px]
+
+                !text-[#303153]
+                dark:!text-white
+              `,
+
+                  description: `
+                font-sniglet
+
+                !text-[#7B7D93]
+                dark:!text-[#C6C7D2]
+              `,
+
+                  success: `
+                !border-[#59B7FF]/35
+
+                !bg-gradient-to-r
+                !from-[#EEF7FF]
+                !to-[#F8FBFF]
+
+                dark:!from-[#24374A]
+                dark:!to-[#31304A]
+              `,
+
+                  error: `
+                !border-[#FD81B0]/35
+
+                !bg-gradient-to-r
+                !from-[#FFF0F6]
+                !to-[#FFF7FA]
+
+                dark:!from-[#472A39]
+                dark:!to-[#31304A]
+              `,
+                },
               }}
             />
           </ReactQueryProvider>
