@@ -136,7 +136,7 @@ export default function TimePicker({ value, onChange }: Props) {
         className="flex items-center justify-center gap-2 rounded-[18px] sm:rounded-[20px] border border-[#E7EEF8] bg-[#F8FBFF] dark:bg-[#2B2D42]/95 dark:border-[#FFFFFF10] px-4 py-2 sm:px-5 sm:py-2.5 cursor-pointer transition-all duration-200 hover:border-[#59B7FF]/50 dark:hover:border-[#FD81B0]/30"
       >
         <Clock3 size={18} className="text-[#7B84B2] dark:text-[#A0A4C9]" />
-        <span className="text-[14px] text-[#7B84B2] dark:text-[#A0A4C9] font-medium">
+        <span className="font-sniglet text-[14px] text-[#7B84B2] dark:text-[#A0A4C9] font-medium">
           Set focus time
         </span>
       </div>

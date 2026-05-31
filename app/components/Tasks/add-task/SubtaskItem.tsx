@@ -13,9 +13,9 @@ export default function SubtaskItem({ subtask, onDelete }: Props) {
   return (
     <div
       id={`subtask-${subtask.id}`}
-      className="subtask-enter flex items-center justify-between rounded-[18px] border border-black/5 bg-white/70 px-4 py-3 dark:bg-[#363750]"
+      className="font-sniglet subtask-enter flex items-center justify-between rounded-[18px] border border-black/5 bg-white/70 px-4 py-3 dark:bg-[#363750]"
     >
-      <span className="text-[14px] text-[#303153] dark:text-white">
+      <span className="font-sniglet text-[14px] text-[#303153] dark:text-white">
         {subtask.title}
       </span>
 

@@ -35,7 +35,7 @@ export default function DesktopAddTaskForm({
       {/* TITLE */}
 
       <div>
-        <label className="mb-3 block text-[13px] font-medium text-[#5B6078] dark:text-[#D7D9E4]">
+        <label className="font-sniglet mb-3 block text-[13px] font-medium text-[#5B6078] dark:text-[#D7D9E4]">
           Task title
         </label>
 
@@ -49,7 +49,7 @@ export default function DesktopAddTaskForm({
       {/* DESCRIPTION */}
 
       <div>
-        <label className="mb-3 block text-[13px] font-medium text-[#5B6078] dark:text-[#D7D9E4]">
+        <label className="font-sniglet mb-3 block text-[13px] font-medium text-[#5B6078] dark:text-[#D7D9E4]">
           Description
         </label>
 
@@ -60,7 +60,7 @@ export default function DesktopAddTaskForm({
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Write something..."
-              className="w-full resize-none bg-transparent text-[15px] text-[#303153] outline-none placeholder:text-[#9EA3B5] dark:text-white"
+              className="font-sniglet w-full resize-none bg-transparent text-[15px] text-[#303153] outline-none placeholder:text-[#9EA3B5] dark:text-white"
             />
           </div>
         </div>
@@ -70,7 +70,7 @@ export default function DesktopAddTaskForm({
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div>
-          <label className="mb-3 flex items-center gap-2 text-[13px] font-medium text-[#5B6078] dark:text-[#D7D9E4]">
+          <label className="font-sniglet mb-3 flex items-center gap-2 text-[13px] font-medium text-[#5B6078] dark:text-[#D7D9E4]">
             <CalendarDays size={14} stroke="#5B8CFF" />
             Due date
           </label>
@@ -79,7 +79,7 @@ export default function DesktopAddTaskForm({
         </div>
 
         <div>
-          <label className="mb-3 flex items-center gap-2 px-2 text-[13px] font-medium text-[#5B6078] dark:text-[#D7D9E4]">
+          <label className="font-sniglet mb-3 flex items-center gap-2 px-2 text-[13px] font-medium text-[#5B6078] dark:text-[#D7D9E4]">
             <Clock3 size={14} stroke="#5B8CFF" />
             Focus time
           </label>
@@ -94,7 +94,7 @@ export default function DesktopAddTaskForm({
       {/* CATEGORY */}
 
       <div>
-        <label className="mb-3 block text-[13px] font-medium text-[#5B6078] dark:text-[#D7D9E4]">
+        <label className="font-sniglet mb-3 block text-[13px] font-medium text-[#5B6078] dark:text-[#D7D9E4]">
           Category
         </label>
 

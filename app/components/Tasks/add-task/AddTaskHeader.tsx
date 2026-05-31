@@ -3,7 +3,7 @@
 import { ListPlus, X } from "lucide-react";
 
 interface Props {
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 export default function AddTaskHeader({ onClose }: Props) {
@@ -26,11 +26,11 @@ export default function AddTaskHeader({ onClose }: Props) {
         </div>
 
         <div>
-          <h2 className="text-[32px] font-semibold tracking-tight text-[#252842] dark:text-white">
+          <h2 className="font-sniglet text-[32px] font-semibold tracking-tight text-[#252842] dark:text-white">
             Create task
           </h2>
 
-          <p className="mt-1 text-[14px] text-[#7B8096] dark:text-[#BFC3D4]">
+          <p className="font-sniglet mt-1 text-[14px] text-[#7B8096] dark:text-[#BFC3D4]">
             Organize your workflow beautifully
           </p>
         </div>
@@ -39,6 +39,7 @@ export default function AddTaskHeader({ onClose }: Props) {
       <button
         onClick={onClose}
         className="
+          font-sniglet
           flex h-[44px] w-[44px]
           cursor-pointer
           items-center justify-center
