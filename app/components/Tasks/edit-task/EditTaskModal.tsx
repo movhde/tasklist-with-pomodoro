@@ -89,8 +89,8 @@ export default function EditTaskModal({
 
   return (
     <>
-      <div className="fixed inset-0 z-50 flex flex-col sm:flex sm:items-center sm:justify-center bg-white dark:bg-[#2B2D42] sm:bg-black/20 sm:backdrop-blur-[3px]">
-        <div className="flex-1 flex flex-col h-full sm:h-auto sm:max-w-[760px] sm:max-h-[88vh] sm:rounded-[34px] sm:border sm:border-white/20 sm:bg-gray-100 sm:dark:bg-[#2B2D42]/95 sm:shadow-[0_20px_70px_rgba(0,0,0,0.18)] overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="fixed inset-0 z-50 flex flex-col sm:flex sm:items-center sm:justify-center bg-white sm:bg-black/20 dark:bg-[#2B2D42] sm:dark:bg-black/20 backdrop-blur-[3px]">
+        <div className="flex-1 flex flex-col h-full sm:h-auto w-full max-w-[760px] sm:max-h-[88vh] sm:rounded-[34px] sm:border sm:border-white/20 sm:bg-gray-100 sm:dark:bg-[#2B2D42]/95 sm:shadow-[0_20px_70px_rgba(0,0,0,0.18)] overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <div className="flex-1  p-5 pb-24  sm:pb-5">
             <EditTaskHeader onClose={onClose} />
             <div className="mt-6">

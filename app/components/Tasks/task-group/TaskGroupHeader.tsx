@@ -65,13 +65,13 @@ export default function TaskGroupHeader({
       <div className="flex shrink-0 items-center  md:gap-2">
         <button
           onClick={onDelete}
-          className="flex h-8 w-8 mr-1 md:m-0 items-center justify-center rounded-full bg-[#FD81B0]/10 text-[#FD81B0] transition-all duration-200 hover:bg-[#FD81B0]/20"
+          className="cursor-pointer flex h-8 w-8 mr-1 md:m-0 items-center justify-center rounded-full bg-[#FD81B0]/10 text-[#FD81B0] transition-all duration-200 hover:bg-[#FD81B0]/20"
         >
           <Trash2 size={16} />
         </button>
         <button
           onClick={onEdit}
-          className="flex h-8 w-8 items-center justify-center rounded-full bg-[#59B7FF]/10 text-[#59B7FF] transition-all duration-200 hover:scale-105 hover:bg-[#59B7FF]/20 dark:bg-[#FD81B0]/10 dark:text-[#FD81B0] dark:hover:bg-[#FD81B0]/20"
+          className="cursor-pointer flex h-8 w-8 items-center justify-center rounded-full bg-[#59B7FF]/10 text-[#59B7FF] transition-all duration-200 hover:scale-105 hover:bg-[#59B7FF]/20 dark:bg-[#FD81B0]/10 dark:text-[#FD81B0] dark:hover:bg-[#FD81B0]/20"
         >
           <SquarePen size={16} />
         </button>
@@ -89,11 +89,13 @@ export default function TaskGroupHeader({
           >
             <ChevronDown
               size={20}
-              className={
-                task.subtasks?.length
-                  ? "text-[#59B7FF] dark:text-[#FD81B0]"
-                  : "text-gray-300 dark:text-gray-600"
-              }
+              className={`cursor-pointer
+                ${
+                  task.subtasks?.length
+                    ? "text-[#59B7FF] dark:text-[#FD81B0]"
+                    : "text-gray-300 dark:text-gray-600"
+                }
+              `}
             />
           </motion.div>
         </button>

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useCategories } from "@/hooks/useCategories";
 import { TaskCategory } from "@/types/task";
 import UserProfile from "./UserProfile";
+import DarkModeButton from "../Elements/DarkModeButton";
 interface Filter {
   mode: "all" | "today" | "category" | "calendar";
   categoryId?: string;
@@ -87,6 +88,7 @@ export default function SidebarMenu({
       <div className="hidden lg:flex flex-col h-full px-8 py-8 overflow-hidden">
         <div className="flex items-center justify-between mb-8">
           <UserProfile email={email} />
+          <DarkModeButton />
         </div>
 
         {/* desktop menu */}

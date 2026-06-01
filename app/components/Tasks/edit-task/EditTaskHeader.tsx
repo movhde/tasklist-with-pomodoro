@@ -41,7 +41,7 @@ export default function EditTaskHeader({ onClose }: Props) {
         <button
           onClick={onClose}
           className="
-            flex h-[44px] w-[44px]
+            cursor-pointer flex h-[44px] w-[44px]
             items-center justify-center
             rounded-full
             border border-black/5

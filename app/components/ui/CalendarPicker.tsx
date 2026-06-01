@@ -78,7 +78,7 @@ export default function CalendarPicker({ value, onChange }: Props) {
       </button>
 
       {open && (
-        <div className="absolute top-full left-1/2 z-50 mt-4 w-full max-w-[350px] -translate-x-1/2 rounded-[36px] border border-white/5 bg-[#FD81B0]/40 p-4 backdrop-blur-xl sm:p-5 md:left-0 md:w-[350px] md:translate-x-0 md:p-7">
+        <div className="absolute top-full left-1/2 z-50 mt-4 w-full max-w-[350px] -translate-x-1/2 rounded-[36px] border border-white/5 dark:bg-[#FD81B0]/40 bg-[#3AAFF8] p-4 backdrop-blur-xl sm:p-5 md:left-0 md:w-[350px] md:translate-x-0 md:p-7">
           <DayPicker
             mode="single"
             selected={selected}
