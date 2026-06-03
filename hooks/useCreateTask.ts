@@ -3,6 +3,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import axiosInstance from "@/lib/axios";
+import { isGuestMode } from "@/hooks/useGuestMode";
+import { createGuestTask } from "@/utils/guestSession";
 
 interface CreateSubtask {
   title: string;
@@ -23,8 +25,11 @@ interface CreateTaskData {
 }
 
 async function createTask(data: CreateTaskData) {
-  const res = await axiosInstance.post("/api/task/taskLists", data);
+  if (isGuestMode()) {
+    return Promise.resolve(createGuestTask(data));
+  }
 
+  const res = await axiosInstance.post("/api/task/taskLists", data);
   return res.data;
 }
 
@@ -37,6 +42,9 @@ export function useCreateTask() {
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["tasks"],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["guestTasks"],
       });
     },
   });

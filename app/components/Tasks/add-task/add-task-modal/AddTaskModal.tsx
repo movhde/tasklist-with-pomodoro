@@ -45,14 +45,6 @@ export default function AddTaskModal({ open, onClose }: Props) {
       return;
     }
 
-    if (!categoryId) {
-      toast.error("Category is required", {
-        description: "Select a category before continuing.",
-      });
-
-      return;
-    }
-
     try {
       await createTask({
         title,

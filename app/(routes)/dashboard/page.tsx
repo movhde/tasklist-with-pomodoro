@@ -25,8 +25,7 @@ interface DashboardFilter {
 }
 
 export default function DashboardPage() {
-  const router = useRouter();
-  const { user, isLoading, error } = useUser();
+  const { user } = useUser();
   const { categories } = useCategories();
   const [openTaskModal, setOpenTaskModal] = useState(false);
   const [filter, setFilter] = useState<DashboardFilter>({
@@ -37,13 +36,6 @@ export default function DashboardPage() {
     filter.mode === "category" && filter.categoryId
       ? categories.find((c: any) => c.id === filter.categoryId)?.name
       : undefined;
-
-  useEffect(() => {
-    if (!isLoading && (!user || error)) {
-      router.replace("/login");
-    }
-  }, [user, isLoading, error, router]);
-  if (!user) return null;
 
   const title =
     filter.mode === "today"
@@ -68,7 +60,7 @@ export default function DashboardPage() {
           filter={filter}
           onChange={setFilter}
           onAddTask={() => setOpenTaskModal(true)}
-          email={user.email}
+          email={user?.email}
         />
 
         <section
@@ -83,17 +75,17 @@ export default function DashboardPage() {
           {/* MOBILE HEADER */}
           <div className="lg:hidden mb-3">
             <div className="flex justify-end mb-3">
-              <UserProfile mobile email={user.email} />
+              <UserProfile mobile email={user?.email} />
             </div>
 
-            <GreetingHeader email={user.email} />
+            <GreetingHeader email={user?.email} />
 
             <div className="flex items-center justify-end gap-1">
               <EditIcon className="w-6 h-6" />
 
               <MobileSidebar>
                 <SidebarMenu
-                  email={user.email}
+                  email={user?.email}
                   filter={filter}
                   onAddTask={() => setOpenTaskModal(true)}
                   onChange={(f) => {
@@ -115,7 +107,7 @@ export default function DashboardPage() {
             {/* DESKTOP GREETING (category -> hide) */}
             {filter.mode !== "category" && (
               <div className="hidden lg:block">
-                <GreetingHeader email={user.email} />
+                <GreetingHeader email={user?.email} />
               </div>
             )}
 

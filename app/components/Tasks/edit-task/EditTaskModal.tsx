@@ -4,16 +4,18 @@ import { useEffect, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axiosInstance from "@/lib/axios";
 import { useCategories } from "@/hooks/useCategories";
-import { Task, Subtask } from "@/types/task";
+import { isGuestMode } from "@/hooks/useGuestMode";
+import { deleteGuestTask, updateGuestTask } from "@/utils/guestSession";
+import { TaskWithCategory, Subtask } from "@/types/task";
 import EditTaskHeader from "./EditTaskHeader";
 import EditTaskForm from "./EditTaskForm";
 import EditTaskFooter from "./EditTaskFooter";
 
 interface Props {
-  task: Task;
+  task: TaskWithCategory;
   open: boolean;
   onClose: () => void;
-  onUpdated: (task: Task) => void;
+  onUpdated: (task: TaskWithCategory) => void;
 }
 
 export default function EditTaskModal({
@@ -46,6 +48,8 @@ export default function EditTaskModal({
     }
   }, [open, task]);
 
+  const guestMode = isGuestMode();
+
   const updateTask = useMutation({
     mutationFn: async () => {
       const payload = {
@@ -60,6 +64,21 @@ export default function EditTaskModal({
           completed,
         })),
       };
+
+      if (guestMode) {
+        const updatedTask: TaskWithCategory = {
+          ...task,
+          ...payload,
+          subtasks: payload.subtasks,
+          completed:
+            payload.subtasks.length > 0
+              ? payload.subtasks.every((subtask) => subtask.completed)
+              : task.completed,
+          category: task.category ?? null,
+        };
+        return updateGuestTask(updatedTask);
+      }
+
       const res = await axiosInstance.patch(
         `/api/task/taskLists/${task.id}`,
         payload,
@@ -67,8 +86,13 @@ export default function EditTaskModal({
       return res.data;
     },
     onSuccess: (updatedTask) => {
-      queryClient.invalidateQueries({ queryKey: ["tasks"] });
-      queryClient.invalidateQueries({ queryKey: ["task", task.id] });
+      if (guestMode) {
+        queryClient.invalidateQueries({ queryKey: ["guestTasks"] });
+      } else {
+        queryClient.invalidateQueries({ queryKey: ["tasks"] });
+        queryClient.invalidateQueries({ queryKey: ["task", task.id] });
+      }
+
       onUpdated(updatedTask);
       onClose();
     },
@@ -76,10 +100,19 @@ export default function EditTaskModal({
   });
 
   const deleteTask = useMutation({
-    mutationFn: async () =>
-      await axiosInstance.delete(`/api/task/taskLists/${task.id}`),
+    mutationFn: async () => {
+      if (guestMode) {
+        deleteGuestTask(task.id);
+        return true;
+      }
+      return await axiosInstance.delete(`/api/task/taskLists/${task.id}`);
+    },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["tasks"] });
+      if (guestMode) {
+        queryClient.invalidateQueries({ queryKey: ["guestTasks"] });
+      } else {
+        queryClient.invalidateQueries({ queryKey: ["tasks"] });
+      }
       onClose();
     },
     onError: (error) => console.error("Error deleting task:", error),

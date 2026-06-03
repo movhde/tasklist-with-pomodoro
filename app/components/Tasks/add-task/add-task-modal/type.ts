@@ -17,7 +17,7 @@ export interface AddTaskProps {
   setCategoryId: (value: string) => void;
 
   subtasks: Subtask[];
-  setSubtasks: (v: Subtask[]) => void;
+  setSubtasks: React.Dispatch<React.SetStateAction<Subtask[]>>;
 
   isCreating: boolean;
   handleCreateTask: () => void;

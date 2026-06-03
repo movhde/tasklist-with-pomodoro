@@ -2,13 +2,19 @@
 
 import { useMemo, useState } from "react";
 
-import { Task } from "@/types/task";
+import { TaskWithCategory } from "@/types/task";
 import { getTaskProgress } from "@/utils/taskProgress";
 import { useQueryClient } from "@tanstack/react-query";
-export default function useTaskGroup(task: Task) {
+import { isGuestMode } from "@/hooks/useGuestMode";
+import {
+  deleteGuestTask,
+  toggleGuestSubtask,
+  updateGuestTask,
+} from "@/utils/guestSession";
+export default function useTaskGroup(task: TaskWithCategory) {
   const [open, setOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
-  const [taskState, setTaskState] = useState<Task>(task);
+  const [taskState, setTaskState] = useState<TaskWithCategory>(task);
   const [deleteOpen, setDeleteOpen] = useState(false);
 
   const [deleteLoading, setDeleteLoading] = useState(false);
@@ -17,6 +23,8 @@ export default function useTaskGroup(task: Task) {
     [taskState],
   );
   const queryClient = useQueryClient();
+  const guestMode = isGuestMode();
+
   async function toggleTask() {
     const updatedCompleted = !taskState.completed;
 
@@ -26,15 +34,22 @@ export default function useTaskGroup(task: Task) {
         completed: updatedCompleted,
       })) || [];
 
-    const updatedTask = {
+    const updatedTask: TaskWithCategory = {
       ...taskState,
       completed: updatedCompleted,
       subtasks: updatedSubtasks,
+      category: taskState.category ?? null,
     };
 
     setTaskState(updatedTask);
 
     try {
+      if (guestMode) {
+        updateGuestTask(updatedTask);
+        queryClient.invalidateQueries({ queryKey: ["guestTasks"] });
+        return;
+      }
+
       const token = localStorage.getItem("token");
 
       await fetch(`/api/task/taskLists/${task.id}`, {
@@ -56,6 +71,14 @@ export default function useTaskGroup(task: Task) {
   async function deleteTask() {
     try {
       setDeleteLoading(true);
+
+      if (guestMode) {
+        const removed = deleteGuestTask(task.id);
+        if (removed) {
+          queryClient.invalidateQueries({ queryKey: ["guestTasks"] });
+        }
+        return removed;
+      }
 
       const token = localStorage.getItem("token");
 
@@ -106,6 +129,16 @@ export default function useTaskGroup(task: Task) {
     setTaskState(updatedTask);
 
     try {
+      if (guestMode) {
+        const result = toggleGuestSubtask(task.id, subtaskId, !taskState.subtasks?.find((st) => st.id === subtaskId)?.completed);
+        if (result) {
+          queryClient.invalidateQueries({ queryKey: ["guestTasks"] });
+        } else {
+          setTaskState(previousTask);
+        }
+        return;
+      }
+
       const token = localStorage.getItem("token");
 
       const targetSubtask = updatedSubtasks.find(

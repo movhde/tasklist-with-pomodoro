@@ -1,6 +1,6 @@
 "use client";
 
-import { Task } from "@/types/task";
+import { TaskWithCategory } from "@/types/task";
 
 import useTaskGroup from "./useTaskGroup";
 import TaskGroupHeader from "./TaskGroupHeader";
@@ -8,7 +8,7 @@ import TaskGroupContent from "./TaskGroupContent";
 import EditTaskModal from "../edit-task/EditTaskModal";
 import DeleteTaskModal from "../delete-task/DeleteTaskModal";
 interface Props {
-  task: Task;
+  task: TaskWithCategory;
 }
 
 export default function TaskGroup({ task }: Props) {
