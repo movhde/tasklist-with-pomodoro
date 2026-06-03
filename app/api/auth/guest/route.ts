@@ -6,12 +6,16 @@ export async function POST() {
   const cookieStore = await cookies();
 
   cookieStore.set("guest_token", guestId, {
-    httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
     maxAge: 60 * 60 * 24,
     path: "/",
   });
-
+  cookieStore.set("guest_mode", "true", {
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    maxAge: 60 * 60 * 24,
+    path: "/",
+  });
   return NextResponse.json({ message: "Guest session started" });
 }

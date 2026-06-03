@@ -1,5 +1,6 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import apiClient from "@/lib/axios";
+import { isGuestMode } from "@/hooks/useGuestMode";
 
 async function fetchUser() {
   const res = await apiClient.get("/api/auth/me");
@@ -8,14 +9,21 @@ async function fetchUser() {
 
 export function useUser() {
   const queryClient = useQueryClient();
-  const cachedUser = queryClient.getQueryData(["user"]);
+  const guestMode = isGuestMode();
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["user"],
     queryFn: fetchUser,
     staleTime: Infinity,
-    enabled: !!localStorage.getItem("token"),
+    retry: false,
+    enabled: !guestMode,
   });
 
-  return { user: data || cachedUser, isLoading, error };
+  return {
+    user: guestMode
+      ? { id: "guest", email: "Guest" }
+      : (data ?? queryClient.getQueryData(["user"])),
+    isLoading: guestMode ? false : isLoading,
+    error: guestMode ? null : error,
+  };
 }

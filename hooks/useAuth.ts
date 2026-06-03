@@ -28,7 +28,8 @@ export function useAuth() {
       setAuthError(null);
       localStorage.setItem("token", data.token);
       document.cookie = `token=${data.token}; path=/; max-age=${7 * 24 * 60 * 60}`;
-      document.cookie = "guest_token=; max-age=0; path=/";
+      document.cookie = "guest_token=; path=/; max-age=0";
+      document.cookie = "guest_mode=; path=/; max-age=0";
       queryClient.setQueryData(["user"], data.user);
       router.push("/dashboard");
     },
@@ -45,6 +46,8 @@ export function useAuth() {
       localStorage.setItem("token", data.token);
       document.cookie = `token=${data.token}; path=/; max-age=${7 * 24 * 60 * 60}`;
       document.cookie = `just_signed_up=true; path=/; max-age=3600`;
+      document.cookie = "guest_mode=; path=/; max-age=0";
+      document.cookie = "guest_token=; path=/; max-age=0";
       queryClient.setQueryData(["user"], data.user);
       router.push("/signup/success");
     },
@@ -58,6 +61,8 @@ export function useAuth() {
     localStorage.removeItem("token");
     document.cookie = "token=; path=/; max-age=0";
     document.cookie = "just_signed_up=; path=/; max-age=0";
+    document.cookie = "guest_mode=; path=/; max-age=0";
+    document.cookie = "guest_token=; path=/; max-age=0; sameSite=Lax";
     queryClient.clear();
     router.push("/");
   };

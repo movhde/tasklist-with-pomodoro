@@ -6,10 +6,10 @@ export function proxy(request: NextRequest) {
   const guestToken = request.cookies.get("guest_token")?.value;
   const { pathname } = request.nextUrl;
 
-  const isLoggedIn = !!token;
-  const isGuest = !!guestToken;
+  const isLoggedIn = Boolean(token);
+  const isGuest = Boolean(guestToken);
   const authRoutes = ["/login", "/signup"];
-  const protectedRoutes = ["/dashboard", "/tasks", "pomodoro"];
+  const protectedRoutes = ["/dashboard", "/tasks", "/pomodoro"];
 
   if (isLoggedIn && authRoutes.includes(pathname)) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
