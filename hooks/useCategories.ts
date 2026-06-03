@@ -3,6 +3,16 @@
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "@/lib/axios";
 import { isGuestMode } from "@/hooks/useGuestMode";
+import { TaskCategory } from "@/types/task";
+
+const DEFAULT_GUEST_CATEGORIES: TaskCategory[] = [
+  { id: "guest-work", name: "Work", userId: "guest", createdAt: null },
+  { id: "guest-personal", name: "Personal", userId: "guest", createdAt: null },
+  { id: "guest-gym", name: "Gym", userId: "guest", createdAt: null },
+  { id: "guest-home", name: "Home", userId: "guest", createdAt: null },
+  { id: "guest-study", name: "Study", userId: "guest", createdAt: null },
+  { id: "guest-other", name: "Other", userId: "guest", createdAt: null },
+];
 
 async function fetchCategories() {
   const res = await axiosInstance.get("/api/task/categories");
@@ -23,10 +33,19 @@ export function useCategories() {
     enabled: !guestMode,
   });
 
+  if (guestMode) {
+    return {
+      categories: DEFAULT_GUEST_CATEGORIES,
+      isLoading: false,
+      error: null,
+      refetchCategories: () => {},
+    };
+  }
+
   return {
-    categories: guestMode ? [] : categories,
-    isLoading: guestMode ? false : isLoading,
-    error: guestMode ? null : error,
+    categories,
+    isLoading,
+    error,
     refetchCategories: refetch,
   };
 }

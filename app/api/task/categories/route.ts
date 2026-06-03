@@ -1,9 +1,9 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { readDB } from "@/lib/db";
 import { verifyToken } from "@/lib/jwt";
 import { TaskCategory } from "@/types/task";
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
     const authHeader = request.headers.get("authorization");
     const token = authHeader?.split(" ")[1];
@@ -16,10 +16,12 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: "Invalid token" }, { status: 401 });
     }
 
+    if (!token) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const db = readDB();
-    const userCategories: TaskCategory[] = db.categories?.filter(
-      (c: TaskCategory) => c.userId === payload.id,
-    );
+    const userCategories: TaskCategory[] = db.categories;
 
     return NextResponse.json(userCategories);
   } catch (error) {
