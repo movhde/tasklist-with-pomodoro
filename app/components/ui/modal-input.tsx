@@ -9,7 +9,8 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 export default function ModalInput({ icon: Icon, ...props }: Props) {
   return (
     <div
-      className="group flex h-12 items-center gap-3 rounded-2xl md:rounded-3xl border border-[#3AAFF8] md:border-[#E8EEF7] bg-white px-5 
+      className="group flex h-12 items-center gap-3 rounded-2xl md:rounded-3xl border 
+       border-[#3AAFF8] md:border-[#E8EEF7] bg-white px-5 
     shadow-[0_4px_18px_rgba(15,23,42,.04)] transition-all duration-300  dark:bg-[#363750] dark:shadow-none 
     md:dark:border-[#FFFFFF10] 
       dark:border-[#3AAFF8]
