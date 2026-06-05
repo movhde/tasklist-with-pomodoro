@@ -1,3 +1,9 @@
+"use client";
+
+import { useState } from "react";
+
+import SearchInput from "../ui/SearchInput";
+
 import TaskTimeline from "../Tasks/task-group/TaskTimeline";
 import MobileTaskFilter from "./MobileTaskFilter";
 
@@ -18,10 +24,12 @@ export default function TasksSection({
   onMobileFilter,
   onAddTask,
 }: Props) {
+  const [search, setSearch] = useState("");
+
   return (
-    <div className="mt-5 mb-22 lg:mb-0 flex flex-col items-start">
-      <div className="flex w-full justify-between items-center">
-        <h1 className="font-sniglet font-bold text-2xl md:text-4xl text-[#303153] dark:text-white">
+    <div className="mt-5 mb-22 flex flex-col items-start lg:mb-0">
+      <div className="flex w-full items-center justify-between">
+        <h1 className="font-sniglet text-2xl font-bold text-[#303153] dark:text-white md:text-4xl">
           {title}
         </h1>
 
@@ -29,15 +37,20 @@ export default function TasksSection({
       </div>
 
       {subtitle && (
-        <p className="font-sniglet pl-2 text-md text-gray-500 dark:text-[#C6C7D2] text-right">
+        <p className="font-sniglet pl-2 text-md text-gray-500 dark:text-[#C6C7D2]">
           {subtitle}
         </p>
       )}
 
-      <div className="mt-4 md:mt-8 w-full">
+      <div className="mt-5 w-full max-w-[760px]">
+        <SearchInput value={search} onChange={setSearch} />
+      </div>
+
+      <div className="mt-4 w-full md:mt-8">
         <TaskTimeline
           categoryId={categoryId}
           date={date}
+          search={search}
           onAddTask={onAddTask}
         />
       </div>

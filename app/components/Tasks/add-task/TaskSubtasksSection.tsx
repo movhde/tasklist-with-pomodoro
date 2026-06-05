@@ -38,7 +38,21 @@ export default function TaskSubtasksSection({ subtasks, setSubtasks }: Props) {
   }
 
   return (
-    <div className="rounded-[24px] max-h-80 overflow-scroll border-3 md:border-2 border-dashed border-[#FFB6D3] md:border-[#59B7FF]/16 bg-[#FCFDFF]/70 p-5 md:dark:border-[#FD81B0]/14 dark:border-[#3AAFF8] dark:bg-[#2F3047]/40">
+    <div
+      className="
+rounded-[24px]
+border-3
+md:border-2
+border-dashed
+border-[#FFB6D3]
+md:border-[#59B7FF]/16
+bg-[#FCFDFF]/70
+p-5
+dark:border-[#3AAFF8]
+md:dark:border-[#FD81B0]/14
+dark:bg-[#2F3047]/40
+"
+    >
       <div className="flex items-center justify-between">
         <div>
           <h3 className="font-sniglet text-[14px] font-semibold text-[#404868] dark:text-white">

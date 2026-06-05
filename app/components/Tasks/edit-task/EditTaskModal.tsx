@@ -49,7 +49,7 @@ export default function EditTaskModal({
   }, [open, task]);
 
   const guestMode = isGuestMode();
-
+  console.log(categories);
   const updateTask = useMutation({
     mutationFn: async () => {
       const payload = {
