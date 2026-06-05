@@ -4,7 +4,7 @@ import { useTasks } from "@/hooks/useTasks";
 
 import AppLoader from "../../ui/AppLoader";
 import EmptyState from "../../dashboard/EmptyState";
-
+import { searchTasks } from "@/utils/searchTasks";
 import TaskGroup from "./TaskGroup";
 
 interface Props {
@@ -22,11 +22,7 @@ export default function TaskTimeline({
 }: Props) {
   const { tasks, isLoading } = useTasks(categoryId, date);
 
-  const filteredTasks = [...tasks]
-    .reverse()
-    .filter((task: any) =>
-      task.title.toLowerCase().includes(search?.toLowerCase() || ""),
-    );
+  const filteredTasks = searchTasks([...tasks].reverse(), search || "");
 
   if (isLoading) {
     return <AppLoader />;
