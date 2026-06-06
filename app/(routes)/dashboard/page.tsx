@@ -15,7 +15,7 @@ import { useUser } from "@/hooks/useUser";
 import CategoryChip from "@/app/components/ui/category-chip";
 import { useCategories } from "@/hooks/useCategories";
 import AddTaskModal from "@/app/components/Tasks/add-task/add-task-modal/AddTaskModal";
-
+import SearchInput from "@/app/components/ui/SearchInput";
 type FilterMode = "all" | "today" | "category" | "calendar";
 
 interface DashboardFilter {
@@ -31,7 +31,7 @@ export default function DashboardPage() {
   const [filter, setFilter] = useState<DashboardFilter>({
     mode: "all",
   });
-
+  const [search, setSearch] = useState("");
   const categoryName =
     filter.mode === "category" && filter.categoryId
       ? categories.find((c: any) => c.id === filter.categoryId)?.name
@@ -74,7 +74,11 @@ export default function DashboardPage() {
         >
           {/* MOBILE HEADER */}
           <div className="lg:hidden mb-3">
-            <div className="flex justify-end mb-3">
+            <div className="mb-4 flex items-center gap-3">
+              <div className="flex-1">
+                <SearchInput value={search} onChange={setSearch} />
+              </div>
+
               <UserProfile mobile email={user?.email} />
             </div>
 
@@ -104,6 +108,9 @@ export default function DashboardPage() {
             onClose={() => setOpenTaskModal(false)}
           />
           <div className="w-full max-w-[980px]">
+            <div className="hidden lg:block mb-6 max-w-[760px]">
+              <SearchInput value={search} onChange={setSearch} />
+            </div>
             {/* DESKTOP GREETING (category -> hide) */}
             {filter.mode !== "category" && (
               <div className="hidden lg:block">
@@ -185,6 +192,7 @@ export default function DashboardPage() {
 
             <TasksSection
               title={title}
+              search={search}
               onAddTask={() => setOpenTaskModal(true)}
               subtitle={subtitle}
               categoryId={
