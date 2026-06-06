@@ -1,229 +1,105 @@
+// app/dashboard/page.tsx
 "use client";
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import EditIcon from "../../components/Elements/EditIcon";
-import Sidebar from "@/app/components/dashboard/Sidebar";
-import SidebarMenu from "@/app/components/dashboard/SidebarMenu";
-import MobileSidebar from "@/app/components/dashboard/MobileSidebar";
-import UserProfile from "@/app/components/dashboard/UserProfile";
-import FloatingAddButton from "@/app/components/dashboard/FloatingAddButton";
-import GreetingHeader from "@/app/components/dashboard/GreetingHeader";
-import WeekCalendar from "@/app/components/dashboard/WeekCalendar";
-import TasksSection from "@/app/components/dashboard/TasksSection";
+import { useState } from "react";
 import { useUser } from "@/hooks/useUser";
-import CategoryChip from "@/app/components/ui/category-chip";
 import { useCategories } from "@/hooks/useCategories";
+import { MainLayout } from "@/app/components/dashboard/MainLayout";
+import TasksSection from "@/app/components/dashboard/TasksSection";
+import WeekCalendar from "@/app/components/dashboard/WeekCalendar";
+import CategoryChip from "@/app/components/ui/category-chip";
 import AddTaskModal from "@/app/components/Tasks/add-task/add-task-modal/AddTaskModal";
 import SearchInput from "@/app/components/ui/SearchInput";
-type FilterMode = "all" | "today" | "category" | "calendar";
-
-interface DashboardFilter {
-  mode: FilterMode;
-  categoryId?: string;
-  date?: string;
-}
+import GreetingHeader from "@/app/components/dashboard/GreetingHeader";
+import { Filter } from "@/app/components/dashboard/sidebarConfig";
+import { TaskCategory } from "@/types/task";
 
 export default function DashboardPage() {
   const { user } = useUser();
   const { categories } = useCategories();
   const [openTaskModal, setOpenTaskModal] = useState(false);
-  const [filter, setFilter] = useState<DashboardFilter>({
-    mode: "all",
-  });
+  const [filter, setFilter] = useState<Filter>({ mode: "all" });
   const [search, setSearch] = useState("");
-  const categoryName =
-    filter.mode === "category" && filter.categoryId
-      ? categories.find((c: any) => c.id === filter.categoryId)?.name
-      : undefined;
 
-  const title =
+  const isCategoryMode = filter.mode === "category";
+
+  const taskDate =
     filter.mode === "today"
-      ? "Today Tasks"
-      : filter.mode === "category"
-        ? "Category"
-        : filter.mode === "calendar"
-          ? "Tasks"
-          : "Your Tasks";
-
-  const subtitle =
-    filter.mode === "category"
-      ? categoryName
+      ? new Date().toISOString().slice(0, 10)
       : filter.mode === "calendar"
         ? filter.date
         : undefined;
 
   return (
-    <main className="min-h-screen bg-[#f8fcff] dark:bg-[#78719dc7]">
-      <div className="min-h-screen lg:flex">
-        <Sidebar
-          filter={filter}
-          onChange={setFilter}
-          onAddTask={() => setOpenTaskModal(true)}
-          email={user?.email}
-        />
+    <MainLayout
+      email={user?.email}
+      filter={filter}
+      onFilterChange={setFilter}
+      onAddTask={() => setOpenTaskModal(true)}
+      search={search}
+      onSearchChange={setSearch}
+    >
+      <div className="max-w-[980px]">
+        {/* Desktop Search */}
+        <div className="hidden lg:block mb-6 max-w-[760px]">
+          <SearchInput value={search} onChange={setSearch} />
+        </div>
 
-        <section
-          className="
-    relative
-    flex-1
-    overflow-y-auto
-    px-5 lg:px-14
-    pt-4 lg:py-8
-  "
-        >
-          {/* MOBILE HEADER */}
-          <div className="lg:hidden mb-3">
-            <div className="mb-4 flex items-center gap-3">
-              <div className="flex-1">
-                <SearchInput value={search} onChange={setSearch} />
-              </div>
-
-              <UserProfile mobile email={user?.email} />
-            </div>
-
+        {!isCategoryMode && (
+          <div className="hidden lg:block">
             <GreetingHeader email={user?.email} />
-
-            <div className="flex items-center justify-end gap-1">
-              <EditIcon className="w-6 h-6" />
-
-              <MobileSidebar>
-                <SidebarMenu
-                  email={user?.email}
-                  filter={filter}
-                  onAddTask={() => setOpenTaskModal(true)}
-                  onChange={(f) => {
-                    if (f.mode === "category") {
-                      setFilter({ ...f, date: undefined });
-                    } else {
-                      setFilter(f);
-                    }
-                  }}
-                />
-              </MobileSidebar>
-            </div>
           </div>
-          <AddTaskModal
-            open={openTaskModal}
-            onClose={() => setOpenTaskModal(false)}
+        )}
+
+        {/* Calendar */}
+        {!isCategoryMode && (
+          <WeekCalendar
+            selected={filter.date}
+            onChange={(date) => {
+              setFilter(date ? { mode: "calendar", date } : { mode: "all" });
+            }}
           />
-          <div className="w-full max-w-[980px]">
-            <div className="hidden lg:block mb-6 max-w-[760px]">
-              <SearchInput value={search} onChange={setSearch} />
-            </div>
-            {/* DESKTOP GREETING (category -> hide) */}
-            {filter.mode !== "category" && (
-              <div className="hidden lg:block">
-                <GreetingHeader email={user?.email} />
-              </div>
-            )}
+        )}
 
-            {/*  DESKTOP CALENDAR (category -> hide) */}
-            {filter.mode !== "category" && (
-              <div className="hidden lg:block">
-                <WeekCalendar
-                  selected={filter.date}
-                  onChange={(date) => {
-                    if (!date) {
-                      setFilter({ mode: "all" });
-                      return;
-                    }
-
-                    setFilter({
-                      mode: "calendar",
-                      date,
-                    });
-                  }}
-                />
-              </div>
-            )}
-
-            {/*  MOBILE CALENDAR (category -> hide) */}
-            <div className="lg:hidden">
-              {filter.mode !== "category" && (
-                <WeekCalendar
-                  selected={filter.date}
-                  onChange={(date) => {
-                    if (!date) {
-                      setFilter({ mode: "all" });
-                      return;
-                    }
-
-                    setFilter({
-                      mode: "calendar",
-                      date,
-                    });
-                  }}
-                />
-              )}
-            </div>
-
-            {/* MOBILE CATEGORY CHIPS */}
-            {filter.mode === "category" && (
-              <div className="lg:hidden mt-4">
-                <div className="flex gap-2 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-                  <CategoryChip
-                    label="All"
-                    active={filter.categoryId === undefined}
-                    onClick={() =>
-                      setFilter({
-                        mode: "category",
-                        categoryId: undefined,
-                      })
-                    }
-                  />
-
-                  {categories.map((cat: any) => (
-                    <CategoryChip
-                      key={cat.id}
-                      label={cat.name}
-                      active={filter.categoryId === cat.id}
-                      onClick={() =>
-                        setFilter({
-                          mode: "category",
-                          categoryId: cat.id,
-                        })
-                      }
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
-
-            <TasksSection
-              title={title}
-              search={search}
-              onAddTask={() => setOpenTaskModal(true)}
-              subtitle={subtitle}
-              categoryId={
-                filter.mode === "category" ? filter.categoryId : undefined
-              }
-              date={
-                filter.mode === "today"
-                  ? new Date().toISOString().slice(0, 10)
-                  : filter.mode === "calendar"
-                    ? filter.date
-                    : undefined
-              }
-              onMobileFilter={(mode) => {
-                if (mode === "today") {
-                  setFilter({
-                    mode: "today",
-                    date: new Date().toISOString().slice(0, 10),
-                  });
+        {/* Mobile Category Chips */}
+        {isCategoryMode && (
+          <div className="lg:hidden mt-4">
+            <div className="flex gap-2 overflow-x-auto">
+              <CategoryChip
+                label="All"
+                active={!filter.categoryId}
+                onClick={() =>
+                  setFilter({ mode: "category", categoryId: undefined })
                 }
-
-                if (mode === "all") {
-                  setFilter({
-                    mode: "all",
-                  });
-                }
-              }}
-            />
+              />
+              {categories.map((cat: TaskCategory) => (
+                <CategoryChip
+                  key={cat.id}
+                  label={cat.name}
+                  active={filter.categoryId === cat.id}
+                  onClick={() =>
+                    setFilter({ mode: "category", categoryId: cat.id })
+                  }
+                />
+              ))}
+            </div>
           </div>
-        </section>
-        <FloatingAddButton onClick={() => setOpenTaskModal(true)} />
+        )}
+
+        {/* Tasks */}
+        <TasksSection
+          title="Your Tasks"
+          search={search}
+          onAddTask={() => setOpenTaskModal(true)}
+          categoryId={isCategoryMode ? filter.categoryId : undefined}
+          date={taskDate}
+        />
       </div>
-    </main>
+
+      <AddTaskModal
+        open={openTaskModal}
+        onClose={() => setOpenTaskModal(false)}
+      />
+    </MainLayout>
   );
 }
