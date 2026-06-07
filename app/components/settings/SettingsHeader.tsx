@@ -39,7 +39,7 @@ cursor-pointer
           lg:hidden
         "
       >
-        <ArrowLeft size={22} />
+        <ArrowLeft size={22} className="text-[#FD81B0]" />
       </button>
 
       <DarkModeButton />

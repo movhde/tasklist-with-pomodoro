@@ -51,7 +51,7 @@ export default function DashboardSettingsPage() {
 
               <UserInfoForm email={user?.email} />
 
-              <div className="mt-4 space-y-3">
+              <div className="mt-4 flex gap-2 space-y-3">
                 <ChangePasswordButton
                   onClick={() =>
                     router.push("/dashboard/settings/change-password")
@@ -64,7 +64,7 @@ export default function DashboardSettingsPage() {
                   variant="pink"
                   onClick={() => setSignOutOpen(true)}
                 >
-                  Sign out
+                  Log out
                 </ChangePasswordButton>
               </div>
             </div>

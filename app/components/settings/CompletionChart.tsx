@@ -53,11 +53,11 @@ export default function CompletionChart({
   const gradients = [
     "linear-gradient(180deg,#66C2FF 0%,#4AAFFF 100%)",
     "linear-gradient(180deg,#FD81B0 0%,#FF6AA1 100%)",
-    "linear-gradient(180deg,#D7F171 0%,#C4E850 100%)",
+    "linear-gradient(180deg,#FCF4A3 0%,#FCF4A3 100%)",
     "linear-gradient(180deg,#9EDCFF 0%,#75C8FF 100%)",
     "linear-gradient(180deg,#66C2FF 0%,#4AAFFF 100%)",
     "linear-gradient(180deg,#FD81B0 0%,#FF6AA1 100%)",
-    "linear-gradient(180deg,#D7F171 0%,#C4E850 100%)",
+    "linear-gradient(180deg,#FCF4A3 0%,#FCF4A3 100%)",
   ];
 
   return (

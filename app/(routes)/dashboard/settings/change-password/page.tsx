@@ -49,7 +49,7 @@ export default function ChangePasswordPage() {
               onClick={() => router.back()}
               className="inline-flex cursor-pointer items-center gap-2 text-[13px] font-semibold text-[#303153] hover:underline dark:text-white"
             >
-              <ArrowLeft size={22} />
+              <ArrowLeft size={22} className="text-[#59B7FF]" />
             </button>
           </div>
 
