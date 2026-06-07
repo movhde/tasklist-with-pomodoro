@@ -17,39 +17,41 @@ export default function UserInfoForm({ email }: { email?: string }) {
   }, [derivedUsername, email]);
 
   const inputBase =
-    "h-[52px] w-full rounded-[16px] border border-[#EAEAEA] bg-white px-4 text-[14px] text-[#2A2A34] outline-none transition focus:border-[#66C2FF] focus:shadow-[0_0_0_4px_rgba(102,194,255,.16)] dark:border-[#FFFFFF18] dark:bg-[#2E2F46] dark:text-white";
-
-  const labelBase =
-    "w-[88px] shrink-0 text-[12px] font-semibold text-[#2A2A34] dark:text-white";
+    "h-[60px] lg:h-[44px] text-[#36363e]  w-full rounded-[20px] lg:rounded-[14px] border border-[#66C2FF] bg-white px-5 text-[15px] outline-none dark:border-[#4EB3FF] dark:bg-[#3A3C57] dark:text-white font-sniglet";
 
   return (
-    <div className="w-full space-y-4">
-      <div className="flex items-center gap-4">
-        <label className={labelBase} htmlFor="settings-username">
+    <div className="w-full space-y-4 font-sniglet">
+      <div className="space-y-2">
+        <label
+          htmlFor="settings-username"
+          className="block text-[14px] font-semibold text-[#000] dark:text-white font-sniglet"
+        >
           Username
         </label>
+
         <input
           id="settings-username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           className={inputBase}
-          placeholder="Username"
         />
       </div>
 
-      <div className="flex items-center gap-4">
-        <label className={labelBase} htmlFor="settings-email">
+      <div className="space-y-2">
+        <label
+          htmlFor="settings-email"
+          className="block text-[14px] font-semibold text-[#000] dark:text-white font-sniglet"
+        >
           Email
         </label>
+
         <input
           id="settings-email"
           value={emailValue}
           onChange={(e) => setEmailValue(e.target.value)}
           className={inputBase}
-          placeholder="Email"
         />
       </div>
     </div>
   );
 }
-

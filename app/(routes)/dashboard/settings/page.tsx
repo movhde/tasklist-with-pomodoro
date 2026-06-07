@@ -13,6 +13,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useUser } from "@/hooks/useUser";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { ArrowLeft } from "lucide-react";
 
 export default function DashboardSettingsPage() {
   const { user } = useUser();
@@ -20,34 +21,41 @@ export default function DashboardSettingsPage() {
   const router = useRouter();
   const [signOutOpen, setSignOutOpen] = useState(false);
 
+  const username =
+    user?.email && user.email.includes("@")
+      ? user.email.split("@")[0]
+      : user?.email || "";
+
   return (
     <MainLayout
       email={user?.email}
       backgroundClassName="bg-[#F5FBFF] dark:bg-[#78719dc7]"
+      contentClassName="overflow-hidden"
     >
-      <div className="w-full max-w-[1120px] lg:h-[calc(100vh-64px)] flex flex-col gap-8">
+      <div className="w-full max-w-[1120px] h-full flex flex-col gap-0 lg:gap-4 overflow-hidden font-sniglet">
         {/* User Information Card */}
-        <section className="w-full shrink-0 rounded-[40px] bg-white p-6 shadow-[0_10px_40px_rgba(0,0,0,0.04)] dark:bg-[#32334B] sm:p-10">
+        <section className="w-full bg-transparent p-0 lg:bg-white lg:p-7 lg:rounded-[40px] dark:lg:bg-[#32334B] font-sniglet">
           <SettingsHeader />
-
-          <div className="mt-6">
-            <h1 className="text-[34px] font-bold text-[#2A2A34] dark:text-white sm:text-[42px]">
-              User
-            </h1>
-            <p className="mt-1 text-[14px] text-[#9B9B9B]">
-              manage your account and preferences
-            </p>
-          </div>
-
-          <div className="mt-8 flex flex-col gap-8 lg:flex-row lg:items-start">
+          <div className="flex flex-col gap-10 lg:flex-row lg:items-start">
             <ProfileSection email={user?.email} />
 
             <div className="flex w-full max-w-[680px] flex-col">
+              <div className="mb-3">
+                <h1 className="text-[30px] font-bold text-[#2A2A34] dark:text-white sm:text-[34px] font-sniglet">
+                  {username || "User"}
+                </h1>
+                <p className="mt-1 text-[12px] text-[#9B9B9B] font-sniglet">
+                  manage your account and preferences
+                </p>
+              </div>
+
               <UserInfoForm email={user?.email} />
 
-              <div className="mt-6 space-y-4">
+              <div className="mt-4 space-y-3">
                 <ChangePasswordButton
-                  onClick={() => router.push("/dashboard/settings/change-password")}
+                  onClick={() =>
+                    router.push("/dashboard/settings/change-password")
+                  }
                 >
                   Change password
                 </ChangePasswordButton>
@@ -62,9 +70,8 @@ export default function DashboardSettingsPage() {
             </div>
           </div>
         </section>
-
         {/* Completion Analytics Card */}
-        <section className="w-full flex-1 min-h-0 rounded-[40px] bg-white p-6 shadow-[0_10px_40px_rgba(0,0,0,0.04)] dark:bg-[#32334B] sm:p-8">
+        <section className="w-full bg-transparent p-0 lg:flex-1 lg:min-h-[420px] lg:bg-white lg:p-6 lg:rounded-[40px] dark:lg:bg-[#32334B] font-sniglet">
           <AnalyticsSection />
         </section>
       </div>

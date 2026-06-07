@@ -33,7 +33,7 @@ export default function SignOutConfirmModal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.92, y: 10 }}
             transition={{ duration: 0.2 }}
-            className="fixed left-1/2 top-1/2 z-[101] w-[90%] max-w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-[28px] sm:rounded-[32px] border border-white/10 bg-white p-5 sm:p-7 shadow-[0_30px_80px_rgba(0,0,0,.15)] dark:bg-[#31304A]"
+            className="fixed left-1/2 top-1/2 z-[101] w-[90%] max-w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-[28px] sm:rounded-[32px] border border-white/10 bg-white p-5 sm:p-7 shadow-[0_30px_80px_rgba(0,0,0,.15)] dark:bg-[#31304A] font-sniglet"
           >
             <div className="flex flex-col items-center text-center font-sniglet">
               <div className="mb-4 sm:mb-5 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-[#FD81B0]/10">
@@ -74,4 +74,3 @@ export default function SignOutConfirmModal({
     </AnimatePresence>
   );
 }
-

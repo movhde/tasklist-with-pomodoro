@@ -7,6 +7,7 @@ type Variant = "blue" | "pink";
 export default function ChangePasswordButton({
   variant = "blue",
   className,
+  children,
   ...props
 }: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: Variant }) {
   const styles =
@@ -18,12 +19,13 @@ export default function ChangePasswordButton({
     <button
       type="button"
       className={[
-        "h-[52px] w-full rounded-[18px] border-2 bg-transparent text-[13px] font-semibold uppercase tracking-wide transition",
+        "h-[64px] lg:h-[52px] cursor-pointer w-full rounded-[22px] lg:rounded-[18px] border-2 bg-transparent text-[15px] lg:text-[13px] font-semibold transition font-sniglet",
         styles,
         className ?? "",
       ].join(" ")}
       {...props}
-    />
+    >
+      {children}
+    </button>
   );
 }
-
