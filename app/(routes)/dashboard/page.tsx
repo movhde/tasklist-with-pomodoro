@@ -15,6 +15,7 @@ import SidebarMenu from "@/app/components/dashboard/SidebarMenu";
 import UserProfile from "@/app/components/dashboard/UserProfile";
 import FloatingAddButton from "@/app/components/dashboard/FloatingAddButton";
 import { Filter } from "@/app/components/dashboard/sidebarConfig";
+import { TaskCategory } from "@/types/task";
 
 export default function DashboardPage() {
   const { user } = useUser();
@@ -96,7 +97,7 @@ export default function DashboardPage() {
                   setFilter({ mode: "category", categoryId: undefined })
                 }
               />
-              {categories.map((cat) => (
+              {categories.map((cat: TaskCategory) => (
                 <CategoryChip
                   key={cat.id}
                   label={cat.name}

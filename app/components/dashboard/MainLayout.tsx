@@ -10,6 +10,8 @@ interface MainLayoutProps {
   filter?: Filter;
   onFilterChange?: (filter: Filter) => void;
   onAddTask?: () => void;
+  backgroundClassName?: string;
+  contentClassName?: string;
 }
 
 export function MainLayout({
@@ -18,9 +20,16 @@ export function MainLayout({
   filter,
   onFilterChange,
   onAddTask,
+  backgroundClassName,
+  contentClassName,
 }: MainLayoutProps) {
   return (
-    <div className="min-h-screen bg-[#f8fcff] dark:bg-[#78719dc7]">
+    <div
+      className={[
+        "min-h-screen",
+        backgroundClassName ?? "bg-[#F5FBFF] dark:bg-[#78719dc7]",
+      ].join(" ")}
+    >
       <div className="min-h-screen lg:flex">
         {/* Desktop Sidebar */}
         <div className="hidden lg:block">
@@ -32,7 +41,24 @@ export function MainLayout({
           />
         </div>
 
-        <section className="min-h-screen relative flex-1 overflow-y-auto px-5 lg:px-14 pt-4 lg:py-8">
+        <section
+          className={[
+            `
+            relative
+            flex-1
+
+            px-5
+            pt-5
+            pb-10
+
+            lg:px-14
+            lg:py-8
+
+            min-h-screen
+            `,
+            contentClassName ?? "overflow-y-auto",
+          ].join(" ")}
+        >
           {children}
         </section>
       </div>
