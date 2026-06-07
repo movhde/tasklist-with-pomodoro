@@ -10,6 +10,7 @@ interface MainLayoutProps {
   filter?: Filter;
   onFilterChange?: (filter: Filter) => void;
   onAddTask?: () => void;
+  backgroundClassName?: string;
 }
 
 export function MainLayout({
@@ -18,9 +19,15 @@ export function MainLayout({
   filter,
   onFilterChange,
   onAddTask,
+  backgroundClassName,
 }: MainLayoutProps) {
   return (
-    <div className="min-h-screen bg-[#f8fcff] dark:bg-[#78719dc7]">
+    <div
+      className={[
+        "min-h-screen",
+        backgroundClassName ?? "bg-[#f8fcff] dark:bg-[#78719dc7]",
+      ].join(" ")}
+    >
       <div className="min-h-screen lg:flex">
         {/* Desktop Sidebar */}
         <div className="hidden lg:block">
