@@ -14,6 +14,7 @@ import { TaskSelector } from "./TaskSelector";
 import { TaskPanel } from "./TaskPanel";
 import { CompletionModal } from "./CompletionModal";
 import { MusicButton } from "./MusicButton";
+import { ArrowLeft } from "lucide-react";
 
 const DEFAULT_DURATION = 25;
 
@@ -141,14 +142,16 @@ export function PomodoroTimer() {
           categoryName={selectedTask?.category?.name ?? undefined}
         />
         <div className="w-full md:w-fit flex justify-between items-center">
-          <Image
-            src={"/icons/back-button.svg"}
-            alt="back button icon"
-            width={18}
-            height={18}
+          <button
             onClick={() => router.back()}
-            className="md:hidden flex items-center w-10 max-h-9 p-2 rounded-[20px] border-[1.5px] border-[#59B7FF] bg-[#EEF5FF]/85 backdrop-blur-sm cursor-pointer transition-all duration-200 hover:bg-[#EEF5FF]"
-          />
+            className="md:hidden flex items-center w-10 max-h-9 p-2 rounded-[20px] border-[1.5px] border-[#59B7FF] bg-[#EEF5FF]/85 backdrop-blur-sm cursor-pointer transition-all duration-200 hover:bg-[#EEF5FF] dark:bg-[#414462]/85 dark:border-[#FD81B0]/40 dark:hover:bg-[#414462]"
+          >
+            <ArrowLeft
+              size={18}
+              className="text-[#59B7FF] dark:text-[#ea75a4]"
+            />
+          </button>
+
           <MusicButton
             selectedTrack={selectedTrack}
             volume={volume}
@@ -159,10 +162,8 @@ export function PomodoroTimer() {
       </div>
 
       <div
-        className="px-10 py-6 bg-white rounded-4xl flex flex-col md:flex-row lg:flex-col xl:flex-row items-center gap-4 w-full dark:bg-[#31304A]"
-        style={{
-          boxShadow: "5px 5px 8px 0px #DBF2FC, -5px -5px 16px 0px #E5F6FE",
-        }}
+        className="px-10 py-6 bg-white rounded-4xl flex flex-col md:flex-row lg:flex-col xl:flex-row items-center gap-4 w-full dark:bg-[#31304A] shadow-[5px_5px_8px_0px_#DBF2FC,_-5px_-5px_16px_0px_#E5F6FE] dark:shadow-[box-shadow:_5px_5px_35px_0px_#000000AB] backdrop-blur-[50px]"
+        style={{}}
       >
         <div className="flex flex-col items-center xl:w-1/2 w-full gap-4">
           <TimerDisplay timeLeft={timeLeft} totalTime={totalTime} />

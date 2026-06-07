@@ -8,18 +8,8 @@ interface TimerDisplayProps {
 
 export function TimerDisplay({ timeLeft, totalTime }: TimerDisplayProps) {
   return (
-    <div
-      className="rounded-full w-80 h-80 bg-white flex justify-center items-center"
-      style={{
-        boxShadow: "5px 5px 16px 0px #57A2F7 , -5px -5px 16px 0px #E0F4FD",
-      }}
-    >
-      <div
-        className="rounded-full w-44 h-44 bg-white flex justify-center items-center"
-        style={{
-          boxShadow: "5px 5px 16px 0px #57A2F7 , -5px -5px 16px 0px #E0F4FD",
-        }}
-      >
+    <div className="rounded-full w-80 h-80 bg-white dark:bg-[#3D3E57] flex justify-center items-center shadow-[5px_5px_16px_0px_#57A2F7,_-5px_-5px_16px_0px_#E0F4FD] dark:shadow-[5px_5px_16px_0px_#000000,_-5px_-5px_16px_0px_#FEFEFE]">
+      <div className="rounded-full w-44 h-44 bg-white dark:bg-[#3D3E57] flex justify-center items-center shadow-[5px_5px_16px_0px_#57A2F7,_-5px_-5px_16px_0px_#E0F4FD] dark:shadow-[5px_5px_16px_0px_#000000,_-5px_-5px_16px_0px_#FEFEFE]">
         <CircularProgress
           timeLeft={timeLeft}
           totalTime={totalTime}
