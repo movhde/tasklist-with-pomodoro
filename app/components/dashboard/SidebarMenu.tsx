@@ -82,7 +82,6 @@ export default function SidebarMenu({
       <div className="hidden lg:flex flex-col h-full px-8 py-8 overflow-hidden">
         <div className="flex items-center justify-between mb-8">
           <UserProfile email={email} />
-          <DarkModeButton />
         </div>
 
         <div className="shrink-0">
