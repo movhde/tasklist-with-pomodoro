@@ -47,10 +47,9 @@ export default function ChangePasswordPage() {
             <button
               type="button"
               onClick={() => router.back()}
-              className="inline-flex items-center gap-2 text-[13px] font-semibold text-[#303153] hover:underline dark:text-white"
+              className="inline-flex cursor-pointer items-center gap-2 text-[13px] font-semibold text-[#303153] hover:underline dark:text-white"
             >
-              <ArrowLeft size={16} />
-              Back
+              <ArrowLeft size={22} />
             </button>
           </div>
 
@@ -89,7 +88,7 @@ export default function ChangePasswordPage() {
             <button
               type="submit"
               disabled={loading}
-              className="mt-2 w-full rounded-[18px] bg-[#59B7FF] py-3 text-[14px] font-semibold text-white transition hover:bg-[#3AAFF8] disabled:opacity-60"
+              className="mt-2 w-full cursor-pointer rounded-[18px] bg-[#59B7FF] py-3 text-[14px] font-semibold text-white transition hover:bg-[#3AAFF8] disabled:opacity-60"
             >
               {loading ? "Saving..." : "Save"}
             </button>
@@ -99,4 +98,3 @@ export default function ChangePasswordPage() {
     </MainLayout>
   );
 }
-

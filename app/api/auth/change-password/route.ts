@@ -23,7 +23,10 @@ export async function POST(req: Request) {
       typeof newPassword !== "string" ||
       typeof confirmPassword !== "string"
     ) {
-      return NextResponse.json({ message: "invalid payload" }, { status: 400 });
+      return NextResponse.json(
+        { message: "invalid payload" },
+        { status: 400 },
+      );
     }
 
     if (newPassword.length < 6) {
@@ -65,3 +68,4 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: "Server error" }, { status: 500 });
   }
 }
+
