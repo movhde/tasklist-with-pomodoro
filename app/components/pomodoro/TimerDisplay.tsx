@@ -9,7 +9,7 @@ interface TimerDisplayProps {
 export function TimerDisplay({ timeLeft, totalTime }: TimerDisplayProps) {
   return (
     <div
-      className="rounded-full w-80 h-80 bg-white flex justify-center items-center mb-8"
+      className="rounded-full w-80 h-80 bg-white flex justify-center items-center"
       style={{
         boxShadow: "5px 5px 16px 0px #57A2F7 , -5px -5px 16px 0px #E0F4FD",
       }}
