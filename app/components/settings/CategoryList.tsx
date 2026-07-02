@@ -50,7 +50,7 @@ export default function CategoryList({
                     ? "border-b border-[#EAEAEA] dark:border-[#FFFFFF10]"
                     : "",
                   active
-                    ? "bg-[#F0FAFF] text-[#303153] dark:bg-[#24374A] dark:text-white"
+                    ? "bg-[#F0FAFF] text-[#303153] dark:bg-[#FE92B0]/50 dark:text-white"
                     : "text-[#303153] hover:bg-[#F7FBFF] dark:text-[#D6D6E7] dark:hover:bg-[#3D3E58]",
                 ].join(" ")}
               >

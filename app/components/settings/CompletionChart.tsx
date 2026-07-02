@@ -61,7 +61,7 @@ export default function CompletionChart({
   ];
 
   return (
-    <div className="relative h-[340px] lg:h-[340px] w-full overflow-hidden rounded-[28px] border border-[#DCE7F5] bg-white p-4 lg:p-6 dark:border-[#FFFFFF15] dark:bg-[#2E2F46] font-sniglet">
+    <div className="relative h-[340px] lg:h-[340px] w-full overflow-scroll rounded-[28px] border border-[#DCE7F5] bg-white p-4 lg:p-6 dark:border-[#FFFFFF15] dark:bg-[#2E2F46] font-sniglet">
       {/* Grid */}
       <div className="pointer-events-none absolute inset-0 flex flex-col justify-between px-6 py-6">
         {Array.from({ length: 5 }).map((_, i) => (

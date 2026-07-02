@@ -13,7 +13,6 @@ import { useAuth } from "@/hooks/useAuth";
 import { useUser } from "@/hooks/useUser";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { ArrowLeft } from "lucide-react";
 
 export default function DashboardSettingsPage() {
   const { user } = useUser();
@@ -44,7 +43,7 @@ export default function DashboardSettingsPage() {
                 <h1 className="text-[30px] font-bold text-[#2A2A34] dark:text-white sm:text-[34px] font-sniglet">
                   {username || "User"}
                 </h1>
-                <p className="mt-1 text-[12px] text-[#9B9B9B] font-sniglet">
+                <p className="hidden lg:block mt-1 text-[12px] text-[#9B9B9B] font-sniglet">
                   manage your account and preferences
                 </p>
               </div>

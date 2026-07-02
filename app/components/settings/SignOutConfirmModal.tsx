@@ -44,11 +44,11 @@ export default function SignOutConfirmModal({
               </div>
 
               <h3 className="text-[20px] sm:text-[22px] font-sniglet font-semibold text-[#252842] dark:text-white">
-                Sign out?
+                Log out?
               </h3>
 
               <p className="mt-1.5 sm:mt-2 text-[13px] sm:text-[14px] font-sniglet text-[#7B8096] dark:text-[#BFC3D4]">
-                You can sign in again any time.
+                You can Log in again any time.
               </p>
 
               <div className="mt-6 sm:mt-7 flex w-full gap-2.5 sm:gap-3">

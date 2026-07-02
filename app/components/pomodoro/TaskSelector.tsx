@@ -16,12 +16,14 @@ export function TaskSelector({ selectedTaskId, onSelect }: TaskSelectorProps) {
     .filter((task) => !task.completed);
 
   if (isLoading) {
-    return <p className="text-sm text-gray-400">Loading tasks...</p>;
+    return (
+      <p className="font-sniglet text-sm text-gray-400">Loading tasks...</p>
+    );
   }
 
   if (incompleteTasks.length === 0) {
     return (
-      <p className="text-sm text-[#6D7085] dark:text-[#C6C7D2]">
+      <p className="font-sniglet text-sm text-[#6D7085] dark:text-[#C6C7D2]">
         No pending tasks found.
       </p>
     );
@@ -29,10 +31,10 @@ export function TaskSelector({ selectedTaskId, onSelect }: TaskSelectorProps) {
 
   return (
     <div className="md:w-1/2 w-full flex flex-col gap-3">
-      <p className="text-sm font-semibold text-[#303153] dark:text-white">
+      <p className="font-sniglet text-sm font-semibold text-[#303153]">
         Select a task to focus on
       </p>
-      <div className="flex flex-col gap-2 max-h-52 overflow-y-auto pr-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="flex flex-col gap-2 max-h-58 overflow-y-auto pr-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {incompleteTasks.map((task) => (
           <button
             key={task.id}
@@ -44,7 +46,7 @@ export function TaskSelector({ selectedTaskId, onSelect }: TaskSelectorProps) {
             }`}
           >
             <p
-              className={`text-sm font-medium ${
+              className={`font-sniglet text-sm font-medium ${
                 selectedTaskId === task.id
                   ? "text-[#303153] dark:text-white"
                   : "text-[#303153] dark:text-[#F4F4F4]"
@@ -54,15 +56,15 @@ export function TaskSelector({ selectedTaskId, onSelect }: TaskSelectorProps) {
             </p>
             <div className="flex items-center gap-2 mt-1">
               {task.category && (
-                <span className="text-xs text-[#59B7FF]">
+                <span className="font-sniglet text-xs text-[#59B7FF]">
                   {task.category.name}
                 </span>
               )}
               {task.category && task.estimatedDuration && (
-                <span className="text-xs text-[#6D7085]">·</span>
+                <span className="font-sniglet text-xs text-[#6D7085]">·</span>
               )}
               {task.estimatedDuration && (
-                <span className="text-xs text-[#6D7085]">
+                <span className="font-sniglet text-xs text-[#6D7085]">
                   {task.estimatedDuration} min
                 </span>
               )}

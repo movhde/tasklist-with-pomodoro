@@ -1,7 +1,7 @@
 import EditIcon from "../Elements/EditIcon";
 
 export default function GreetingHeader({ email }: { email: string }) {
-   const username = (email || "user@gmail.com").split("@")[0];
+  const username = (email || "user@gmail.com").split("@")[0];
   const now = new Date();
 
   const hour = now.getHours();
@@ -28,11 +28,11 @@ export default function GreetingHeader({ email }: { email: string }) {
 
       {/* desktop edit icon */}
 
-      <button className="hidden lg:flex mt-2 w-8 h-8 items-center justify-center transition-all duration-200">
+      {/* <button className="hidden lg:flex mt-2 w-8 h-8 items-center justify-center transition-all duration-200">
         <div className="dark:[filter:brightness(0)_saturate(100%)_invert(73%)_sepia(29%)_saturate(2290%)_hue-rotate(295deg)_brightness(101%)_contrast(102%)]">
           <EditIcon />
         </div>
-      </button>
+      </button> */}
     </div>
   );
 }

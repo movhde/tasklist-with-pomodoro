@@ -27,7 +27,7 @@ export function MainLayout({
     <div
       className={[
         "min-h-screen",
-        backgroundClassName ?? "bg-[#F5FBFF] dark:bg-[#78719dc7]",
+        backgroundClassName ?? "bg-[#F5FBFF] dark:bg-[#625b84c7]",
       ].join(" ")}
     >
       <div className="min-h-screen lg:flex">

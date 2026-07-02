@@ -12,8 +12,8 @@ export default function ChangePasswordButton({
 }: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: Variant }) {
   const styles =
     variant === "pink"
-      ? "border-[#FF7EB6] text-[#FF7EB6] hover:bg-[#FFF3F8] dark:hover:bg-[#3D2C38]"
-      : "border-[#66C2FF] text-[#66C2FF] hover:bg-[#F0FAFF] dark:hover:bg-[#253545]";
+      ? "border-[#FF7EB6] text-[#FF7EB6] hover:bg-[#FFF3F8] dark:hover:bg-[#3D2C38] lg:dark:bg-transparent dark:bg-[#3D2C38]"
+      : "border-[#66C2FF] text-[#66C2FF] hover:bg-[#F0FAFF] dark:hover:bg-[#253545] lg:dark:bg-transparent dark:bg-[#253545]";
 
   return (
     <button

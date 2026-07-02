@@ -30,7 +30,7 @@ export default function AnalyticsSection() {
   }, [categories, search]);
 
   return (
-    <div className="flex h-full flex-col gap-5 lg:grid lg:grid-cols-[35%_65%]">
+    <div className="flex h-full flex-col lg:items-end gap-5 lg:grid lg:grid-cols-[35%_65%]">
       <div className="flex flex-col gap-4">
         <div className="flex items-center justify-between">
           <h2 className="text-[18px] font-semibold text-[#303153] dark:text-white">

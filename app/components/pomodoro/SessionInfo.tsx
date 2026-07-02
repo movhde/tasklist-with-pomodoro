@@ -19,12 +19,12 @@ export function SessionInfo({
         <h2 className="font-sniglet text-2xl font-bold text-gray-700 mb-1">
           {sessionType === "work" ? "Work Session" : "Break Time"}
         </h2>
-        <p className="font-sniglet text-sm text-gray-500">
+        <p className="font-sniglet text-sm text-gray-500 dark:text-gray-700">
           Cycle: {cycles} of {totalSessions}
         </p>
       </div>
       {categoryName && (
-        <span className="hidden md:block font-sniglet text-sm font-medium text-blue-400 bg-blue-50 px-3 py-1 rounded-full">
+        <span className="hidden md:block font-sniglet text-sm font-medium text-blue-400 dark:text-white bg-blue-50 px-3 py-1 rounded-full dark:bg-[#414462]/85 dark:border-[#FD81B0]/40">
           {categoryName}
         </span>
       )}

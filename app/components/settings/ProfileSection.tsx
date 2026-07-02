@@ -52,7 +52,7 @@ export default function ProfileSection({ email }: { email?: string }) {
             src={avatar || "/icons/avatar.svg"}
             alt="avatar"
             fill
-            className={avatar ? "object-cover" : "object-cover p-8"}
+            className={avatar ? "object-cover" : "object-cover p-4"}
           />
         </div>
       </div>
